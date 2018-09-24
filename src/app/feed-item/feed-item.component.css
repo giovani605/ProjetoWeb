@@ -3,4 +3,5 @@ div{
     border: solid;
     border-width: 3px;
     border-color: red;
+    margin: 2px;
 }
