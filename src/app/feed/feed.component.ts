@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FeedComponent implements OnInit {
 
+  // lista do feed
+  lista = ["1","2","3"];
   constructor() { }
 
   ngOnInit() {
