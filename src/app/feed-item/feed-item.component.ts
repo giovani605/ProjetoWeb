@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./feed-item.component.css']
 })
 export class FeedItemComponent implements OnInit {
-
+  
   constructor() { }
 
   ngOnInit() {

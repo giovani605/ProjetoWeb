@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { FeedItem } from "../feedItem.model";
 @Component({
   selector: 'app-feed',
   templateUrl: './feed.component.html',
@@ -8,7 +8,10 @@ import { Component, OnInit } from '@angular/core';
 export class FeedComponent implements OnInit {
 
   // lista do feed
-  lista = ["1","2","3"];
+  lista: FeedItem[]  = [
+    new FeedItem("Comida 1","Muito Boa",
+    "https://www.receitas360.com.br/wp-content/uploads/2016/12/yakisoba-de-carne-186x190.jpg")
+  ];
   constructor() { }
 
   ngOnInit() {
