@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { FeedItem } from '../feedItem.model';
 
 @Component({
   selector: 'app-feed-item',
@@ -7,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FeedItemComponent implements OnInit {
   
+  @Input('valor') item : FeedItem;
+  @Input('mensagem') msg : string;
   constructor() { }
 
   ngOnInit() {
