@@ -10,6 +10,8 @@ export class UploadImagemComponent implements OnInit {
 
   public arqImagem: File;
 
+  public imagem: any;
+
   constructor(private uploadService: UploadServiceService) { }
 
   ngOnInit() {
@@ -19,6 +21,11 @@ export class UploadImagemComponent implements OnInit {
   }
   onUpload() {
     this.uploadService.uploadImagem(this.arqImagem);
+  }
+  recuperarImagem() {
+    this.uploadService.recuperarImagem("e7c3ac57f3719777e420ddee17f5a0c9", (resultado) => {
+      this.imagem = resultado;
+    });
   }
 
 }

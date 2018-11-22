@@ -3,3 +3,6 @@
 <p>Upload Imagem</p>
 <input type="file" (change)="onFileChanged($event)">
 <button type="button" (click)="onUpload()">Upload</button>
+<img [src]="imagem" />
+
+<button type="button" (click)="recuperarImagem()">Recuperar Imagem</button>
