@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { AuthData } from "../model/authData.model";
 import { Router } from "@angular/router";
-import { UserService } from "src/app/model/user.service";
+import { UserService } from "src/app/services/user.service";
 
 @Injectable({ providedIn: "root" })
 export class AuthService {

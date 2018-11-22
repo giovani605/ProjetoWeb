@@ -3,9 +3,9 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule }   from '@angular/forms';
 import { AppComponent } from './app.component';
-import { FeedComponent } from './feed/feed.component';
-import { FeedItemComponent } from './feed-item/feed-item.component';
-import { BarraNavegacaoComponent } from './barra-navegacao/barra-navegacao.component';
+import { FeedComponent } from './feed/feed-lista/feed.component';
+import { FeedItemComponent } from './feed/feed-item/feed-item.component';
+import { BarraNavegacaoComponent } from './barras/barra-navegacao/barra-navegacao.component';
 import { UploadImagemComponent } from './upload/upload-imagem/upload-imagem.component';
 import { LoginComponent } from "./auth/login/login.component"
 import { Routes, RouterModule } from '@angular/router';
