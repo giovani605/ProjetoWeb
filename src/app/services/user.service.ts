@@ -6,10 +6,8 @@ import { Usuario } from "../model/usuario.model";
 
 @Injectable({ providedIn: "root" })
 export class UserService {
-    public usuario: any;
-    public token: any;
+    public user:Usuario = new Usuario();
    
-
     constructor(private http: HttpClient) {
     }
     registrar(usuario:Usuario){
@@ -23,7 +21,17 @@ export class UserService {
             alert(response["msg"]);
         });
     }
+    setUser(usuario:Usuario){
+        this.user = usuario;
+    }
 
+    setUserClone(usuario:Usuario){
+        this.user.senha = usuario.senha;
+        this.user.nome = usuario.nome;
+        this.user.login = usuario.login;
+        this.user.idUsuario = usuario.idUsuario;
+        this.user.cidades_id = usuario.cidades_id;
+    }
     
 
 }
