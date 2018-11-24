@@ -1,0 +1,17 @@
+<div class="card">
+  <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+    <label for="nome">Nome</label>
+    <input type="text" id="nome" required [(ngModel)]="user.nome" name="nome">
+    <br />
+    <label for="login">Login</label>
+    <input type="text" id="login" required [(ngModel)]="user.login" name="login">
+    <br />
+    <label for="senha">Senha</label>
+    <input type="password" id="senha" required [(ngModel)]="user.senha" name="senha">
+    <br />
+    <p>Inserir cidades depois</p>
+    <br />
+    <button type="submit" class="btn btn-primary">Registrar</button>
+  </form>
+
+</div>

@@ -18,13 +18,15 @@ import { PaginaRestauranteComponent } from './paginas/perfil/pagina-restaurante/
 import { PaginaUsuarioComponent } from './paginas/perfil/pagina-usuario/pagina-usuario.component';
 import { PaginaAdmRestauranteComponent } from './paginas/admin/pagina-adm-restaurante/pagina-adm-restaurante.component';
 import { NotificacaoComponent } from './notificacao/notificacao/notificacao.component';
+import { PaginaGerenteComponent } from './login/pagina-gerente/pagina-gerente.component';
 
 
 const appRoutes: Routes = [
   {path: 'register', component: PaginaRegistroComponent },
   {path: 'home', component: PaginaFeedComponent },
   {path: '', component: PaginaLoginComponent },
-  {path: 'login', component: PaginaLoginComponent }
+  {path: 'login', component: PaginaLoginComponent },
+  {path: 'register/restaurante', component: RegistroRestauranteComponent }
 ];
 
 @NgModule({
@@ -43,7 +45,8 @@ const appRoutes: Routes = [
     PaginaRestauranteComponent,
     PaginaUsuarioComponent,
     PaginaAdmRestauranteComponent,
-    NotificacaoComponent
+    NotificacaoComponent,
+    PaginaGerenteComponent
 
   ],
   imports: [

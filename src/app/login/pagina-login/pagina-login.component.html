@@ -1,4 +1,6 @@
 <div class="card rounded border-primary shadow p-3 mb-5 bg-light" style="width: 18rem;padding: 10px; margin: 50px">
   <app-login></app-login>
-  <button type="button" class="btn btn-primary" routerLink="/register">Registrar</button>
+  <button type="button" class="btn btn-primary" routerLink="/register" [queryParams]="{gerente:0}">Registrar</button>
+  <button type="button" class="btn btn-primary" routerLink="/register" [queryParams]="{gerente:1}">Registrar Gerente</button>
+
 </div>
