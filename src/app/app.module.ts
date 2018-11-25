@@ -20,6 +20,7 @@ import { PaginaAdmRestauranteComponent } from './paginas/admin/pagina-adm-restau
 import { NotificacaoComponent } from './notificacao/notificacao/notificacao.component';
 import { PaginaGerenteComponent } from './login/pagina-gerente/pagina-gerente.component';
 import { RegistroPratoComponent } from './login/registro-prato/registro-prato.component';
+import { ItemPratoComponent } from './lista/item-prato/item-prato.component';
 
 
 const appRoutes: Routes = [
@@ -50,7 +51,8 @@ const appRoutes: Routes = [
     PaginaAdmRestauranteComponent,
     NotificacaoComponent,
     PaginaGerenteComponent,
-    RegistroPratoComponent
+    RegistroPratoComponent,
+    ItemPratoComponent
 
   ],
   imports: [

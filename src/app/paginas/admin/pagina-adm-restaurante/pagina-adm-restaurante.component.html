@@ -4,10 +4,7 @@
 
 <div>
   <li *ngFor="let prato of listaPratos">
-    <p>
-      {{prato.nome}}
-    </p>
-    <img [src]="getUrlImagem(prato.idimagem)">
+    <app-item-prato [prato]="prato"></app-item-prato>
 
   </li>
 
