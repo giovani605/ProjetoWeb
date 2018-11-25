@@ -1,0 +1,12 @@
+<form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+  <label for="nome">Nome</label>
+  <input type="text" id="nome" required [(ngModel)]="prato.nome" name="nome">
+  <br />
+  <label for="descricao">Descricao</label>
+  <input type="text" id="descricao" required [(ngModel)]="prato.descricao" name="descricao">
+  <br />
+  <input type="file" (change)="onFileChanged($event)">
+
+  <br />
+  <button type="submit" class="btn btn-primary">Registrar</button>
+</form>
