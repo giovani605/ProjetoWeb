@@ -56,7 +56,7 @@ export class RestauranteService {
     res.descricao = a["descricao"];
     res.telefone = a["telefone"];
     res.rua = a["rua"];
-    res.numero = a["123"];
+    res.numero = a["numero"];
     return res;
   }
 

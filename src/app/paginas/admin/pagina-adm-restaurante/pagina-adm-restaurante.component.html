@@ -3,11 +3,13 @@
 </h1>
 
 <div>
-  <p>
-    lista dos meus pratos
-  </p>
+  <li *ngFor="let prato of listaPratos">
+    <p>
+      {{prato.nome}}
+    </p>
+    <img [src]="getUrlImagem(prato.idimagem)">
+
+  </li>
+
 </div>
-<button type="button" class="btn btn-primary"
- routerLink="/register/prato">Registrar</button>
-
-
+<button type="button" class="btn btn-primary" routerLink="/register/prato">Registrar</button>
