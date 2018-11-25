@@ -17,6 +17,7 @@ export class PratoService {
     fd.append('teste', teste);
     this.http.post("http://localhost:3000/prato/registrar", fd).subscribe(response => {
       console.log(response);
+      callback(response);
     });
 
 

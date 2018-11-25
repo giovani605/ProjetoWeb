@@ -8,6 +8,10 @@ import { Usuario } from "../model/usuario.model";
 export class UserService {
     public user: Usuario = new Usuario();
 
+    getUserId() {
+        return this.user.idUsuario;
+    }
+
     constructor(private http: HttpClient) {
     }
     registrar(usuario: Usuario, callback) {
@@ -28,7 +32,18 @@ export class UserService {
         this.user = usuario;
     }
 
+    converterUserBackdados(a) {
+        var user = new Usuario();
+        user.login = a["login"];
+        user.idUsuario = a["idusuario"];
+        user.nome = a["nome"];
+        user.senha = a["senha"];
+        user.cidades_id = a["cidades_id"];
+        return user;
+    }
+
     setUserClone(usuario: Usuario) {
+        console.log("setando o usuario " + usuario.idUsuario);
         this.user.senha = usuario.senha;
         this.user.nome = usuario.nome;
         this.user.login = usuario.login;
@@ -37,7 +52,7 @@ export class UserService {
     }
 
     registrarGerente(idUser: any, callback) {
-        console.log("registrar Gerente " + idUser )
+        console.log("registrar Gerente " + idUser)
         var data = {
             "idUser": idUser
         }
@@ -57,7 +72,7 @@ export class UserService {
     }
 
     //  pensar
-    buscarGerenteidUser(idUser,callback) {
+    buscarGerenteidUser(idUser, callback) {
 
         this.http.get("http://localhost:3000/usuario/gerente/" + idUser).subscribe(response => {
             console.log(response);

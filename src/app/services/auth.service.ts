@@ -17,18 +17,11 @@ export class AuthService {
             console.log(response);
             // sucesso
             if (response["loginFlag"] == true) {
-                var user = new Usuario();
-                user.login = response["user"]["login"];
-                user.idUsuario = response["user"]["idUsuario"];
-                user.nome = response["user"]["nome"];
-                user.senha = response["user"]["senha"];
-                user.cidades_id = response["user"]["cidades_id"];
+                var user = this.userService.converterUserBackdados(response["user"]);
+                console.log(user);
                 this.userService.setUserClone(user);
                 this.router.navigate(["/home"]);
             }
-
-
-
         });
     }
 }
