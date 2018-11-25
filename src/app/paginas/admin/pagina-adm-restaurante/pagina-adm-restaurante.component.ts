@@ -5,6 +5,7 @@ import { Restaurante } from '../../../model/restaurante.model';
 import { Subscription } from 'rxjs';
 import { Prato } from 'src/app/model/prato.model';
 import { PratoService } from 'src/app/services/prato.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pagina-adm-restaurante',
@@ -19,7 +20,8 @@ export class PaginaAdmRestauranteComponent implements OnInit, OnDestroy {
 
   constructor(private restauranteService: RestauranteService
     , private userService: UserService,
-    private pratoService: PratoService) { }
+    private pratoService: PratoService,
+    private router:Router) { }
 
   getUrlImagem(img: String): String {
     return "http://localhost:3000/static/" + img;
@@ -41,6 +43,9 @@ export class PaginaAdmRestauranteComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.listenerRestaurante.unsubscribe();
   }
-
+  inserirPratoDia(p:Prato){
+    console.log(p);
+    this.router.navigate(['/registro/periodo/'+p.idpratos]);
+  }
 
 }

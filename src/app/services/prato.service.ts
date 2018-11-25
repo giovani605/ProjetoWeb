@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Prato } from '../model/prato.model';
 import { Subject } from 'rxjs';
+import { PratoDia } from '../model/pratoDia.model';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +23,17 @@ export class PratoService {
       callback(response);
     });
   }
+
+
+  inserirPratoDiaSimples(pratoDia: PratoDia, callback) {
+    this.http.post("http://localhost:3000/prato/periodo/simples", pratoDia).subscribe(response => {
+      console.log(response);
+      callback(response);
+    });
+
+  }
+
+
   converterPratoDadosBack(a) {
     var p = new Prato();
     p.descricao = a["descricao"];
@@ -32,9 +44,20 @@ export class PratoService {
     p.tag_idtag = a["tag_idtag"];
     return p;
   }
+  converterPratoDiaDadosBack(a){
+    var p = new PratoDia();
+    p.idprato_dia = a["idprato_dia"];
+    p.idPrato = a["idprato"];
+    p.data_inicio = a["data_inicio"];
+    p.data_fim = a["data_fim"];
+    p.responsavel = a["responsavel"];
+    p.aprovado = a["aprovado"];
+    return p;
+
+  }
 
   recuperarPratosRestaurante(idRestaurante) {
-    var subject:Subject<Prato[]> = new Subject<Prato[]>();
+    var subject: Subject<Prato[]> = new Subject<Prato[]>();
     this.http.get("http://localhost:3000/prato/restaurante/" + idRestaurante).subscribe(response => {
       console.log(response["dados"]);
       var lista: Prato[] = [];
@@ -48,4 +71,19 @@ export class PratoService {
     });
     return subject.asObservable();
   }
+
+  recuperarPratoId(idPrato) {
+    var subject: Subject<Prato> = new Subject<Prato>();
+    this.http.get("http://localhost:3000/prato/" + idPrato).subscribe(response => {
+      var b = this.converterPratoDadosBack(response["dados"][0]);
+      console.log("prato");
+      console.log(b);
+      subject.next(b);
+    });
+    return subject.asObservable();
+
+  }
+
+
+
 }

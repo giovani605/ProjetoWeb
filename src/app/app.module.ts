@@ -21,6 +21,7 @@ import { NotificacaoComponent } from './notificacao/notificacao/notificacao.comp
 import { PaginaGerenteComponent } from './login/pagina-gerente/pagina-gerente.component';
 import { RegistroPratoComponent } from './login/registro-prato/registro-prato.component';
 import { ItemPratoComponent } from './lista/item-prato/item-prato.component';
+import { RegistroPeriodoPratoComponent } from './login/registro-periodo-prato/registro-periodo-prato.component';
 
 
 const appRoutes: Routes = [
@@ -30,7 +31,8 @@ const appRoutes: Routes = [
   {path: 'login', component: PaginaLoginComponent },
   {path: 'register/restaurante', component: RegistroRestauranteComponent },
   {path: 'register/prato', component: RegistroPratoComponent },
-  {path: 'admin/restaurante', component: PaginaAdmRestauranteComponent }
+  {path: 'admin/restaurante', component: PaginaAdmRestauranteComponent },
+  {path: 'registro/periodo/:id', component: RegistroPeriodoPratoComponent}
 ];
 
 @NgModule({
@@ -52,7 +54,8 @@ const appRoutes: Routes = [
     NotificacaoComponent,
     PaginaGerenteComponent,
     RegistroPratoComponent,
-    ItemPratoComponent
+    ItemPratoComponent,
+    RegistroPeriodoPratoComponent
 
   ],
   imports: [

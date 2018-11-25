@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FeedItem } from "../../model/feedItem.model";
+import { FeedService } from 'src/app/services/feed.service';
+import { Subject, Subscription } from 'rxjs';
 @Component({
   selector: 'app-feed',
   templateUrl: './feed.component.html',
@@ -8,13 +10,14 @@ import { FeedItem } from "../../model/feedItem.model";
 export class FeedComponent implements OnInit {
 
   // lista do feed
-  lista: FeedItem[]  = [
-    new FeedItem("Comida 1","Muito Boa",
-    "https://www.receitas360.com.br/wp-content/uploads/2016/12/yakisoba-de-carne-186x190.jpg")
-  ];
-  constructor() { }
+  lista: FeedItem[] = [];
+  constructor(private feedService: FeedService) { }
 
   ngOnInit() {
+    var a: Subscription = this.feedService.recuperarFeedGeral().subscribe(dados => {
+      this.lista = dados;
+      a.unsubscribe();
+    })
   }
 
 }

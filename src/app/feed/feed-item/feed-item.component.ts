@@ -9,7 +9,6 @@ import { FeedItem } from '../../model/feedItem.model';
 export class FeedItemComponent implements OnInit {
   
   @Input('valor') item : FeedItem;
-  @Input('mensagem') msg : string;
   constructor() { }
 
   ngOnInit() {

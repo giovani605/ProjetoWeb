@@ -5,7 +5,7 @@
 <div>
   <li *ngFor="let prato of listaPratos">
     <app-item-prato [prato]="prato"></app-item-prato>
-
+    <button (click)="inserirPratoDia(prato)" class="btn btn-primary">Inserir</button>
   </li>
 
 </div>
