@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule }   from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { FeedComponent } from './feed/feed-lista/feed.component';
 import { FeedItemComponent } from './feed/feed-item/feed-item.component';
@@ -23,17 +23,18 @@ import { RegistroPratoComponent } from './login/registro-prato/registro-prato.co
 import { ItemPratoComponent } from './lista/item-prato/item-prato.component';
 import { RegistroPeriodoPratoComponent } from './login/registro-periodo-prato/registro-periodo-prato.component';
 import { BarraLateralComponent } from './barras/barra-lateral/barra-lateral.component';
+import { UserService } from './services/user.service';
 
 
 const appRoutes: Routes = [
-  {path: 'register', component: PaginaRegistroComponent },
-  {path: 'home', component: PaginaFeedComponent },
-  {path: '', component: PaginaLoginComponent },
-  {path: 'login', component: PaginaLoginComponent },
-  {path: 'register/restaurante', component: RegistroRestauranteComponent },
-  {path: 'register/prato', component: RegistroPratoComponent },
-  {path: 'admin/restaurante', component: PaginaAdmRestauranteComponent },
-  {path: 'registro/periodo/:id', component: RegistroPeriodoPratoComponent}
+  { path: 'register', component: PaginaRegistroComponent },
+  { path: 'home', canActivate: [UserService], component: PaginaFeedComponent },
+  { path: '', component: PaginaLoginComponent },
+  { path: 'login', component: PaginaLoginComponent },
+  { path: 'register/restaurante', canActivate: [UserService], component: RegistroRestauranteComponent },
+  { path: 'register/prato', canActivate: [UserService], component: RegistroPratoComponent },
+  { path: 'admin/restaurante', canActivate: [UserService], component: PaginaAdmRestauranteComponent },
+  { path: 'registro/periodo/:id', canActivate: [UserService], component: RegistroPeriodoPratoComponent }
 ];
 
 @NgModule({
@@ -66,7 +67,7 @@ const appRoutes: Routes = [
     FormsModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

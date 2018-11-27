@@ -2,17 +2,28 @@ import { Injectable, OnInit } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Subject } from "rxjs";
 import { Usuario } from "../model/usuario.model";
+import { CanActivate, Router } from "@angular/router";
 
 
 @Injectable({ providedIn: "root" })
-export class UserService {
+export class UserService implements CanActivate{
     public user: Usuario = new Usuario();
+    private isAuth: boolean = false;
+
+    canActivate(){
+        if (!this.isAuth {
+            this.router.navigate(['login']);
+            return false;
+        }
+        return this.isAuth;
+    }
+
 
     getUserId() {
         return this.user.idUsuario;
     }
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient, private router:Router) {
     }
     registrar(usuario: Usuario, callback) {
         var data = {
@@ -26,7 +37,10 @@ export class UserService {
         });
     }
 
-
+    logar(usuario:Usuario){
+        this.setUserClone(usuario);
+        this.isAuth = true;
+    }
 
     setUser(usuario: Usuario) {
         this.user = usuario;

@@ -22,7 +22,7 @@ export class AuthService {
                 var user = this.userService.converterUserBackdados(response["user"]);
                 this.restauranteService.carregarRestaurante(user.idUsuario);
                 console.log(user);
-                this.userService.setUserClone(user);
+                this.userService.logar(user);
                 this.router.navigate(["/home"]);
             }
         });
