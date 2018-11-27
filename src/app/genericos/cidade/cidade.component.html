@@ -1,0 +1,10 @@
+<div>
+  <label for="estado">Estado</label>
+  <select name="" id="estado">
+    <option [value]="estado.idEstado" *ngFor="let estado of estados" >{{ estado.nome }}</option>
+  </select>
+  <label for="cidade">Cidade</label>
+  <select id="cidade">
+    <option [value]="cidade.idCidade" *ngFor="let cidade of cidades" > {{ cidade.nome }}</option>
+  </select>
+</div>

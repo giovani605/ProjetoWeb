@@ -10,8 +10,8 @@ export class UserService implements CanActivate{
     public user: Usuario = new Usuario();
     private isAuth: boolean = false;
 
-    canActivate(){
-        if (!this.isAuth {
+    canActivate() {
+        if (!this.isAuth) {
             this.router.navigate(['login']);
             return false;
         }
