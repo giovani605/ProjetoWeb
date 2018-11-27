@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RestauranteService } from 'src/app/services/restaurante.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-barra-lateral',
@@ -9,6 +10,10 @@ import { RestauranteService } from 'src/app/services/restaurante.service';
 export class BarraLateralComponent implements OnInit {
 
   constructor(public restauranteService:RestauranteService) { }
+
+  isGerente(){
+    return this.restauranteService.isGerente();
+  }
 
   hasRestaurante(){
     return this.restauranteService.hasRestaurante();

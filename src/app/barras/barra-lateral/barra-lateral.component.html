@@ -5,8 +5,8 @@
   <a routerLink="#" (click)="closeNav()">Reservas</a>
   <hr />
   <a routerLink="/admin/restaurante" (click)="closeNav()" *ngIf="hasRestaurante()">Administracao</a>
-  <a routerLink="/admin/restaurante" (click)="closeNav()" *ngIf="hasRestaurante()">Colaboradores</a>
-  <a routerLink="/admin/restaurante" (click)="closeNav()" *ngIf="hasRestaurante()">Notificações</a>
+  <a routerLink="/admin/restaurante/colaboradores" (click)="closeNav()" *ngIf="isGerente()">Colaboradores</a>
+  <a routerLink="/admin/restaurante" (click)="closeNav()" *ngIf="isGerente()">Notificações</a>
   <a routerLink="/admin/restaurante" (click)="closeNav()" *ngIf="hasRestaurante()">Reservas</a>
 </div>
 

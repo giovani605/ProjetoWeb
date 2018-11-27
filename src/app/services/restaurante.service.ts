@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Restaurante } from '../model/restaurante.model';
 import { Subject } from "rxjs";
+import { UserService } from './user.service';
+import { Usuario } from '../model/usuario.model';
+
 
 @Injectable({
   providedIn: 'root'
@@ -10,21 +13,37 @@ export class RestauranteService {
 
   private subsRestaurante = new Subject<Restaurante>();
   private existeRestaurante = false;
+  private flagGerente = false;
+  private flagColaborador = false;
+  private idGerente: number = 0;
 
-  hasRestaurante(){
+  getIdGerente() {
+    return this.idGerente;
+  }
+
+  isGerente() {
+    return this.flagGerente;
+  }
+
+  isColaborador() {
+    return this.flagColaborador;
+  }
+
+
+  hasRestaurante() {
     return this.existeRestaurante;
   }
 
-  getRestauranteUpdated(){
+  getRestauranteUpdated() {
     return this.subsRestaurante.asObservable();
   }
-  getIdRestaurante(){
+  getIdRestaurante() {
     return this.restaurante.idRestaurente;
   }
 
   public restaurante: Restaurante = new Restaurante();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private userService: UserService) { }
 
   registrarRestaurante(idGerente, dadosRestaurante, callback) {
     var data = {
@@ -47,13 +66,13 @@ export class RestauranteService {
     this.restaurante.rua = a["rua"];
     this.restaurante.numero = a["numero"];
   }
-  private setRestaurante(a:Restaurante){
+  private setRestaurante(a: Restaurante) {
     this.restaurante = a;
     this.subsRestaurante.next(this.restaurante);
   }
 
-  converterRestaurante(a):Restaurante {
-    var res:Restaurante = new Restaurante();
+  converterRestaurante(a): Restaurante {
+    var res: Restaurante = new Restaurante();
     res.cidades_id = a["cidades_id"];
     res.idRestaurente = a["idrestaurante"];
     res.gerente_idgerente = a["gerente_idgerente"];
@@ -65,7 +84,7 @@ export class RestauranteService {
     return res;
   }
 
-
+  // cuidar que essa funcao tem logica de negocio
   carregarRestaurante(idUser) {
     // recuperar o as informações do restaurante
     console.log("iduser: " + idUser);
@@ -77,13 +96,58 @@ export class RestauranteService {
         this.setRestaurante(res);
         console.log(this.restaurante);
         this.existeRestaurante = true;
+        // carregar se eh gerente ou colaborador
+        this.flagColaborador = response["flagColaborador"];
+        this.flagGerente = response["flagGerente"];
+        this.idGerente = Number(response["idGerente"]);
       }
       else {
         this.existeRestaurante = false;
+        this.flagColaborador = response["flagColaborador"];
+        this.flagGerente = response["flagGerente"];
       }
     });
 
   }
+  isColaboradorBuscar(idUser) {
+    var subject: Subject<boolean> = new Subject<boolean>();
+    this.http.get("http://localhost:3000/restaurante/isColaborador/" + idUser).subscribe(response => {
+      var b: boolean = response["flag"]
+      console.log("isColaborador");
+      console.log(b);
+      subject.next(b);
+    });
+    return subject.asObservable();
+
+  }
+  isGerenteBuscar(idUser) {
+    var subject: Subject<boolean> = new Subject<boolean>();
+    this.http.get("http://localhost:3000/restaurante/isGerente/" + idUser).subscribe(response => {
+      var b: boolean = response["flag"]
+      console.log("isGerente");
+      console.log(b);
+      subject.next(b);
+    });
+    return subject.asObservable();
+
+  }
+
+  procurarColaboradores(idGerente) {
+    console.log("idGerente " + idGerente);
+    var subject: Subject<Usuario[]> = new Subject<Usuario[]>();
+    this.http.get("http://localhost:3000/restaurante/gerente/colaboradores/" + idGerente).subscribe(response => {
+      var lista: Usuario[] = [];
+      for (let a of response["dados"]) {
+        var u = this.userService.converterUser(a);
+        lista.push(u);
+      }
+      console.log("procurarColaboradores");
+      console.log(lista);
+      subject.next(lista);
+    });
+    return subject.asObservable();
+  }
+
 
 
 

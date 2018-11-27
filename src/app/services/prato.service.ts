@@ -83,7 +83,4 @@ export class PratoService {
     return subject.asObservable();
 
   }
-
-
-
 }

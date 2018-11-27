@@ -24,6 +24,8 @@ import { ItemPratoComponent } from './lista/item-prato/item-prato.component';
 import { RegistroPeriodoPratoComponent } from './login/registro-periodo-prato/registro-periodo-prato.component';
 import { BarraLateralComponent } from './barras/barra-lateral/barra-lateral.component';
 import { UserService } from './services/user.service';
+import { PaginaColaboradoresComponent } from './paginas/admin/pagina-colaboradores/pagina-colaboradores.component';
+import { ListaUsuarioComponent } from './lista/lista-usuario/lista-usuario.component';
 
 
 const appRoutes: Routes = [
@@ -34,7 +36,8 @@ const appRoutes: Routes = [
   { path: 'register/restaurante', canActivate: [UserService], component: RegistroRestauranteComponent },
   { path: 'register/prato', canActivate: [UserService], component: RegistroPratoComponent },
   { path: 'admin/restaurante', canActivate: [UserService], component: PaginaAdmRestauranteComponent },
-  { path: 'registro/periodo/:id', canActivate: [UserService], component: RegistroPeriodoPratoComponent }
+  { path: 'registro/periodo/:id', canActivate: [UserService], component: RegistroPeriodoPratoComponent },
+  { path: 'admin/restaurante/colaboradores', canActivate: [UserService,PaginaColaboradoresComponent], component: PaginaColaboradoresComponent }
 ];
 
 @NgModule({
@@ -58,7 +61,9 @@ const appRoutes: Routes = [
     RegistroPratoComponent,
     ItemPratoComponent,
     RegistroPeriodoPratoComponent,
-    BarraLateralComponent
+    BarraLateralComponent,
+    PaginaColaboradoresComponent,
+    ListaUsuarioComponent
 
   ],
   imports: [
@@ -67,7 +72,7 @@ const appRoutes: Routes = [
     FormsModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [UserService],
+  providers: [UserService,PaginaColaboradoresComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
