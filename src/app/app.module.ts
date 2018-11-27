@@ -22,6 +22,7 @@ import { PaginaGerenteComponent } from './login/pagina-gerente/pagina-gerente.co
 import { RegistroPratoComponent } from './login/registro-prato/registro-prato.component';
 import { ItemPratoComponent } from './lista/item-prato/item-prato.component';
 import { RegistroPeriodoPratoComponent } from './login/registro-periodo-prato/registro-periodo-prato.component';
+import { BarraLateralComponent } from './barras/barra-lateral/barra-lateral.component';
 
 
 const appRoutes: Routes = [
@@ -55,7 +56,8 @@ const appRoutes: Routes = [
     PaginaGerenteComponent,
     RegistroPratoComponent,
     ItemPratoComponent,
-    RegistroPeriodoPratoComponent
+    RegistroPeriodoPratoComponent,
+    BarraLateralComponent
 
   ],
   imports: [
