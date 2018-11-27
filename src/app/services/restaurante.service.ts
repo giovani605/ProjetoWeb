@@ -9,6 +9,11 @@ import { Subject } from "rxjs";
 export class RestauranteService {
 
   private subsRestaurante = new Subject<Restaurante>();
+  private existeRestaurante = false;
+
+  hasRestaurante(){
+    return this.existeRestaurante;
+  }
 
   getRestauranteUpdated(){
     return this.subsRestaurante.asObservable();
@@ -71,9 +76,10 @@ export class RestauranteService {
         var res = this.converterRestaurante(response["dados"][0]);
         this.setRestaurante(res);
         console.log(this.restaurante);
+        this.existeRestaurante = true;
       }
       else {
-        // faz alguma coisa
+        this.existeRestaurante = false;
       }
     });
 

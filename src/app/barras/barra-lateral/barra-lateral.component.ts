@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RestauranteService } from 'src/app/services/restaurante.service';
 
 @Component({
   selector: 'app-barra-lateral',
@@ -7,11 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BarraLateralComponent implements OnInit {
 
-  constructor() { }
+  constructor(public restauranteService:RestauranteService) { }
+
+  hasRestaurante(){
+    return this.restauranteService.hasRestaurante();
+  }
 
   ngOnInit() {
+
   }
-   openNav() {
+  openNav() {
     document.getElementById("mySidenav").style.width = "250px";
   }
 

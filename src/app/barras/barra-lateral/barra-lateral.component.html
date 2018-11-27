@@ -1,7 +1,7 @@
 <div id="mySidenav" class="sidenav bg-primary text-dark">
   <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
   <a routerLink="/home" (click)="closeNav()">Home</a>
-  <a routerLink="/admin/restaurante" (click)="closeNav()">Administracao</a>
+  <a routerLink="/admin/restaurante" (click)="closeNav()" *ngIf="hasRestaurante()">Administracao</a>
   <a routerLink="#" (click)="closeNav()">Amigos</a>
 </div>
 

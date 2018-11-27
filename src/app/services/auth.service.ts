@@ -4,11 +4,13 @@ import { AuthData } from "../model/authData.model";
 import { Router } from "@angular/router";
 import { UserService } from "src/app/services/user.service";
 import { Usuario } from "../model/usuario.model";
+import { RestauranteService } from "./restaurante.service";
 
 @Injectable({ providedIn: "root" })
 export class AuthService {
 
-    constructor(private http: HttpClient, private router: Router, public userService: UserService) {
+    constructor(private http: HttpClient, private router: Router, public userService: UserService,
+    private restauranteService:RestauranteService) {
 
     }
 
@@ -18,6 +20,7 @@ export class AuthService {
             // sucesso
             if (response["loginFlag"] == true) {
                 var user = this.userService.converterUserBackdados(response["user"]);
+                this.restauranteService.carregarRestaurante(user.idUsuario);
                 console.log(user);
                 this.userService.setUserClone(user);
                 this.router.navigate(["/home"]);
