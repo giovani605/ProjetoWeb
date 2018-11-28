@@ -1,3 +1,13 @@
-<div class="shadow-sm p-3 mb-5 bg-white rounded">
-    <app-item-prato [prato]="item.prato"></app-item-prato>
+<div class="shadow-sm p-3 mb-2 bg-white rounded border container">
+    <div class="row">
+        <div class="col">
+            <app-item-prato [prato]="item.prato"></app-item-prato>
+        </div>
+        <div class="col">
+            <button type="button" class="btn btn-primary mx-1">Reservar</button>
+            <button type="button" class="btn btn-primary mx-1">Avaliar</button>
+            <button type="button" class="btn btn-primary mx-1">Compatilhar</button>
+            <button type="button" class="btn btn-primary mx-1">Ver restaurante</button>
+        </div>
+    </div>
 </div>

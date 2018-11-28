@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row">
+    <input type="text" [(ngModel)]="nome" placeholder="Pesquisar Usuários..." />
+    <button type="button" (click)="buscarUsuarios()" class="btn btn-primary">Pesquisar</button>
+  </div>
+  <div class="row border border-primary my-1 rounded">
+    <div class="col" *ngIf="renderTabela();then tabela"></div>
+    <ng-template #tabela>
+      <div class="col">
+        <div *ngFor="let a of listaUser" class="row border border-primary my-1 rounded">
+
+          <div class="col-sm-5">
+            Usuario : {{a.nome}}
+          </div>
+          <div class="col">
+            <button type="button" (click)="adicionarColaborador(a)" class="btn btn-primary">Adicionar Colaborador</button>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+
+</div>

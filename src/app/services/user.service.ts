@@ -103,5 +103,23 @@ export class UserService implements CanActivate {
 
     }
 
+    buscarUserLoginLike(login) {
+        console.log("buscarUserLoginLike " + login);
+        var subject: Subject<Usuario[]> = new Subject<Usuario[]>();
+        this.http.get("http://localhost:3000/usuario/like/login/" + login).subscribe(response => {
+            var lista: Usuario[] = [];
+            for (let a of response["dados"]) {
+                var u = this.converterUser(a);
+                lista.push(u);
+            }
+            console.log("buscarUserLoginLike");
+            console.log(lista);
+            subject.next(lista);
+        });
+        return subject.asObservable();
+
+    }
+
+
 
 }

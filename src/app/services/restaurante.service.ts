@@ -148,6 +148,22 @@ export class RestauranteService {
     return subject.asObservable();
   }
 
+  inserirColaborador(idUser){
+    console.log("inserirColaborador " + idUser);
+    var subject: Subject<boolean> = new Subject<boolean>();
+    var dados = {
+      "idGerente" : this.idGerente,
+      "idRestaurante" : this.getIdRestaurante(),
+      "idUser" : idUser
+    };
+    this.http.post("http://localhost:3000/restaurante/gerente/inserir/colaboradores",dados).subscribe(response => {
+      
+      console.log("procurarColaboradores");
+      console.log(response);
+      subject.next(response["flag"]);
+    });
+    return subject.asObservable();
+  }
 
 
 
