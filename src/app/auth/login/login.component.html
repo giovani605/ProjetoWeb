@@ -1,15 +1,30 @@
-
 <div class="container">
-  <h1>Login</h1>
-  <form (ngSubmit)="onSubmit()" #loginForm="ngForm" >
-    <label for="user">User: </label>
-    <input type="text" id="user" required [(ngModel)]="authData.user" name="user">
-    <br />
-    <br />
-    <label for="senha">Senha: </label>
-    <input type="password" id="senha" required [(ngModel)]="authData.senha" name="senha">
-    <br />
-    <br />
-    <button type="submit" class="btn btn-primary" >Logar</button>
+  <div class="row">
+    <h1>Login</h1>
+  </div>
+
+  <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+    <div class="row align-items-start">
+      <div class="row">
+        <div class="col-sm-2">
+          <label for="user">User: </label>
+        </div>
+        <div class="col">
+          <input type="text" id="user" required [(ngModel)]="authData.user" name="user" />
+        </div>
+      </div>
+    </div>
+    <div class="row align-items-start">
+      <div class="col-sm-2">
+        <label for="senha">Senha: </label>
+      </div>
+      <div class="col">
+        <input type="password" id="senha" required [(ngModel)]="authData.senha" name="senha">
+      </div>
+    </div>
+    <div class="row align-items-start">
+      <button type="submit" class="btn btn-primary">Logar</button>
+    </div>
   </form>
+
 </div>

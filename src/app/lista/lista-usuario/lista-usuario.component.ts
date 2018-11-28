@@ -11,7 +11,7 @@ import { RestauranteService } from 'src/app/services/restaurante.service';
 })
 export class ListaUsuarioComponent implements OnInit {
 
-  private listaUser: Usuario[] = [];
+  @Input('lista') private listaUser: Usuario[] = [];
   @Input('tipo') private tipo: string;
 
   constructor(private restauranteService: RestauranteService) { }

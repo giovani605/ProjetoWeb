@@ -26,6 +26,7 @@ import { BarraLateralComponent } from './barras/barra-lateral/barra-lateral.comp
 import { UserService } from './services/user.service';
 import { PaginaColaboradoresComponent } from './paginas/admin/pagina-colaboradores/pagina-colaboradores.component';
 import { ListaUsuarioComponent } from './lista/lista-usuario/lista-usuario.component';
+import { PesquisaUsuariosComponent } from './pesquisa/pesquisa-usuarios/pesquisa-usuarios.component';
 
 
 const appRoutes: Routes = [
@@ -65,7 +66,8 @@ const appRoutes: Routes = [
     RegistroPeriodoPratoComponent,
     BarraLateralComponent,
     PaginaColaboradoresComponent,
-    ListaUsuarioComponent
+    ListaUsuarioComponent,
+    PesquisaUsuariosComponent
 
   ],
   imports: [
