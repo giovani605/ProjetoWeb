@@ -40,7 +40,8 @@ const appRoutes: Routes = [
   { path: 'admin/restaurante', canActivate: [UserService], component: PaginaAdmRestauranteComponent },
   { path: 'registro/periodo/:id', canActivate: [UserService], component: RegistroPeriodoPratoComponent },
   { path: 'admin/restaurante/colaboradores', canActivate: [UserService, PaginaColaboradoresComponent],
-    component: PaginaColaboradoresComponent }
+    component: PaginaColaboradoresComponent },
+  { path: 'restaurante/:id',  component: PaginaRestauranteComponent }
 ];
 
 @NgModule({

@@ -164,7 +164,20 @@ export class RestauranteService {
     });
     return subject.asObservable();
   }
-
+  buscaRestauranteIdRestaurante(idRestaurante){
+    console.log("buscaRestauranteIdRestaurante " + idRestaurante);
+    var subs:Subject<Restaurante> = new Subject<Restaurante>();
+    this.http.get("http://localhost:3000/restaurante/" + idRestaurante).subscribe(response => {
+      if (response["flagDados"]) {
+        console.log(response["dados"])
+        var res = this.converterRestaurante(response["dados"]);
+        subs.next(res);
+      }else{
+        subs.next();
+      }
+    });
+    return subs;
+  }
 
 
 }

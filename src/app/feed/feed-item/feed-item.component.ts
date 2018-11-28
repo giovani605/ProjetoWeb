@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FeedItem } from '../../model/feedItem.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-feed-item',
@@ -9,9 +10,13 @@ import { FeedItem } from '../../model/feedItem.model';
 export class FeedItemComponent implements OnInit {
   
   @Input('valor') item : FeedItem;
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit() {
   }
 
+  redirecionarRestaurante(event){
+    console.log("oiew");
+    this.router.navigate(['restaurante/'+this.item.prato.restaurante_idrestaurante]);
+  }
 }
