@@ -5,6 +5,7 @@ import { Prato } from 'src/app/model/prato.model';
 import { PratoService } from 'src/app/services/prato.service';
 import { UserService } from 'src/app/services/user.service';
 import { Subscription } from 'rxjs';
+import { DiaSemana, getListaDias } from '../../model/diaSemana.model';
 @Component({
   selector: 'app-registro-periodo-prato',
   templateUrl: './registro-periodo-prato.component.html',
@@ -15,6 +16,9 @@ export class RegistroPeriodoPratoComponent implements OnInit {
   private idPrato: string;
   private prato: Prato = new Prato();
   private pratoDia: PratoDia = new PratoDia();
+  public tipo: boolean = false; // true para inserir um dia false para isnerir com repitação
+
+  private listaDias: any[] = getListaDias();
 
   constructor(private route: ActivatedRoute,
     private pratoService: PratoService,
@@ -30,6 +34,9 @@ export class RegistroPeriodoPratoComponent implements OnInit {
       });
     });
   }
+  alterar() {
+    this.tipo = !this.tipo;
+  }
   onSubmit() {
     this.pratoDia.data_fim = this.pratoDia.data_inicio;
     this.pratoDia.aprovado = 1;
@@ -40,10 +47,17 @@ export class RegistroPeriodoPratoComponent implements OnInit {
       if (resultado["flag"]) {
         alert("Registro Inserido com sucesso");
         this.router.navigate(['admin/restaurante']);
-      }else{
+      } else {
         alert("Falha ao inserir");
       }
     });
+  }
+  onSubmitRepetido() {
+    console.log(this.listaDias);
+
+  }
+  changeStatus(a:DiaSemana) {
+    a.mark = !a.mark;
   }
 
 }

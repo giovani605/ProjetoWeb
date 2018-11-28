@@ -1,11 +1,70 @@
-<div>
-  <app-item-prato [prato]="prato"></app-item-prato>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <app-item-prato [prato]="prato"></app-item-prato>
+    </div>
+  </div>
+  <p *ngIf="tipo;then padrao;else repetir"></p>
+  <div class="row">
+    <div class="col">
+      <button (click)="alterar()">Me aperte</button>
+    </div>
+  </div>
+  <ng-template #padrao>
+    <div class="row">
+      <div class="col">
+        <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+          <p>Insira um dia</p>
+          <label for="dataInicio">Data</label>
+          <input type="date" id="dataInicio" required [(ngModel)]="pratoDia.data_inicio" name="nome">
+          <br />
+          <button type="submit" class="btn btn-primary">Registrar</button>
+        </form>
+      </div>
+    </div>
+  </ng-template>
 
-  <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
-    <p>Insira um dia</p>
-    <label for="dataInicio">Data</label>
-    <input type="date" id="dataInicio" required [(ngModel)]="pratoDia.data_inicio" name="nome">
-    <br />
-    <button type="submit" class="btn btn-primary">Registrar</button>
-  </form>
+  <ng-template #repetir>
+    <div class="row">
+      <div class="col">
+        <form (ngSubmit)="onSubmitRepetido()" #inserir2Form="ngForm">
+          <div class="row">
+            <div class="col"><label for="dataInicio">Data inicio</label></div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <input type="date" id="dataInicio" required [(ngModel)]="pratoDia.data_inicio" name="nome">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <label for="dataFinal">Data Final</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <input type="date" id="dataFinal" required [(ngModel)]="pratoDia.data_fim" name="dataFinal">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <p>Repetir:</p>
+              <div class="row">
+                <div class="col">
+                  <li *ngFor="let a of listaDias">
+                    <label for="diaCheck">{{ a.nome }}</label>
+                    <input id="diaCheck" type="checkbox" (change)="changeStatus(a)" name="marcaDia" [checked]="a.mark" />
+                  </li>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Registrar</button>
+        </form>
+      </div>
+    </div>
+  </ng-template>
+
 </div>
