@@ -33,5 +33,11 @@ export class PesquisaUsuariosComponent implements OnInit {
 
     
   }
+  renderTabela():boolean{
+    if(this.listaUser.length == 0){
+      return false;
+    }
+    return true;
+  }
 
 }
