@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FeedItem } from "../../model/feedItem.model";
+import { FeedItem } from '../../model/feedItem.model';
 import { FeedService } from 'src/app/services/feed.service';
 import { Subject, Subscription } from 'rxjs';
 @Component({
@@ -14,10 +14,10 @@ export class FeedComponent implements OnInit {
   constructor(private feedService: FeedService) { }
 
   ngOnInit() {
-    var a: Subscription = this.feedService.recuperarFeedGeral().subscribe(dados => {
+    const a: Subscription = this.feedService.recuperarFeedGeral().subscribe(dados => {
       this.lista = dados;
       a.unsubscribe();
-    })
+    });
   }
 
 }

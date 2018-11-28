@@ -21,10 +21,10 @@ export class PaginaAdmRestauranteComponent implements OnInit, OnDestroy {
   constructor(private restauranteService: RestauranteService
     , private userService: UserService,
     private pratoService: PratoService,
-    private router:Router) { }
+    private router: Router) { }
 
   getUrlImagem(img: String): String {
-    return "http://localhost:3000/static/" + img;
+    return 'http://localhost:3000/static/' + img;
   }
 
   ngOnInit() {
@@ -32,7 +32,8 @@ export class PaginaAdmRestauranteComponent implements OnInit, OnDestroy {
     this.listenerRestaurante = this.restauranteService.getRestauranteUpdated().subscribe(res => {
       this.restaurante = res;
 
-      var subs: Subscription = this.pratoService.recuperarPratosRestaurante(this.restaurante.idRestaurente).subscribe(lista => {
+      // tslint:disable-next-line:prefer-const
+      let subs: Subscription = this.pratoService.recuperarPratosRestaurante(this.restaurante.idRestaurente).subscribe(lista => {
         this.listaPratos = lista;
         subs.unsubscribe();
       });
@@ -43,9 +44,9 @@ export class PaginaAdmRestauranteComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.listenerRestaurante.unsubscribe();
   }
-  inserirPratoDia(p:Prato){
+  inserirPratoDia(p: Prato) {
     console.log(p);
-    this.router.navigate(['/registro/periodo/'+p.idpratos]);
+    this.router.navigate(['/registro/periodo/' + p.idpratos]);
   }
 
 }

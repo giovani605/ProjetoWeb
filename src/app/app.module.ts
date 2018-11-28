@@ -7,7 +7,7 @@ import { FeedComponent } from './feed/feed-lista/feed.component';
 import { FeedItemComponent } from './feed/feed-item/feed-item.component';
 import { BarraNavegacaoComponent } from './barras/barra-navegacao/barra-navegacao.component';
 import { UploadImagemComponent } from './upload/upload-imagem/upload-imagem.component';
-import { LoginComponent } from "./auth/login/login.component"
+import { LoginComponent } from './auth/login/login.component';
 import { Routes, RouterModule } from '@angular/router';
 import { PaginaLoginComponent } from './login/pagina-login/pagina-login.component';
 import { PaginaRegistroComponent } from './login/pagina-registro/pagina-registro.component';
@@ -31,13 +31,15 @@ import { ListaUsuarioComponent } from './lista/lista-usuario/lista-usuario.compo
 const appRoutes: Routes = [
   { path: 'register', component: PaginaRegistroComponent },
   { path: 'home', canActivate: [UserService], component: PaginaFeedComponent },
+  { path: 'page/user', canActivate: [UserService], component: PaginaUsuarioComponent },
   { path: '', component: PaginaLoginComponent },
   { path: 'login', component: PaginaLoginComponent },
   { path: 'register/restaurante', canActivate: [UserService], component: RegistroRestauranteComponent },
   { path: 'register/prato', canActivate: [UserService], component: RegistroPratoComponent },
   { path: 'admin/restaurante', canActivate: [UserService], component: PaginaAdmRestauranteComponent },
   { path: 'registro/periodo/:id', canActivate: [UserService], component: RegistroPeriodoPratoComponent },
-  { path: 'admin/restaurante/colaboradores', canActivate: [UserService,PaginaColaboradoresComponent], component: PaginaColaboradoresComponent }
+  { path: 'admin/restaurante/colaboradores', canActivate: [UserService, PaginaColaboradoresComponent],
+    component: PaginaColaboradoresComponent }
 ];
 
 @NgModule({
