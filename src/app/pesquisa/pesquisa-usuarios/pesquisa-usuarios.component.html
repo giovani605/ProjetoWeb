@@ -4,7 +4,7 @@
     <button type="button" (click)="buscarUsuarios()" class="btn btn-primary">Pesquisar</button>
   </div>
   <div class="row border border-primary my-1 rounded">
-    <div class="col" *ngIf="listaUser.length > 0;then tabela"></div>
+    <div class="col" *ngIf="renderTabela();then tabela"></div>
     <ng-template #tabela>
       <div class="col">
         <div *ngFor="let a of listaUser" class="row border border-primary my-1 rounded">
