@@ -29,7 +29,15 @@ export class PesquisaUsuariosComponent implements OnInit {
   }
   adicionarColaborador(userSelecionado:Usuario){
     console.log(userSelecionado);
-    this.restauranteService.inserirColaborador(userSelecionado.idUsuario);
+
+    var subs:Subscription = this.restauranteService.inserirColaborador(userSelecionado.idUsuario)
+    .subscribe(flag =>{
+      if(flag){
+        alert("Colaborador inserido com sucesso");
+      }else{
+        alert("Problemas ao inserir o colaborador"); 
+      }
+    });
 
     
   }
