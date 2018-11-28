@@ -74,7 +74,7 @@ const appRoutes: Routes = [
     FormsModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [UserService,PaginaColaboradoresComponent],
+  providers: [UserService, PaginaColaboradoresComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

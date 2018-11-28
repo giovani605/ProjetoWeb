@@ -9,13 +9,13 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class BarraLateralComponent implements OnInit {
 
-  constructor(public restauranteService:RestauranteService) { }
+  constructor(public restauranteService: RestauranteService) { }
 
-  isGerente(){
+  isGerente() {
     return this.restauranteService.isGerente();
   }
 
-  hasRestaurante(){
+  hasRestaurante() {
     return this.restauranteService.hasRestaurante();
   }
 
@@ -23,12 +23,12 @@ export class BarraLateralComponent implements OnInit {
 
   }
   openNav() {
-    document.getElementById("mySidenav").style.width = "250px";
+    document.getElementById('mySidenav').style.width = '250px';
   }
 
   /* Set the width of the side navigation to 0 */
-   closeNav() {
-    document.getElementById("mySidenav").style.width = "0";
-  } 
+  closeNav() {
+    document.getElementById('mySidenav').style.width = '0';
+  }
 
 }
