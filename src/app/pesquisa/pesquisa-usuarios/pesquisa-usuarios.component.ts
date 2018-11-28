@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { Usuario } from 'src/app/model/usuario.model';
 import { Subscription } from 'rxjs';
+import { RestauranteService } from 'src/app/services/restaurante.service';
 
 @Component({
   selector: 'app-pesquisa-usuarios',
@@ -14,7 +15,8 @@ export class PesquisaUsuariosComponent implements OnInit {
   public listaUser: Usuario[] = [];
 
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService,
+    private restauranteService:RestauranteService) { }
 
   ngOnInit() {
   }
@@ -24,6 +26,12 @@ export class PesquisaUsuariosComponent implements OnInit {
       subs.unsubscribe();
     });
 
+  }
+  adicionarColaborador(userSelecionado:Usuario){
+    console.log(userSelecionado);
+    this.restauranteService.inserirColaborador(userSelecionado.idUsuario);
+
+    
   }
 
 }

@@ -1,3 +1,20 @@
-<input type="text" [(ngModel)]="nome" placeholder="Pesquisar Usuários..." />
-<button type="button" (click)="buscarUsuarios()" >Pesquisar</button>
-<app-lista-usuario [lista]="listaUser"> </app-lista-usuario>
+<div class="container">
+  <div class="row">
+    <input type="text" [(ngModel)]="nome" placeholder="Pesquisar Usuários..." />
+    <button type="button" (click)="buscarUsuarios()">Pesquisar</button>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div *ngFor="let a of listaUser" class="row">
+
+        <div class="col-sm-10">
+          Usuario : {{a.nome}}
+        </div>
+        <div class="col-sm-2">
+          <button type="button" (click)="adicionarColaborador(a)" class="btn btn-primary">Adicionar Colaborador</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
