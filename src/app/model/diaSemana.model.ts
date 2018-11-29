@@ -1,17 +1,24 @@
-export class DiaSemana{
-    nome:string;
-    id:number;
-    mark:boolean
+import { PratoDia } from "./pratoDia.model";
+
+export class DiaSemana {
+    constructor(nome, id, mark) {
+        this.nome = nome;
+        this.id = id;
+        this.mark = mark;
+    }
+    nome: string;
+    id: number;
+    mark: boolean
 }
-export function getListaDias(){
-    var listaDias: any[] = [
-        { "nome": "domingo", "id": 0, "mark": false },
-        { "nome": "segunda", "id": 1, "mark": false },
-        { "nome": "terça", "id": 2, "mark": false },
-        { "nome": "quarta", "id": 3, "mark": false },
-        { "nome": "quinta", "id": 4, "mark": false },
-        { "nome": "sexta", "id": 5, "mark": false },
-        { "nome": "sábado", "id": 6, "mark": false },
+export function getListaDias(): DiaSemana[] {
+    var listaDias: DiaSemana[] = [
+        new DiaSemana("domingo", 0, false),
+        new DiaSemana("segunda", 1, false),
+        new DiaSemana("terça", 2, false),
+        new DiaSemana("quarta", 3, false),
+        new DiaSemana("quinta", 4, false),
+        new DiaSemana("sexta", 5, false),
+        new DiaSemana("sábado", 6, false)
     ];
     return listaDias;
 }

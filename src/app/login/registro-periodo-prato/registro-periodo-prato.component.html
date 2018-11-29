@@ -16,7 +16,7 @@
         <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
           <p>Insira um dia</p>
           <label for="dataInicio">Data</label>
-          <input type="date" id="dataInicio" required [(ngModel)]="pratoDia.data_inicio" name="nome">
+          <input type="date" id="dataInicio" required [(ngModel)]="pratoDia.data" name="nome">
           <br />
           <button type="submit" class="btn btn-primary">Registrar</button>
         </form>
@@ -33,7 +33,7 @@
           </div>
           <div class="row">
             <div class="col">
-              <input type="date" id="dataInicio" required [(ngModel)]="pratoDia.data_inicio" name="nome">
+              <input type="date" id="dataInicio" required [(ngModel)]="periodo.data_inicio" name="nome">
             </div>
           </div>
 
@@ -44,7 +44,7 @@
           </div>
           <div class="row">
             <div class="col">
-              <input type="date" id="dataFinal" required [(ngModel)]="pratoDia.data_fim" name="dataFinal">
+              <input type="date" id="dataFinal" required [(ngModel)]="periodo.data_fim" name="dataFinal">
             </div>
           </div>
           <div class="row">
