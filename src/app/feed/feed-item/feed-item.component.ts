@@ -15,6 +15,14 @@ export class FeedItemComponent implements OnInit {
   ngOnInit() {
   }
 
+  redirecionarAvaliar() {
+    this.router.navigate(['prato/avaliar/' + this.item.prato.idpratos]);
+  }
+
+  redirecionarCompartilhar() {
+    this.router.navigate(['prato/compartilhar/' + this.item.prato.idpratos]);
+  }
+
   redirecionarReservar() {
     this.router.navigate(['prato/reservar/' + this.item.prato.idpratos]);
   }
