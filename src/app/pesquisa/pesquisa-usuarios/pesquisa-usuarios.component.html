@@ -1,14 +1,13 @@
 <div class="container">
-  <div class="row">
-    <input type="text" [(ngModel)]="nome" placeholder="Pesquisar Usuários..." />
+  <div class="row my-3 shadow-sm p-3 mb-2 px-3 bg-white">
+    <input type="text" [(ngModel)]="nome" class="rounded mx-2" placeholder="Pesquisar Usuários..." />
     <button type="button" (click)="buscarUsuarios()" class="btn btn-primary">Pesquisar</button>
   </div>
-  <div class="row border border-primary my-1 rounded">
-    <div class="col" *ngIf="renderTabela();then tabela"></div>
-    <ng-template #tabela>
+  <p *ngIf="!isVazia();then tabela"></p>
+  <ng-template #tabela>
+    <div class="row border my-1 shadow-sm ">
       <div class="col">
-        <div *ngFor="let a of listaUser" class="row border border-primary my-1 rounded">
-
+        <div *ngFor="let a of listaUser" class="row my-3  p-3 mb-2 px-3 bg-white">
           <div class="col-sm-5">
             Usuario : {{a.nome}}
           </div>
@@ -17,7 +16,7 @@
           </div>
         </div>
       </div>
-    </ng-template>
-  </div>
+    </div>
+  </ng-template>
 
 </div>

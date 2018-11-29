@@ -18,6 +18,16 @@ export class PesquisaUsuariosComponent implements OnInit {
   constructor(private userService: UserService,
     private restauranteService:RestauranteService) { }
 
+    isVazia(){
+      console.log("oi " + this.listaUser.length);
+      if(this.listaUser.length == 0){
+        console.log("return " + true);
+        return true;
+      }
+      console.log("return " + false);
+      return false;
+    } 
+
   ngOnInit() {
   }
   buscarUsuarios() {
