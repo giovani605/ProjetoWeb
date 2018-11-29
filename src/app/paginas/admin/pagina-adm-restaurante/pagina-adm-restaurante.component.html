@@ -1,12 +1,22 @@
-<h1>
-  {{restaurante.nome}}
-</h1>
-
-<div>
-  <li *ngFor="let prato of listaPratos">
-    <app-item-prato [prato]="prato"></app-item-prato>
-    <button (click)="inserirPratoDia(prato)" class="btn btn-primary">Inserir</button>
-  </li>
-
+<div class="container my-3 shadow-sm p-3 mb-2 p-3 bg-white">
+  <div class="row mx-2">
+    <h1>
+      {{restaurante.nome}}
+    </h1>
+  </div>
+  <div class="row mx-2">
+    <div>
+      <div *ngFor="let prato of listaPratos" class="shadow-sm p-3 mb-2 bg-white rounded border">
+        <div class="col">
+          <app-item-prato [prato]="prato"></app-item-prato>
+        </div>
+        <div class="col">
+          <button (click)="inserirPratoDia(prato)" class="btn btn-primary">Inserir no Cárdapio</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row my-2 p-3 mb-2">
+    <button type="button" class="btn btn-primary" routerLink="/register/prato">Adicionar Prato</button>
+  </div>
 </div>
-<button type="button" class="btn btn-primary" routerLink="/register/prato">Registrar</button>

@@ -1,5 +1,5 @@
-<div class="container">
-  <div class="row">
+<div class="container my-3 shadow-sm p-3 mb-2 px-3 bg-white">
+  <div class="row my-3 shadow-sm p-3 mb-2 p-3 bg-white" >
     <div class="col">
       <app-item-prato [prato]="prato"></app-item-prato>
     </div>
@@ -11,7 +11,7 @@
     </div>
   </div>
   <ng-template #padrao>
-    <div class="row">
+    <div class="row my-3 shadow-sm p-3 mx-2 p-3 bg-white">
       <div class="col">
         <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
           <p>Insira um dia</p>
@@ -25,7 +25,7 @@
   </ng-template>
 
   <ng-template #repetir>
-    <div class="row">
+    <div class="row my-3 shadow-sm p-3 mb-2 p-3 bg-white">
       <div class="col">
         <form (ngSubmit)="onSubmitRepetido()" #inserir2Form="ngForm">
           <div class="row">
