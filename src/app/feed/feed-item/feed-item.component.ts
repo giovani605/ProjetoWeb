@@ -28,7 +28,7 @@ export class FeedItemComponent implements OnInit {
   }
 
   redirecionarRestaurante(event) {
-    console.log("oiew");
+    console.log('oiew');
     this.router.navigate(['restaurante/' + this.item.prato.restaurante_idrestaurante]);
   }
 

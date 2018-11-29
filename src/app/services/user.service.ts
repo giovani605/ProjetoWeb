@@ -25,6 +25,7 @@ export class UserService implements CanActivate {
 
     constructor(private http: HttpClient, private router: Router) {
     }
+
     registrar(usuario: Usuario, callback) {
         const data = {
             'login': usuario.login,

@@ -10,8 +10,11 @@ import { Cidade } from './../../model/cidade.model';
   styleUrls: ['./cidade.component.css']
 })
 export class CidadeComponent implements OnInit {
-  cidades: Cidade[];
-  estados: Estado[];
+  private cidades: Cidade[];
+  private estados: Estado[];
+  private idSelectedCidade: number;
+  private idSelectedEstado: number;
+
 
   constructor(private local: LocalizacaoService) { }
 

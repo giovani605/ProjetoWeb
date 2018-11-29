@@ -1,5 +1,5 @@
 export class Prato {
-    idpratos: string
+    idpratos: string;
     restaurante_idrestaurante: string;
     tag_idtag: string;
     idimagem: string;

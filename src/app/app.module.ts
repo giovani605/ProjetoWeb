@@ -34,6 +34,7 @@ import { PaginaCompartilharComponent } from './paginas/pagina-compartilhar/pagin
 import { PaginaAmigosComponent } from './paginas/pagina-amigos/pagina-amigos.component';
 import { PaginaReservasUsuarioComponent } from './paginas/pagina-reservas-usuario/pagina-reservas-usuario.component';
 import { PaginaReservasRestauranteComponent } from './paginas/pagina-reservas-restaurante/pagina-reservas-restaurante.component';
+import { CidadeComponent } from './genericos/cidade/cidade.component';
 
 
 const appRoutes: Routes = [
@@ -50,12 +51,12 @@ const appRoutes: Routes = [
   { path: 'admin/restaurante/colaboradores', canActivate: [UserService, PaginaColaboradoresComponent],
     component: PaginaColaboradoresComponent },
   { path: 'restaurante/:id',  component: PaginaRestauranteComponent },
-  { path: 'prato/reservar/:id',  canActivate: [UserService],component: PaginaReservaComponent },
-  { path: 'prato/compartilhar/:id',  canActivate: [UserService],component: PaginaCompartilharComponent },
-  { path: 'prato/avaliar/:id',  canActivate: [UserService],component: PaginaAvaliarComponent },
-  { path: 'usuario/reservas',  canActivate: [UserService],component: PaginaReservasUsuarioComponent },
-  { path: 'usuario/amigos',  canActivate: [UserService],component: PaginaAmigosComponent },
-  { path: 'restaurates/reservar',  canActivate: [UserService],component: PaginaReservasRestauranteComponent },
+  { path: 'prato/reservar/:id',  canActivate: [UserService], component: PaginaReservaComponent },
+  { path: 'prato/compartilhar/:id',  canActivate: [UserService], component: PaginaCompartilharComponent },
+  { path: 'prato/avaliar/:id',  canActivate: [UserService], component: PaginaAvaliarComponent },
+  { path: 'usuario/reservas',  canActivate: [UserService], component: PaginaReservasUsuarioComponent },
+  { path: 'usuario/amigos',  canActivate: [UserService], component: PaginaAmigosComponent },
+  { path: 'restaurates/reservar',  canActivate: [UserService], component: PaginaReservasRestauranteComponent },
 ];
 
 @NgModule({
@@ -89,8 +90,8 @@ const appRoutes: Routes = [
     PaginaCompartilharComponent,
     PaginaAmigosComponent,
     PaginaReservasUsuarioComponent,
-    PaginaReservasRestauranteComponent
-
+    PaginaReservasRestauranteComponent,
+    CidadeComponent
   ],
   imports: [
     BrowserModule,

@@ -15,6 +15,6 @@ export class ItemPratoComponent implements OnInit {
   ngOnInit() {
   }
   getUrlImagem(img: String): String {
-    return "http://localhost:3000/static/" + img;
+    return 'http://localhost:3000/static/' + img;
   }
 }
