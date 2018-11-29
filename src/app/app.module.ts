@@ -31,6 +31,9 @@ import { ModalReservaComponent } from './modal/modal-reserva/modal-reserva.compo
 import { PaginaReservaComponent } from './paginas/pagina-reserva/pagina-reserva.component';
 import { PaginaAvaliarComponent } from './paginas/pagina-avaliar/pagina-avaliar.component';
 import { PaginaCompartilharComponent } from './paginas/pagina-compartilhar/pagina-compartilhar.component';
+import { PaginaAmigosComponent } from './paginas/pagina-amigos/pagina-amigos.component';
+import { PaginaReservasUsuarioComponent } from './paginas/pagina-reservas-usuario/pagina-reservas-usuario.component';
+import { PaginaReservasRestauranteComponent } from './paginas/pagina-reservas-restaurante/pagina-reservas-restaurante.component';
 
 
 const appRoutes: Routes = [
@@ -49,7 +52,10 @@ const appRoutes: Routes = [
   { path: 'restaurante/:id',  component: PaginaRestauranteComponent },
   { path: 'prato/reservar/:id',  canActivate: [UserService],component: PaginaReservaComponent },
   { path: 'prato/compartilhar/:id',  canActivate: [UserService],component: PaginaCompartilharComponent },
-  { path: 'prato/avaliar/:id',  canActivate: [UserService],component: PaginaAvaliarComponent }
+  { path: 'prato/avaliar/:id',  canActivate: [UserService],component: PaginaAvaliarComponent },
+  { path: 'usuario/reservas',  canActivate: [UserService],component: PaginaReservasUsuarioComponent },
+  { path: 'usuario/amigos',  canActivate: [UserService],component: PaginaAmigosComponent },
+  { path: 'restaurates/reservar',  canActivate: [UserService],component: PaginaReservasRestauranteComponent },
 ];
 
 @NgModule({
@@ -80,7 +86,10 @@ const appRoutes: Routes = [
     ModalReservaComponent,
     PaginaReservaComponent,
     PaginaAvaliarComponent,
-    PaginaCompartilharComponent
+    PaginaCompartilharComponent,
+    PaginaAmigosComponent,
+    PaginaReservasUsuarioComponent,
+    PaginaReservasRestauranteComponent
 
   ],
   imports: [

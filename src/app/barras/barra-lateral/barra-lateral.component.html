@@ -2,13 +2,13 @@
   <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
   <a routerLink="/home" (click)="closeNav()">Home</a>
   <a routerLink="/page/user" (click)="closeNav()">Perfil</a>
-  <a routerLink="#" (click)="closeNav()">Amigos</a>
-  <a routerLink="#" (click)="closeNav()">Reservas</a>
+  <a routerLink="/usuario/amigos" (click)="closeNav()">Amigos</a>
+  <a routerLink="/usuario/reservas" (click)="closeNav()">Reservas</a>
   <hr />
   <a routerLink="/admin/restaurante" (click)="closeNav()" *ngIf="hasRestaurante()">Administração</a>
   <a routerLink="/admin/restaurante/colaboradores" (click)="closeNav()" *ngIf="isGerente()">Colaboradores</a>
   <a routerLink="/admin/restaurante" (click)="closeNav()" *ngIf="isGerente()">Notificações</a>
-  <a routerLink="/admin/restaurante" (click)="closeNav()" *ngIf="hasRestaurante()">Reservas</a>
+  <a routerLink="/restaurates/reservar" (click)="closeNav()" *ngIf="hasRestaurante()">Reservas</a>
 </div>
 
 <!-- Use any element to open the sidenav -->
