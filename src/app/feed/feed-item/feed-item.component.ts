@@ -8,15 +8,20 @@ import { Router } from '@angular/router';
   styleUrls: ['./feed-item.component.css']
 })
 export class FeedItemComponent implements OnInit {
-  
-  @Input('valor') item : FeedItem;
-  constructor(private router:Router) { }
+
+  @Input('valor') item: FeedItem;
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
-  redirecionarRestaurante(event){
-    console.log("oiew");
-    this.router.navigate(['restaurante/'+this.item.prato.restaurante_idrestaurante]);
+  redirecionarReservar() {
+    this.router.navigate(['prato/reservar/' + this.item.prato.idpratos]);
   }
+
+  redirecionarRestaurante(event) {
+    console.log("oiew");
+    this.router.navigate(['restaurante/' + this.item.prato.restaurante_idrestaurante]);
+  }
+
 }

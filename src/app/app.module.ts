@@ -27,6 +27,8 @@ import { UserService } from './services/user.service';
 import { PaginaColaboradoresComponent } from './paginas/admin/pagina-colaboradores/pagina-colaboradores.component';
 import { ListaUsuarioComponent } from './lista/lista-usuario/lista-usuario.component';
 import { PesquisaUsuariosComponent } from './pesquisa/pesquisa-usuarios/pesquisa-usuarios.component';
+import { ModalReservaComponent } from './modal/modal-reserva/modal-reserva.component';
+import { PaginaReservaComponent } from './paginas/pagina-reserva/pagina-reserva.component';
 
 
 const appRoutes: Routes = [
@@ -42,7 +44,8 @@ const appRoutes: Routes = [
   { path: 'registro/periodo/:id', canActivate: [UserService], component: RegistroPeriodoPratoComponent },
   { path: 'admin/restaurante/colaboradores', canActivate: [UserService, PaginaColaboradoresComponent],
     component: PaginaColaboradoresComponent },
-  { path: 'restaurante/:id',  component: PaginaRestauranteComponent }
+  { path: 'restaurante/:id',  component: PaginaRestauranteComponent },
+  { path: 'prato/reservar/:id',  component: PaginaReservaComponent }
 ];
 
 @NgModule({
@@ -69,7 +72,9 @@ const appRoutes: Routes = [
     BarraLateralComponent,
     PaginaColaboradoresComponent,
     ListaUsuarioComponent,
-    PesquisaUsuariosComponent
+    PesquisaUsuariosComponent,
+    ModalReservaComponent,
+    PaginaReservaComponent
 
   ],
   imports: [
