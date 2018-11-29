@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from 'src/app/model/usuario.model';
 import { UserService } from 'src/app/services/user.service';
-import { Router } from "@angular/router";
+import { Router } from '@angular/router';
 
 import { HttpClient, HttpParams } from '@angular/common/http';
 // recuperar argumentod a url
@@ -29,22 +29,22 @@ export class PaginaRegistroComponent implements OnInit {
     });
   }
   onSubmit() {
-    console.log("chamando o servico");
+    console.log('chamando o servico');
     this.userService.registrar(this.user, (msg) => {
 
-      if (this.gerente == 1) {
+      if (this.gerente === 1) {
         // routear para a pagina do restaurante
-        this.userService.buscarUserLogin(this.user.login, (usuario)=>{
-          var a:Usuario = this.userService.converterUser(usuario);
+        this.userService.buscarUserLogin(this.user.login, (usuario) => {
+          const a: Usuario = this.userService.converterUser(usuario);
           this.userService.setUserClone(a);
-          this.router.navigate(["/register/restaurante"]);
-        })
+          this.router.navigate(['/register/restaurante']);
+        });
 
 
-        
+
       } else {
         alert(msg);
-        this.router.navigate(["/"]);
+        this.router.navigate(['/']);
       }
 
     });

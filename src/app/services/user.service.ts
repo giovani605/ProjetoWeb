@@ -46,6 +46,10 @@ export class UserService implements CanActivate {
         this.user = usuario;
     }
 
+    public getUser(): Usuario {
+      return this.user;
+    }
+
     converterUserBackdados(a) {
         const user = new Usuario();
         user.login = a['login'];
@@ -104,15 +108,15 @@ export class UserService implements CanActivate {
     }
 
     buscarUserLoginLike(login) {
-        console.log("buscarUserLoginLike " + login);
-        var subject: Subject<Usuario[]> = new Subject<Usuario[]>();
-        this.http.get("http://localhost:3000/usuario/like/login/" + login).subscribe(response => {
-            var lista: Usuario[] = [];
-            for (let a of response["dados"]) {
-                var u = this.converterUser(a);
+        console.log('buscarUserLoginLike ' + login);
+        const subject: Subject<Usuario[]> = new Subject<Usuario[]>();
+        this.http.get('http://localhost:3000/usuario/like/login/' + login).subscribe(response => {
+            const lista: Usuario[] = [];
+            for (const a of response['dados']) {
+                const u = this.converterUser(a);
                 lista.push(u);
             }
-            console.log("buscarUserLoginLike");
+            console.log('buscarUserLoginLike');
             console.log(lista);
             subject.next(lista);
         });

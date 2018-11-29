@@ -32,7 +32,8 @@ import { PesquisaUsuariosComponent } from './pesquisa/pesquisa-usuarios/pesquisa
 const appRoutes: Routes = [
   { path: 'register', component: PaginaRegistroComponent },
   { path: 'home', canActivate: [UserService], component: PaginaFeedComponent },
-  { path: 'page/user', canActivate: [UserService], component: PaginaUsuarioComponent },
+  { path: 'page/user', canActivate: [UserService],
+    component: PaginaUsuarioComponent },
   { path: '', component: PaginaLoginComponent },
   { path: 'login', component: PaginaLoginComponent },
   { path: 'register/restaurante', canActivate: [UserService], component: RegistroRestauranteComponent },
