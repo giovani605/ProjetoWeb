@@ -1,4 +1,4 @@
-<div id="mySidenav" class="sidenav bg-primary text-dark">
+<div id="mySidenav" class="sidenav bg-primary text-dark" (mouseover)="openNav()" (mouseout)="closeNav()">
   <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
   <a routerLink="/home" (click)="closeNav()">Home</a>
   <a routerLink="/page/user" (click)="closeNav()">Perfil</a>
