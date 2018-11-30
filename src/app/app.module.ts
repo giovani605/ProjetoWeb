@@ -44,7 +44,7 @@ const appRoutes: Routes = [
     component: PaginaUsuarioComponent },
   { path: '', component: PaginaLoginComponent },
   { path: 'login', component: PaginaLoginComponent },
-  { path: 'register/restaurante', canActivate: [UserService], component: RegistroRestauranteComponent },
+  { path: 'register/restaurante',  component: RegistroRestauranteComponent },
   { path: 'register/prato', canActivate: [UserService], component: RegistroPratoComponent },
   { path: 'admin/restaurante', canActivate: [UserService], component: PaginaAdmRestauranteComponent },
   { path: 'registro/periodo/:id', canActivate: [UserService], component: RegistroPeriodoPratoComponent },

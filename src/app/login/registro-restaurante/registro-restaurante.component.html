@@ -1,28 +1,41 @@
-<div class="card">
-  <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
-    <label for="nome">Nome</label>
-    <input type="text" id="nome" required [(ngModel)]="restaurante.nome" name="nome">
-    <br />
-    <label for="descricao">Descricao</label>
-    <input type="text" id="descricao" required [(ngModel)]="restaurante.descricao" name="descricao">
-    <br />
+<div class="container">
+  <div class="row rounded border-primary shadow p-3 mb-5 my-5">
+    <div class="col">
+      <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+        <div class="row">
+          <div class="col-sm-4 my-1"><label for="nome">Nome:</label></div>
+          <div class="col"><input type="text" id="nome" required [(ngModel)]="restaurante.nome" name="nome">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-4 my-1"><label for="descricao">Descrição:</label></div>
+          <div class="col"><input type="text" id="descricao" required [(ngModel)]="restaurante.descricao" name="descricao"></div>
+        </div>
+        <div class="row">
+          <div class="col-sm-4 my-1"> <label for="telefone">Telefone:</label></div>
+          <div class="col"><input type="text" id="telefone" required [(ngModel)]="restaurante.telefone" name="telefone">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-4 my-1"> <label for="rua">Endereço:</label></div>
+        
+          <div class="col"><input type="text" id="rua" required [(ngModel)]="restaurante.rua" name="rua"></div>
+        </div>
+        <div class="row">
+          <div class="col-sm-4 my-1"><label for="numero">Número:</label></div>
+          <div class="col"><input type="text" id="numero" required [(ngModel)]="restaurante.numero" name="rua">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-4 my-1">
+            <p>Inserir cidades depois</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-4 my-1"><button type="submit" class="btn btn-primary">Registrar</button></div>
+        </div>
 
-    <label for="telefone">telefone</label>
-    <input type="text" id="telefone" required [(ngModel)]="restaurante.telefone" name="telefone">
-    <br />
-
-    <label for="rua">rua</label>
-    <input type="text" id="rua" required [(ngModel)]="restaurante.rua" name="rua">
-    <br />
-
-    <label for="numero">numero</label>
-    <input type="text" id="numero" required [(ngModel)]="restaurante.numero" name="rua">
-    <br />
-
-
-    <p>Inserir cidades depois</p>
-    <br />
-    <button type="submit" class="btn btn-primary">Registrar</button>
-  </form>
-
+      </form>
+    </div>
+  </div>
 </div>
