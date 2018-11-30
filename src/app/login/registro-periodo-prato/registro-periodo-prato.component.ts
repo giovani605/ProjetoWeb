@@ -29,6 +29,13 @@ export class RegistroPeriodoPratoComponent implements OnInit {
     private router: Router,
     private restauranteService: RestauranteService) { }
 
+  msgBotao() {
+    if (this.tipo) {
+      return "oi";
+    }
+    return "sdfas";
+  }
+
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.idPrato = params['id'];
@@ -38,8 +45,14 @@ export class RegistroPeriodoPratoComponent implements OnInit {
       });
     });
   }
-  alterar() {
-    this.tipo = !this.tipo;
+  alterar(a) {
+    console.log("oi " + a);
+    if (a == 1) {
+      this.tipo = true;
+    } else {
+      this.tipo = false;
+    }
+
   }
   onSubmit() {
     this.pratoDia.aprovado = 1;
@@ -68,7 +81,7 @@ export class RegistroPeriodoPratoComponent implements OnInit {
       this.periodo.aprovado = 0;
     }
 
-    var subs: Subscription = this.pratoService.inserirPratoDiaCiclo(this.periodo.responsavel,this.periodo,this.listaDias).subscribe(dados => {
+    var subs: Subscription = this.pratoService.inserirPratoDiaCiclo(this.periodo.responsavel, this.periodo, this.listaDias).subscribe(dados => {
       if (dados["flag"]) {
         alert("sucesso");
       } else {
@@ -80,5 +93,29 @@ export class RegistroPeriodoPratoComponent implements OnInit {
   changeStatus(a: DiaSemana) {
     a.mark = !a.mark;
   }
+
+  openCity(evt, cityName) {
+    // Declare all variables
+    var i, tabcontent, tablinks;
+
+    // Get all elements with class="tabcontent" and hide them
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+
+    // Get all elements with class="tablinks" and remove the class "active"
+    tablinks = document.getElementsByClassName("tablinks");
+    console.log(tablinks);
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+
+    // Show the current tab, and add an "active" class to the button that opened the tab
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+  }
+
+
 
 }
