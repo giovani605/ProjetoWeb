@@ -35,6 +35,7 @@ import { PaginaAmigosComponent } from './paginas/pagina-amigos/pagina-amigos.com
 import { PaginaReservasUsuarioComponent } from './paginas/pagina-reservas-usuario/pagina-reservas-usuario.component';
 import { PaginaReservasRestauranteComponent } from './paginas/pagina-reservas-restaurante/pagina-reservas-restaurante.component';
 import { CidadeComponent } from './genericos/cidade/cidade.component';
+import { PesquisaPratoRestauranteComponent } from './pesquisa/pesquisa-prato-restaurante/pesquisa-prato-restaurante.component';
 
 
 const appRoutes: Routes = [
@@ -91,7 +92,8 @@ const appRoutes: Routes = [
     PaginaAmigosComponent,
     PaginaReservasUsuarioComponent,
     PaginaReservasRestauranteComponent,
-    CidadeComponent
+    CidadeComponent,
+    PesquisaPratoRestauranteComponent
   ],
   imports: [
     BrowserModule,
