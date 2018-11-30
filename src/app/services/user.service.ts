@@ -17,7 +17,20 @@ export class UserService implements CanActivate {
         }
         return this.isAuth;
     }
-
+    procurarAmigos(userId){
+        var subs:Subject<Usuario[]> = new Subject<Usuario[]>(); 
+        this.http.get('http://localhost:3000/usuario/amigos/' + userId).subscribe(response => {
+            var lista: Usuario[] = [];
+            for (var a of response['dados']) {
+                var u = this.converterUser(a);
+                lista.push(u);
+            }
+            console.log('procurarAmigos');
+            console.log(lista);
+            subs.next(lista);
+        });
+        return subs;
+    }
 
     getUserId() {
         return this.user.idUsuario;
@@ -110,11 +123,11 @@ export class UserService implements CanActivate {
 
     buscarUserLoginLike(login) {
         console.log('buscarUserLoginLike ' + login);
-        const subject: Subject<Usuario[]> = new Subject<Usuario[]>();
+        var subject: Subject<Usuario[]> = new Subject<Usuario[]>();
         this.http.get('http://localhost:3000/usuario/like/login/' + login).subscribe(response => {
-            const lista: Usuario[] = [];
-            for (const a of response['dados']) {
-                const u = this.converterUser(a);
+            var lista: Usuario[] = [];
+            for (var a of response['dados']) {
+                var u = this.converterUser(a);
                 lista.push(u);
             }
             console.log('buscarUserLoginLike');

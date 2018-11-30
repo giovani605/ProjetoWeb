@@ -9,10 +9,10 @@
       <div class="col">
         <div *ngFor="let a of listaUser" class="row my-3  p-3 mb-2 px-3 bg-white">
           <div class="col-sm-5">
-            Usuario : {{a.nome}}
+            Usuário : {{a.nome}}
           </div>
           <div class="col">
-            <button type="button" (click)="adicionarColaborador(a)" class="btn btn-primary">Adicionar Colaborador</button>
+            <button type="button" (click)="adicionar(a)" class="btn btn-primary">{{nomeBotao()}}</button>
           </div>
         </div>
       </div>

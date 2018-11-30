@@ -14,7 +14,8 @@ export class ListaUsuarioComponent implements OnInit {
   @Input('lista') private listaUser: Usuario[] = [];
   @Input('tipo') private tipo: string;
 
-  constructor(private restauranteService: RestauranteService) { }
+  constructor(private restauranteService: RestauranteService,
+    private userService:UserService) { }
 
   ngOnInit() {
     console.log("oie " + this.tipo);
@@ -22,6 +23,14 @@ export class ListaUsuarioComponent implements OnInit {
       
       var subs: Subscription = this.restauranteService.
         procurarColaboradores(this.restauranteService.getIdGerente()).subscribe(dados => {
+          this.listaUser = dados;
+          subs.unsubscribe();
+        });
+    }
+    if (this.tipo == "amigos") {
+      
+      var subs: Subscription = this.userService.
+        procurarAmigos(this.userService.getUserId).subscribe(dados => {
           this.listaUser = dados;
           subs.unsubscribe();
         });
