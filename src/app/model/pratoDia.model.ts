@@ -1,7 +1,7 @@
 export class PratoDia{
-    idprato_dia:string;
-    idPrato: string;
+    idprato_dia: number;
+    idPrato: number;
     data: Date;
-    responsavel: string;
+    responsavel: number;
     aprovado: number;
 }

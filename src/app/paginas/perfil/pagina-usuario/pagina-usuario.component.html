@@ -2,7 +2,6 @@
   class="card rounded border-primary shadow p-3 mb-5 bg-light "
   style="width: 40%;padding: 10px; margin:auto;margin-top: 50px;vertical-align: middle;"
 >
-  <p>pagina-usuario works!</p>
   <h3>Perfil de {{ user.nome }}</h3>
   <!-- Isso exibe a label e o input de nome -->
   <div class="row align-items-start">
@@ -58,7 +57,7 @@
           type="text"
           id="cidade"
           required
-          [(ngModel)]="user.cidades_id"
+          [(ngModel)]="cidade.nome"
           name="cidade"
         />
       </div>
@@ -86,3 +85,5 @@
     {{ labelOfSecondButton }}
   </button>
 </div>
+<p></p>
+<!-- <app-cidade></app-cidade> -->

@@ -1,8 +1,8 @@
-export class PeriodoPratoDia{
-    idperiodo:string;
-    idprato: string;
+export class PeriodoPratoDia {
+    idperiodo: number;
+    idprato: number;
     data_inicio: Date;
     data_fim: Date;
-    responsavel: string;
+    responsavel: number;
     aprovado: number;
 }

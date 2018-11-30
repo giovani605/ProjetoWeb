@@ -10,15 +10,13 @@ import { Cidade } from './../../model/cidade.model';
   styleUrls: ['./cidade.component.css']
 })
 export class CidadeComponent implements OnInit {
-  private cidades: Cidade[];
-  private estados: Estado[];
-  private idSelectedCidade: number;
-  private idSelectedEstado: number;
+  public cidades: Cidade[] = this.local.getCidadesByIDEstado(1);
+  public estados: Estado[] = this.local.getEstados();
+  public idSelectedCidade: number;
+  public idSelectedEstado: number;
 
-
-  constructor(private local: LocalizacaoService) { }
+  constructor(private local: LocalizacaoService) {}
 
   ngOnInit() {
   }
-
 }

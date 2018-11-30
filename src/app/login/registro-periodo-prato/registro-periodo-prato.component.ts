@@ -15,7 +15,7 @@ import { RestauranteService } from 'src/app/services/restaurante.service';
 })
 export class RegistroPeriodoPratoComponent implements OnInit {
 
-  private idPrato: string;
+  private idPrato: number;
   private prato: Prato = new Prato();
   private pratoDia: PratoDia = new PratoDia();
   private periodo: PeriodoPratoDia = new PeriodoPratoDia();
@@ -67,7 +67,7 @@ export class RegistroPeriodoPratoComponent implements OnInit {
     } else {
       this.periodo.aprovado = 0;
     }
-    
+
     var subs: Subscription = this.pratoService.inserirPratoDiaCiclo(this.periodo.responsavel,this.periodo,this.listaDias).subscribe(dados => {
       if (dados["flag"]) {
         alert("sucesso");
