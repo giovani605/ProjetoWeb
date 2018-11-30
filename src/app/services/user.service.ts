@@ -17,8 +17,9 @@ export class UserService implements CanActivate {
         }
         return this.isAuth;
     }
-    procurarAmigos(userId){
-        var subs:Subject<Usuario[]> = new Subject<Usuario[]>(); 
+    procurarAmigos(userId) {
+        console.log("pesquisar amigos");
+        var subs: Subject<Usuario[]> = new Subject<Usuario[]>();
         this.http.get('http://localhost:3000/usuario/amigos/' + userId).subscribe(response => {
             var lista: Usuario[] = [];
             for (var a of response['dados']) {
@@ -61,7 +62,7 @@ export class UserService implements CanActivate {
     }
 
     public getUser(): Usuario {
-      return this.user;
+        return this.user;
     }
 
     converterUserBackdados(a) {
@@ -138,6 +139,18 @@ export class UserService implements CanActivate {
 
     }
 
+    inserirAmigos(idUser1, idUser2) {
+        var dados = {
+            "userid1": idUser1,
+            "userid2": idUser2
+        }
+        console.log('inserirAmigos ' + idUser1 + " " + idUser2);
+        var subject: Subject<any> = new Subject<any>();
+        this.http.post('http://localhost:3000/usuario/adicionar/amigos',dados).subscribe(response => {
+            subject.next(response);
+        });
+        return subject.asObservable();
+    }
 
 
 }

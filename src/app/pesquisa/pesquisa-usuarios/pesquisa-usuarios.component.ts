@@ -22,7 +22,6 @@ export class PesquisaUsuariosComponent implements OnInit {
     private restauranteService: RestauranteService) { }
 
   isVazia() {
-    console.log("oi " + this.listaUser.length);
     if (this.listaUser.length == 0) {
       console.log("return " + true);
       return true;
@@ -58,13 +57,15 @@ export class PesquisaUsuariosComponent implements OnInit {
   adicionarAmigo(userSelecionado: Usuario) {
     console.log(userSelecionado);
 
-    var subs: Subscription = this.restauranteService.inserirColaborador(userSelecionado.idUsuario)
-      .subscribe(flag => {
-        if (flag) {
-          alert("Colaborador inserido com sucesso");
+
+    var subs: Subscription = this.userService.inserirAmigos(this.userService.getUserId(),userSelecionado.idUsuario)
+      .subscribe(dados => {
+        if (dados["flag"]) {
+          alert("Amigo adicionado com sucesso");
         } else {
-          alert("Problemas ao inserir o colaborador");
+          alert("Problemas ao adicionar o amigo");
         }
+        subs.unsubscribe();
       });
 
 

@@ -18,9 +18,8 @@ export class ListaUsuarioComponent implements OnInit {
     private userService:UserService) { }
 
   ngOnInit() {
-    console.log("oie " + this.tipo);
+    console.log("app-lista-usuario pesquisa  " + this.tipo);
     if (this.tipo == "colaboradores") {
-      
       var subs: Subscription = this.restauranteService.
         procurarColaboradores(this.restauranteService.getIdGerente()).subscribe(dados => {
           this.listaUser = dados;
@@ -28,9 +27,8 @@ export class ListaUsuarioComponent implements OnInit {
         });
     }
     if (this.tipo == "amigos") {
-      
       var subs: Subscription = this.userService.
-        procurarAmigos(this.userService.getUserId).subscribe(dados => {
+        procurarAmigos(this.userService.getUserId()).subscribe(dados => {
           this.listaUser = dados;
           subs.unsubscribe();
         });
