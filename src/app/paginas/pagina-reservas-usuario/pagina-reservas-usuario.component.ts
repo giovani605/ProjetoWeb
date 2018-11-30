@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ReservaService } from 'src/app/services/reserva.service';
 
 @Component({
   selector: 'app-pagina-reservas-usuario',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PaginaReservasUsuarioComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private reserva: ReservaService
+  ) { }
 
   ngOnInit() {
   }

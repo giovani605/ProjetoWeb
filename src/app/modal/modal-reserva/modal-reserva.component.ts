@@ -8,7 +8,7 @@ import { Prato } from 'src/app/model/prato.model';
 })
 export class ModalReservaComponent implements OnInit {
   @Input('prato')
-  public prato:Prato;
+  public prato: Prato;
 
   constructor() { }
 

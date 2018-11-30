@@ -3,6 +3,7 @@ import { Prato } from 'src/app/model/prato.model';
 import { PratoService } from 'src/app/services/prato.service';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pagina-reserva',
@@ -10,27 +11,34 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./pagina-reserva.component.css']
 })
 export class PaginaReservaComponent implements OnInit {
+  public prato: Prato = new Prato();
+  public idPrato: number;
+  public dataReserva: Date = new Date();
 
-  public prato:Prato =  new Prato();
-  public idPrato:number;
-  public dataReserva:Date = new Date();
-
-  constructor(private pratoService:PratoService,
-    private route:ActivatedRoute) { }
+  constructor(
+    private pratoService: PratoService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.idPrato = params['id'];
-      var subs: Subscription = this.pratoService.recuperarPratoId(this.idPrato).subscribe(prato => {
-        this.prato = prato;
-        subs.unsubscribe();
-      });
+      const subs: Subscription = this.pratoService
+        .recuperarPratoId(this.idPrato)
+        .subscribe(prato => {
+          this.prato = prato;
+          subs.unsubscribe();
+        });
     });
-
   }
 
-  reservar(){
-    console.log("oi " + this.dataReserva);
+  reservar() {
+    console.log('oi ' + this.dataReserva);
+  }
+
+  returnToHome() {
+    this.router.navigate(['/home']);
   }
 
 }
