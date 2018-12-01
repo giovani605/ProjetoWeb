@@ -2,6 +2,9 @@
   <div class="row">
     <div class="col">
       <div class="row shadow-sm p-3 my-2 bg-white rounded border">
+        <div class="row">
+          <h6>Aprovar Cardápio do dia Simples</h6>
+        </div>
         <div class="row" *ngFor="let pratoDia of listaPratos">
           <div class="row">
             <div class="col-sm-4">
@@ -17,9 +20,27 @@
         </div>
       </div>
       <div class="row shadow-sm p-3 my-2 bg-white rounded border">
-        <p>
-          Mostrar uma lista para os simples excluindo os periodos
-        </p>
+        <div class="row">
+          <div class="col">Aprovar periodos ...</div>
+        </div>
+        <div class="row" *ngFor="let periodo of listaPratosPeriodo">
+          <div class="col">
+            <div class="row">
+              <div class="col-sm-4">
+                {{ periodo.prato.nome }} em
+                {{ formatarData(periodo.periodo.data_inicio) }} a {{ formatarData(periodo.periodo.data_fim)}}
+              </div>
+              <div class="col-sm-4">
+                Resposavel : {{ periodo.responsavel.nome }}
+              </div>
+              <div class="col-sm-4">
+                <button type="button" class="btn btn-primary" (click)="aceitarPeriodo(periodo)">Aceitar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
       </div>
 
     </div>

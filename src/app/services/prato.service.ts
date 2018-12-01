@@ -98,6 +98,18 @@ export class PratoService {
     return p;
 
   }
+  converterPeriodoDadosBack(a) {
+    var p = new PeriodoPratoDia();
+    p.idperiodo = a['idperiodo'];
+    p.idprato = a['idprato'];
+    p.data_inicio = a['data_inicio'];
+    p.data_fim = a['data_fim'];
+    p.responsavel = a['responsavel'];
+    p.aprovado = a['aprovado'];
+    return p;
+
+  }
+
 
   recuperarPratosRestaurante(idRestaurante) {
     var subject: Subject<Prato[]> = new Subject<Prato[]>();
@@ -147,17 +159,18 @@ export class PratoService {
     return subject.asObservable();
   }
 
-  // todo
+  
   recuperarPratoPeriodoAprovar(idRestaurante) {
     var subject: Subject<any[]> = new Subject<any[]>();
     this.http.get('http://localhost:3000/restaurante/gerente/aprovar/periodo/' + idRestaurante).subscribe(response => {
 
       var lista: any[] = [];
       for (var a of response['dados']) {
-        var c = this.converterPratoDiaDadosBack(a);
+        var c = this.converterPeriodoDadosBack(a);
         var r = this.userService.converterUser(a);
+        var prato = this.converterPratoDadosBack(a);
         console.log("periodo");
-        var item: any = { 'pratoDia': c, 'responsavel': r };
+        var item: any = { 'prato': prato, 'periodo': c, 'responsavel': r };
         lista.push(item);
       }
       console.log('lista de pratos Periodo');
@@ -201,6 +214,18 @@ export class PratoService {
     });
     return subject.asObservable();
   }
+  aceitarPeriodoCiclo(idperiodo, idUser) {
+    console.log("aprovar Periodo");
+    var subject: Subject<any> = new Subject<any>();
+    this.http.post('http://localhost:3000/restaurante/gerente/aprovar/periodo/' + idperiodo, { "idUser": idUser }).subscribe(response => {
+      console.log('aceitarPratoDiaSimples');
+      console.log(response);
+      subject.next(response);
+    });
+    return subject.asObservable();
+
+  }
+
 
 
 }

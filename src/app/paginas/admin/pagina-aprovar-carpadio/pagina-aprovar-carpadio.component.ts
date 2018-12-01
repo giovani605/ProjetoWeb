@@ -46,4 +46,18 @@ export class PaginaAprovarCarpadioComponent implements OnInit {
 
   }
 
+  aceitarPeriodo(periodo: any) {
+    console.log("aprovar Periodo");
+    var subs1: Subscription = this.pratoService.aceitarPeriodoCiclo(periodo.periodo.idperiodo, this.userService.getUserId()).subscribe(resposta => {
+      if (resposta["flag"]) {
+        alert("sucesso");
+      } else {
+        alert(resposta["dados"]);
+      }
+      subs1.unsubscribe();
+    });
+
+  }
+
+
 }
