@@ -36,6 +36,7 @@ import { PaginaReservasUsuarioComponent } from './paginas/pagina-reservas-usuari
 import { PaginaReservasRestauranteComponent } from './paginas/pagina-reservas-restaurante/pagina-reservas-restaurante.component';
 import { CidadeComponent } from './genericos/cidade/cidade.component';
 import { PesquisaPratoRestauranteComponent } from './pesquisa/pesquisa-prato-restaurante/pesquisa-prato-restaurante.component';
+import { PaginaAprovarCarpadioComponent } from './paginas/admin/pagina-aprovar-carpadio/pagina-aprovar-carpadio.component';
 
 
 const appRoutes: Routes = [
@@ -58,6 +59,8 @@ const appRoutes: Routes = [
   { path: 'usuario/reservas',  canActivate: [UserService], component: PaginaReservasUsuarioComponent },
   { path: 'usuario/amigos',  canActivate: [UserService], component: PaginaAmigosComponent },
   { path: 'restaurates/reservar',  canActivate: [UserService], component: PaginaReservasRestauranteComponent },
+  { path: 'admin/restaurante/aprovar', canActivate: [UserService, PaginaColaboradoresComponent],
+    component: PaginaAprovarCarpadioComponent }
 ];
 
 @NgModule({
@@ -93,7 +96,8 @@ const appRoutes: Routes = [
     PaginaReservasUsuarioComponent,
     PaginaReservasRestauranteComponent,
     CidadeComponent,
-    PesquisaPratoRestauranteComponent
+    PesquisaPratoRestauranteComponent,
+    PaginaAprovarCarpadioComponent
   ],
   imports: [
     BrowserModule,

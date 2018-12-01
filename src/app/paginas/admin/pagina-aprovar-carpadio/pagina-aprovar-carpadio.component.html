@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="row shadow-sm p-3 my-2 bg-white rounded border">
+        <div class="row" *ngFor="let pratoDia of listaPratos">
+          <div class="row">
+            <div class="col-sm-4">
+              {{ pratoDia.prato.nome }} em {{ formatarData(pratoDia.pratoDia.data) }}
+            </div>
+            <div class="col-sm-4">
+              Resposavel : {{ pratoDia.responsavel.nome }}
+            </div>
+            <div class="col-sm-4">
+              <button type="button" class="btn btn-primary" (click)="aceitarSimples(pratoDia)">Aceitar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row shadow-sm p-3 my-2 bg-white rounded border">
+        <p>
+          Mostrar uma lista para os simples excluindo os periodos
+        </p>
+      </div>
+
+    </div>
+  </div>
+</div>

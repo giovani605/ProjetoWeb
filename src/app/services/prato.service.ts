@@ -5,18 +5,20 @@ import { Subject } from 'rxjs';
 import { PratoDia } from '../model/pratoDia.model';
 import { PeriodoPratoDia } from '../model/periodo.model';
 import { DiaSemana } from '../model/diaSemana.model';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PratoService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+    private userService: UserService) { }
 
   // chamar essa funcao com o prato com todos os dados
   inserirPrato(dadosPrato, Imagem, callback) {
-    const fd = new FormData();
-    const teste = JSON.stringify({ 'teste': 'oi' });
+    var fd = new FormData();
+    var teste = JSON.stringify({ 'teste': 'oi' });
     fd.append('imagem', Imagem, 'imagem01.png');
     fd.append('dados', JSON.stringify(dadosPrato));
     fd.append('teste', teste);
@@ -65,7 +67,7 @@ export class PratoService {
   }
 
   converterPratoDadosBack(a) {
-    const p = new Prato();
+    var p = new Prato();
     p.descricao = a['descricao'];
     p.restaurante_idrestaurante = a['restaurante_idrestaurante'];
     p.idpratos = a['idpratos'];
@@ -75,10 +77,10 @@ export class PratoService {
     return p;
   }
   converterPratoDiaDadosBack(a) {
-    const p = new PratoDia();
+    var p = new PratoDia();
     p.idprato_dia = a['idprato_dia'];
     p.idPrato = a['idprato'];
-    p.data = a['data'];
+    p.data = a['dia'];
     p.responsavel = a['responsavel'];
     p.aprovado = a['aprovado'];
     return p;
@@ -86,12 +88,12 @@ export class PratoService {
   }
 
   recuperarPratosRestaurante(idRestaurante) {
-    const subject: Subject<Prato[]> = new Subject<Prato[]>();
+    var subject: Subject<Prato[]> = new Subject<Prato[]>();
     this.http.get('http://localhost:3000/prato/restaurante/' + idRestaurante).subscribe(response => {
       console.log(response['dados']);
-      const lista: Prato[] = [];
-      for (const a of response['dados']) {
-        const b = this.converterPratoDadosBack(a);
+      var lista: Prato[] = [];
+      for (var a of response['dados']) {
+        var b = this.converterPratoDadosBack(a);
         lista.push(a);
       }
       console.log('lista de pratos');
@@ -102,9 +104,9 @@ export class PratoService {
   }
 
   recuperarPratoId(idPrato) {
-    const subject: Subject<Prato> = new Subject<Prato>();
+    var subject: Subject<Prato> = new Subject<Prato>();
     this.http.get('http://localhost:3000/prato/' + idPrato).subscribe(response => {
-      const b = this.converterPratoDadosBack(response['dados'][0]);
+      var b = this.converterPratoDadosBack(response['dados'][0]);
       console.log('prato');
       console.log(b);
       subject.next(b);
@@ -112,4 +114,58 @@ export class PratoService {
     return subject.asObservable();
 
   }
+
+  recuperarPratoDiaAprovar(idRestaurante) {
+    var subject: Subject<any[]> = new Subject<any[]>();
+    this.http.get('http://localhost:3000/restaurante/gerente/aprovar/simples/' + idRestaurante).subscribe(response => {
+      console.log(response['dados']);
+      var lista: any[] = [];
+      for (var a of response['dados']) {
+        var c = this.converterPratoDiaDadosBack(a);
+        var r = this.userService.converterUser(a);
+        var prato = this.converterPratoDadosBack(a);
+        c.data = a["dia"];
+        var item: any = { 'prato': prato, 'pratoDia': c, 'responsavel': r };
+        lista.push(item);
+      }
+      console.log('lista de pratos Dia');
+      console.log(lista);
+      subject.next(lista);
+    });
+    return subject.asObservable();
+  }
+
+  // todo
+  recuperarPratoPeriodoAprovar(idRestaurante) {
+    var subject: Subject<any[]> = new Subject<any[]>();
+    this.http.get('http://localhost:3000/restaurante/gerente/aprovar/periodo/' + idRestaurante).subscribe(response => {
+
+      var lista: any[] = [];
+      for (var a of response['dados']) {
+        var c = this.converterPratoDiaDadosBack(a);
+        var r = this.userService.converterUser(a);
+        console.log("periodo");
+        var item: any = { 'pratoDia': c, 'responsavel': r };
+        lista.push(item);
+      }
+      console.log('lista de pratos Periodo');
+      console.log(lista);
+      subject.next(lista);
+    });
+    return subject.asObservable();
+
+  }
+
+  aceitarPratoDiaSimples(idPratoDia, idUser) {
+    var subject: Subject<any> = new Subject<any>();
+    this.http.post('http://localhost:3000/restaurante/gerente/aprovar/simples/' + idPratoDia, { "idUser": idUser }).subscribe(response => {
+      console.log('aceitarPratoDiaSimples');
+      console.log(response);
+      subject.next(response);
+    });
+    return subject.asObservable();
+
+  }
+
+
 }
