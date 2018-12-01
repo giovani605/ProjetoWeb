@@ -7,6 +7,7 @@ import { RestauranteService } from 'src/app/services/restaurante.service';
 import { Cidade } from 'src/app/model/cidade.model';
 import { LocalizacaoService } from 'src/app/services/localizacao.service';
 import { Subscription } from 'rxjs';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-registro-restaurante',
   templateUrl: './registro-restaurante.component.html',

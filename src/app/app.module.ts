@@ -37,30 +37,36 @@ import { PaginaReservasRestauranteComponent } from './paginas/pagina-reservas-re
 import { CidadeComponent } from './genericos/cidade/cidade.component';
 import { PesquisaPratoRestauranteComponent } from './pesquisa/pesquisa-prato-restaurante/pesquisa-prato-restaurante.component';
 import { PaginaAprovarCarpadioComponent } from './paginas/admin/pagina-aprovar-carpadio/pagina-aprovar-carpadio.component';
-
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 const appRoutes: Routes = [
   { path: 'register', component: PaginaRegistroComponent },
   { path: 'home', canActivate: [UserService], component: PaginaFeedComponent },
-  { path: 'page/user', canActivate: [UserService],
-    component: PaginaUsuarioComponent },
+  {
+    path: 'page/user', canActivate: [UserService],
+    component: PaginaUsuarioComponent
+  },
   { path: '', component: PaginaLoginComponent },
   { path: 'login', component: PaginaLoginComponent },
-  { path: 'register/restaurante',  component: RegistroRestauranteComponent },
+  { path: 'register/restaurante', component: RegistroRestauranteComponent },
   { path: 'register/prato', canActivate: [UserService], component: RegistroPratoComponent },
   { path: 'admin/restaurante', canActivate: [UserService], component: PaginaAdmRestauranteComponent },
   { path: 'registro/periodo/:id', canActivate: [UserService], component: RegistroPeriodoPratoComponent },
-  { path: 'admin/restaurante/colaboradores', canActivate: [UserService, PaginaColaboradoresComponent],
-    component: PaginaColaboradoresComponent },
-  { path: 'restaurante/:id',  component: PaginaRestauranteComponent },
-  { path: 'prato/reservar/:id',  canActivate: [UserService], component: PaginaReservaComponent },
-  { path: 'prato/compartilhar/:id',  canActivate: [UserService], component: PaginaCompartilharComponent },
-  { path: 'prato/avaliar/:id',  canActivate: [UserService], component: PaginaAvaliarComponent },
-  { path: 'usuario/reservas',  canActivate: [UserService], component: PaginaReservasUsuarioComponent },
-  { path: 'usuario/amigos',  canActivate: [UserService], component: PaginaAmigosComponent },
-  { path: 'restaurates/reservar',  canActivate: [UserService], component: PaginaReservasRestauranteComponent },
-  { path: 'admin/restaurante/aprovar', canActivate: [UserService, PaginaColaboradoresComponent],
-    component: PaginaAprovarCarpadioComponent }
+  {
+    path: 'admin/restaurante/colaboradores', canActivate: [UserService, PaginaColaboradoresComponent],
+    component: PaginaColaboradoresComponent
+  },
+  { path: 'restaurante/:id', component: PaginaRestauranteComponent },
+  { path: 'prato/reservar/:id', canActivate: [UserService], component: PaginaReservaComponent },
+  { path: 'prato/compartilhar/:id', canActivate: [UserService], component: PaginaCompartilharComponent },
+  { path: 'prato/avaliar/:id', canActivate: [UserService], component: PaginaAvaliarComponent },
+  { path: 'usuario/reservas', canActivate: [UserService], component: PaginaReservasUsuarioComponent },
+  { path: 'usuario/amigos', canActivate: [UserService], component: PaginaAmigosComponent },
+  { path: 'restaurates/reservar', canActivate: [UserService], component: PaginaReservasRestauranteComponent },
+  {
+    path: 'admin/restaurante/aprovar', canActivate: [UserService, PaginaColaboradoresComponent],
+    component: PaginaAprovarCarpadioComponent
+  }
 ];
 
 @NgModule({
@@ -97,13 +103,15 @@ const appRoutes: Routes = [
     PaginaReservasRestauranteComponent,
     CidadeComponent,
     PesquisaPratoRestauranteComponent,
-    PaginaAprovarCarpadioComponent
+    PaginaAprovarCarpadioComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    NgbModule,
+    NgbModule.forRoot()
   ],
   providers: [UserService, PaginaColaboradoresComponent],
   bootstrap: [AppComponent]
