@@ -6,6 +6,7 @@ import { PratoDia } from '../model/pratoDia.model';
 import { PeriodoPratoDia } from '../model/periodo.model';
 import { DiaSemana } from '../model/diaSemana.model';
 import { UserService } from './user.service';
+import { Tag } from '../model/tag.model';
 
 @Injectable({
   providedIn: 'root'
@@ -16,12 +17,13 @@ export class PratoService {
     private userService: UserService) { }
 
   // chamar essa funcao com o prato com todos os dados
-  inserirPrato(dadosPrato, Imagem, callback) {
+  inserirPrato(dadosPrato, Imagem, listaTag, callback) {
     var fd = new FormData();
-    var teste = JSON.stringify({ 'teste': 'oi' });
+    var listTag = this.filtrarTags(listaTag);
+
     fd.append('imagem', Imagem, 'imagem01.png');
     fd.append('dados', JSON.stringify(dadosPrato));
-    fd.append('teste', teste);
+    fd.append('tag', JSON.stringify(listTag));
     this.http.post('http://localhost:3000/prato/registrar', fd).subscribe(response => {
       console.log(response);
       callback(response);
@@ -36,6 +38,16 @@ export class PratoService {
     });
 
   }
+  filtrarTags(lista: Tag[]) {
+    var d: Tag[] = [];
+    for (let a of lista) {
+      if (a.check) {
+        d.push(a);
+      }
+    }
+    return d;
+  }
+
 
   filtrarDias(dias: DiaSemana[]) {
     var d: DiaSemana[] = [];
@@ -165,6 +177,29 @@ export class PratoService {
     });
     return subject.asObservable();
 
+  }
+  converterTagBack(a): Tag {
+    var tag = new Tag();
+    tag.nome = a["nome"];
+    tag.idtag = a["idtag"];
+    return tag;
+  }
+
+  recuperarTodasTag() {
+    var subject: Subject<Tag[]> = new Subject<Tag[]>();
+    console.log("Recuperar todas tag");
+    this.http.get('http://localhost:3000/prato/todas/tag').subscribe(response => {
+      console.log(response['dados']);
+      var lista: Tag[] = [];
+      for (var a of response['dados']) {
+        var c = this.converterTagBack(a);
+        lista.push(c);
+      }
+      console.log('lista de tag');
+      console.log(lista);
+      subject.next(lista);
+    });
+    return subject.asObservable();
   }
 
 

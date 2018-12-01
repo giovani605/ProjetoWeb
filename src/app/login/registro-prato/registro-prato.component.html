@@ -16,8 +16,22 @@
           </div>
           <div class="col">
             <input type="text" id="descricao" required [(ngModel)]="prato.descricao" name="descricao">
+            
           </div>
         </div>
+        <div class="row">
+          <div class="col">
+            <h6>TAG:</h6>
+            <div class="row" *ngFor="let tag of listaTag">
+              <div class="col">
+                <input type="checkbox" id="checkTag" [checked]="tag.check" (change)="tag.alterar()" />
+                <label for="checkTag">{{tag.nome}}</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
         <div class="row">
           <div class="col">
             <input type="file" (change)="onFileChanged($event)">
