@@ -4,6 +4,8 @@ import { FeedService } from 'src/app/services/feed.service';
 import { Subject, Subscription } from 'rxjs';
 import { PratoService } from 'src/app/services/prato.service';
 import { Tag } from 'src/app/model/tag.model';
+import { Cidade } from 'src/app/model/cidade.model';
+import { LocalizacaoService } from 'src/app/services/localizacao.service';
 @Component({
   selector: 'app-feed',
   templateUrl: './feed.component.html',
@@ -14,8 +16,13 @@ export class FeedComponent implements OnInit {
   // lista do feed
   lista: FeedItem[] = [];
   public listaTags: Tag[] = [];
+  public listaCidades: Cidade[] = [];
+  public cidadeSelecionada: string = "selecione";
+  public idCidadeSelecionada: number = 0;
+
   constructor(private feedService: FeedService,
-    private pratoService:PratoService) { }
+    private pratoService:PratoService,
+    private localizaoService: LocalizacaoService) { }
 
   ngOnInit() {
     var a: Subscription = this.feedService.recuperarFeedGeral().subscribe(dados => {
@@ -28,10 +35,21 @@ export class FeedComponent implements OnInit {
       subs2.unsubscribe();
     });
 
+    var subs: Subscription = this.localizaoService.getCidadesObs().subscribe(dados => {
+      this.listaCidades = dados;
+      subs.unsubscribe();
+    });
+
   }
+  changeCidade(cidade) {
+    this.idCidadeSelecionada = cidade.idCidade;
+    this.cidadeSelecionada = cidade.nome;
+    console.log(cidade.idCidade);
+  }
+
   atualizarFeed(){
     console.log("atualizar feed");
-    const a: Subscription = this.feedService.recuperarFeedFiltro(this.listaTags).subscribe(dados => {
+    const a: Subscription = this.feedService.recuperarFeedFiltro(this.listaTags, this.idCidadeSelecionada).subscribe(dados => {
       this.lista = dados;
       a.unsubscribe();
     });

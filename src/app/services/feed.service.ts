@@ -32,11 +32,12 @@ export class FeedService {
     });
     return subject.asObservable();
   }
-  recuperarFeedFiltro(listaTags: Tag[]){
+  recuperarFeedFiltro(listaTags: Tag[], idCidade){
     var lTags = this.pratoService.filtrarTags(listaTags);
     var subject: Subject<FeedItem[]> = new Subject<FeedItem[]>();
     var dados:any = {
-      "tags" : lTags
+      "tags" : lTags,
+      "idCidade" : idCidade
     };
     console.log(lTags);
     this.http.post('http://localhost:3000/feed/filtrar', dados ).subscribe(response => {

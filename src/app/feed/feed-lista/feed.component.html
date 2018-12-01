@@ -12,7 +12,16 @@
       </div>
     </div>
     <div class="col">
-      <button type="button" (click)="atualizarFeed()" >Atualizar</button>
+      <button type="button" (click)="atualizarFeed()">Atualizar</button>
+    </div>
+    <div class="col">
+      <div ngbDropdown class="d-inline-block">
+        <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>{{cidadeSelecionada }}</button>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+          <button *ngFor="let cidade of listaCidades" (click)="changeCidade(cidade)" class="dropdown-item"> {{
+            cidade.nome }}</button>
+        </div>
+      </div>
     </div>
   </div>
 </div>
