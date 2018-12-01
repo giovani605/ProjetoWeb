@@ -3,6 +3,17 @@
     <div class="col">
       <h3>Filtro de feed</h3>
     </div>
+    <div class="col">
+      <div class="row" *ngFor="let tag of listaTags">
+        <div class="col">
+          <input type="checkbox" id="checkTag" [checked]="tag.check" (change)="tag.alterar()" />
+          <label for="checkTag">{{tag.nome}}</label>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <button type="button" (click)="atualizarFeed()" >Atualizar</button>
+    </div>
   </div>
 </div>
 <div class="rounded  p-3 mb-5 bg-white rounded">

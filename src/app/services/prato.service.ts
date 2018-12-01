@@ -86,6 +86,9 @@ export class PratoService {
     p.idimagem = a['idimagem'];
     p.nome = a['nome'];
     p.tag_idtag = a['tag_idtag'];
+    if(a["pnome"]){
+      p.nome = a['pnome'];
+    }
     return p;
   }
   converterPratoDiaDadosBack(a) {

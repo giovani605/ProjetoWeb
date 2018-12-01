@@ -22,7 +22,7 @@ export class RegistroPratoComponent implements OnInit {
     var subs1: Subscription = this.pratoService.recuperarTodasTag().subscribe(dados => {
       this.listaTag = dados;
       subs1.unsubscribe();
-    })
+    });
 
 
   }
