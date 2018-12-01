@@ -2,6 +2,7 @@ import { Estado } from './../model/estado.model';
 import { Cidade } from './../model/cidade.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,15 @@ export class LocalizacaoService {
       console.log(response);
       callback(this.convertCidadesBack(response['dados']));
     });
+  }
+
+  public getCidadesObs() {
+    var subs:Subject<Cidade[]> = new Subject<Cidade[]>();
+    this.http.get('http://localhost:3000/local/cidades').subscribe(response => {
+      console.log(response);
+      subs.next(this.convertCidadesBack(response['dados']));
+    });
+    return subs;
   }
 
   public getEstados(): Estado[] {

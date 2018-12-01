@@ -4,6 +4,9 @@ import { Restaurante } from "../../model/restaurante.model";
 import { UserService } from 'src/app/services/user.service';
 import { Router } from "@angular/router";
 import { RestauranteService } from 'src/app/services/restaurante.service';
+import { Cidade } from 'src/app/model/cidade.model';
+import { LocalizacaoService } from 'src/app/services/localizacao.service';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-registro-restaurante',
   templateUrl: './registro-restaurante.component.html',
@@ -12,13 +15,25 @@ import { RestauranteService } from 'src/app/services/restaurante.service';
 export class RegistroRestauranteComponent implements OnInit {
 
   public restaurante: Restaurante = new Restaurante();
+  public listaCidades: Cidade[] = [];
 
 
-  constructor(private userService: UserService, private router: Router, private restauranteService: RestauranteService) { }
+  constructor(private userService: UserService, private router: Router, private restauranteService: RestauranteService,
+    private localizaoService: LocalizacaoService) { }
 
   ngOnInit() {
     console.log("Usuario :");
     console.log(this.userService.user);
+    var subs: Subscription = this.localizaoService.getCidadesObs().subscribe(dados => {
+      this.listaCidades = dados;
+      subs.unsubscribe();
+    });
+
+
+  }
+  changeCidade(cidade){
+    this.restaurante.cidades_id = cidade.idCidade;
+    console.log(cidade.idCidade);
   }
 
   onSubmit() {

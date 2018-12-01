@@ -18,7 +18,7 @@
         </div>
         <div class="row">
           <div class="col-sm-4 my-1"> <label for="rua">Endereço:</label></div>
-        
+
           <div class="col"><input type="text" id="rua" required [(ngModel)]="restaurante.rua" name="rua"></div>
         </div>
         <div class="row">
@@ -28,7 +28,20 @@
         </div>
         <div class="row">
           <div class="col-sm-4 my-1">
-            <p>Inserir cidades depois</p>
+            <p>Escolher Cidade:</p>
+          </div>
+
+          <div class="col-sm-4 my-1">
+            <div *ngFor="let cidade of listaCidades">
+              <label for="opt">{{cidade.nome}}</label>
+              <input type="checkbox" id="opt" (click)="changeCidade(cidade)">
+            </div>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+              <button class="dropdown-item">Action - 1</button>
+              <button class="dropdown-item">Another Action</button>
+              <button class="dropdown-item">Something else is here</button>
+            </div>
+
           </div>
         </div>
         <div class="row">
