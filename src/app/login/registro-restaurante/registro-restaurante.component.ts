@@ -17,7 +17,7 @@ export class RegistroRestauranteComponent implements OnInit {
 
   public restaurante: Restaurante = new Restaurante();
   public listaCidades: Cidade[] = [];
-
+  public cidadeSelecionada: string = "Selecione";
 
   constructor(private userService: UserService, private router: Router, private restauranteService: RestauranteService,
     private localizaoService: LocalizacaoService) { }
@@ -32,8 +32,9 @@ export class RegistroRestauranteComponent implements OnInit {
 
 
   }
-  changeCidade(cidade){
+  changeCidade(cidade) {
     this.restaurante.cidades_id = cidade.idCidade;
+    this.cidadeSelecionada = cidade.nome;
     console.log(cidade.idCidade);
   }
 

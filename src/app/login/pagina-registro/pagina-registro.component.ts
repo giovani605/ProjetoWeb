@@ -32,7 +32,7 @@ export class PaginaRegistroComponent implements OnInit {
     console.log('chamando o servico');
     this.userService.registrar(this.user, (msg) => {
 
-      if (this.gerente === 1) {
+      if (this.gerente == 1) {
         // routear para a pagina do restaurante
         this.userService.buscarUserLogin(this.user.login, (usuario) => {
           const a: Usuario = this.userService.converterUser(usuario);
