@@ -113,7 +113,7 @@ export class UserService implements CanActivate {
         });
     }
     converterUser(dados: any): Usuario {
-        const user = new Usuario();
+        var user = new Usuario();
         user.login = dados['login'];
         user.idUsuario = dados['idusuario'];
         user.nome = dados['nome'];
@@ -173,6 +173,34 @@ export class UserService implements CanActivate {
         var subject: Subject<any> = new Subject<any>();
         this.http.post('http://localhost:3000/usuario/inserir/notificacao', { "dados": note }).subscribe(response => {
             subject.next(response);
+        });
+        return subject.asObservable();
+    }
+
+    converterNotificacao(dados):Notificacao{
+        var n: Notificacao = new Notificacao();
+        n.ativo = dados['ativo'];
+        n.idusuario = dados['idusuario'];
+        n.descricao = dados['descricao'];
+        n.idnotificacao = dados['idnotificacao'];
+        n.link = dados['link'];
+        n.idremetente = dados['idremetente'];
+        return n;
+
+    }
+
+    buscarNotificacoesUserId(userId){
+        console.log('buscarNotificacoesUserId ' + userId);
+        var subject: Subject<Notificacao[]> = new Subject<Notificacao[]>();
+        this.http.get('http://localhost:3000/usuario/buscar/notificao/by-iduser/' + userId).subscribe(response => {
+            var lista: Notificacao[] = [];
+            for (var a of response['dados']) {
+                var u = this.converterNotificacao(a);
+                lista.push(u);
+            }
+            console.log('buscarNotificacoesUserId resultado');
+            console.log(lista);
+            subject.next(lista);
         });
         return subject.asObservable();
     }

@@ -36,7 +36,9 @@ export class FeedItemComponent implements OnInit, OnDestroy {
     // criar a notificacao para o prato e mandar pra o back end
     var notificacao: Notificacao = new Notificacao();
     notificacao.ativo = 1;
+    console.log("meu usuario "+ this.userService.getUserId());
     notificacao.idremetente = this.userService.getUserId();
+    console.log("usuario id destino" + user.idUsuario);
     notificacao.idusuario = user.idUsuario;
     notificacao.descricao = this.userService.getUser().nome + " compartilhou " +
       this.item.prato.nome + " com você";
