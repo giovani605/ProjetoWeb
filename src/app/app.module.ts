@@ -38,6 +38,8 @@ import { CidadeComponent } from './genericos/cidade/cidade.component';
 import { PesquisaPratoRestauranteComponent } from './pesquisa/pesquisa-prato-restaurante/pesquisa-prato-restaurante.component';
 import { PaginaAprovarCarpadioComponent } from './paginas/admin/pagina-aprovar-carpadio/pagina-aprovar-carpadio.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { PaginaNotificacoesComponent } from './paginas/pagina-notificacoes/pagina-notificacoes.component';
+import { ItemUsuarioComponent } from './lista/item-usuario/item-usuario.component';
 
 const appRoutes: Routes = [
   { path: 'register', component: PaginaRegistroComponent },
@@ -59,6 +61,7 @@ const appRoutes: Routes = [
   { path: 'restaurante/:id', component: PaginaRestauranteComponent },
   { path: 'prato/reservar/:id', canActivate: [UserService], component: PaginaReservaComponent },
   { path: 'prato/compartilhar/:id', canActivate: [UserService], component: PaginaCompartilharComponent },
+  { path: 'prato/:id', canActivate: [UserService], component: PaginaCompartilharComponent },
   { path: 'prato/avaliar/:id', canActivate: [UserService], component: PaginaAvaliarComponent },
   { path: 'usuario/reservas', canActivate: [UserService], component: PaginaReservasUsuarioComponent },
   { path: 'usuario/amigos', canActivate: [UserService], component: PaginaAmigosComponent },
@@ -66,7 +69,7 @@ const appRoutes: Routes = [
   {
     path: 'admin/restaurante/aprovar', canActivate: [UserService, PaginaColaboradoresComponent],
     component: PaginaAprovarCarpadioComponent
-  }
+  }, { path: 'usuario/notificacoes', canActivate: [UserService], component: PaginaNotificacoesComponent }
 ];
 
 @NgModule({
@@ -104,6 +107,8 @@ const appRoutes: Routes = [
     CidadeComponent,
     PesquisaPratoRestauranteComponent,
     PaginaAprovarCarpadioComponent,
+    PaginaNotificacoesComponent,
+    ItemUsuarioComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,14 +1,33 @@
 import { Injectable, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Subject } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 import { Usuario } from '../model/usuario.model';
 import { CanActivate, Router } from '@angular/router';
+import { Notificacao } from '../model/notificacao.model';
 
 
 @Injectable({ providedIn: 'root' })
 export class UserService implements CanActivate {
     public user: Usuario = new Usuario();
     private isAuth = false;
+    private listaAmigos: Usuario[] = [];
+    private subsAmigos: Subject<Usuario[]> = new Subject<Usuario[]>();
+
+
+    getListenerListaAmigos() {
+        return this.subsAmigos.asObservable();
+    }
+
+    getListaAmigos() {
+        return this.listaAmigos;
+    }
+    carregarAmigos() {
+        var subs: Subscription = this.procurarAmigos(this.getUserId()).subscribe(dados => {
+            this.listaAmigos = dados;
+            subs.unsubscribe();
+        });
+    }
+
 
     canActivate() {
         if (!this.isAuth) {
@@ -19,7 +38,6 @@ export class UserService implements CanActivate {
     }
     procurarAmigos(userId) {
         console.log("pesquisar amigos");
-        var subs: Subject<Usuario[]> = new Subject<Usuario[]>();
         this.http.get('http://localhost:3000/usuario/amigos/' + userId).subscribe(response => {
             var lista: Usuario[] = [];
             for (var a of response['dados']) {
@@ -28,9 +46,9 @@ export class UserService implements CanActivate {
             }
             console.log('procurarAmigos');
             console.log(lista);
-            subs.next(lista);
+            this.subsAmigos.next(lista);
         });
-        return subs;
+        return this.subsAmigos;
     }
 
     getUserId() {
@@ -146,11 +164,17 @@ export class UserService implements CanActivate {
         }
         console.log('inserirAmigos ' + idUser1 + " " + idUser2);
         var subject: Subject<any> = new Subject<any>();
-        this.http.post('http://localhost:3000/usuario/adicionar/amigos',dados).subscribe(response => {
+        this.http.post('http://localhost:3000/usuario/adicionar/amigos', dados).subscribe(response => {
             subject.next(response);
         });
         return subject.asObservable();
     }
-
+    enviarNotificacao(note: Notificacao) {
+        var subject: Subject<any> = new Subject<any>();
+        this.http.post('http://localhost:3000/usuario/inserir/notificacao', { "dados": note }).subscribe(response => {
+            subject.next(response);
+        });
+        return subject.asObservable();
+    }
 
 }

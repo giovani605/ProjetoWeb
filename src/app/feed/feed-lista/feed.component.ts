@@ -6,6 +6,7 @@ import { PratoService } from 'src/app/services/prato.service';
 import { Tag } from 'src/app/model/tag.model';
 import { Cidade } from 'src/app/model/cidade.model';
 import { LocalizacaoService } from 'src/app/services/localizacao.service';
+import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-feed',
   templateUrl: './feed.component.html',
@@ -22,7 +23,7 @@ export class FeedComponent implements OnInit {
 
   constructor(private feedService: FeedService,
     private pratoService:PratoService,
-    private localizaoService: LocalizacaoService) { }
+    private localizaoService: LocalizacaoService,private userService:UserService) { }
 
   ngOnInit() {
     var a: Subscription = this.feedService.recuperarFeedGeral().subscribe(dados => {
@@ -39,6 +40,8 @@ export class FeedComponent implements OnInit {
       this.listaCidades = dados;
       subs.unsubscribe();
     });
+
+    this.userService.carregarAmigos()
 
   }
   changeCidade(cidade) {

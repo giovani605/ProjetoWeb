@@ -15,7 +15,7 @@ export class ListaUsuarioComponent implements OnInit {
   @Input('tipo') private tipo: string;
 
   constructor(private restauranteService: RestauranteService,
-    private userService:UserService) { }
+    private userService: UserService) { }
 
   ngOnInit() {
     console.log("app-lista-usuario pesquisa  " + this.tipo);
