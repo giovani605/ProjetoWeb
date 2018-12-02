@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { RestauranteService } from 'src/app/services/restaurante.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-pesquisa-prato-restaurante',
@@ -7,15 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PesquisaPratoRestauranteComponent implements OnInit {
 
-  public listaPesquisa:any[] = [];
+  public listaPesquisa: any[] = [];
 
   public nome = "";
-  constructor() { }
+  constructor(private restauranteService: RestauranteService) { }
 
   ngOnInit() {
   }
-  pesquisar(valor){
+  pesquisar(valor) {
+    if (valor == "" || valor == null) {
+      this.listaPesquisa = [];
+      return;
+    }
     this.nome = valor;
-    console.log(this.nome);
+    var subs1: Subscription = this.restauranteService.pesquisaPratoRestauranteNome(this.nome).subscribe(dados => {
+      this.listaPesquisa = dados;
+      subs1.unsubscribe();
+    })
   }
 }

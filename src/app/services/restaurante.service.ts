@@ -4,6 +4,7 @@ import { Restaurante } from '../model/restaurante.model';
 import { Subject } from "rxjs";
 import { UserService } from './user.service';
 import { Usuario } from '../model/usuario.model';
+import { ItemPesquisa } from '../model/itemPesquisa.model';
 
 
 @Injectable({
@@ -177,6 +178,31 @@ export class RestauranteService {
       }
     });
     return subs;
+  }
+  // Todo
+  pesquisaPratoRestauranteNome(nome){
+    console.log("pesquisaPratoRestauranteNome " + nome);
+    var subject: Subject<ItemPesquisa[]> = new Subject<ItemPesquisa[]>();
+    this.http.get("http://localhost:3000/restaurante/buscar/juntos/" + nome).subscribe(response => {
+      var lista: ItemPesquisa[] = [];
+      for (let a of response["pratos"]) {
+        var u = new ItemPesquisa();
+        u.nome = a["nome"] + " em " + a["rnome"];
+        u.link = "/pratos/" + a["idpratos"];
+        lista.push(u);
+      }
+      for (let a of response["restaurantes"]) {
+        var u = new ItemPesquisa();
+        u.nome = a["nome"];
+        u.link = "/restaurante/" + a["idrestaurante"];
+        lista.push(u);
+      }
+      console.log("pesquisaPratoRestauranteNome");
+      console.log(lista);
+      subject.next(lista);
+    });
+    return subject.asObservable();
+
   }
 
 

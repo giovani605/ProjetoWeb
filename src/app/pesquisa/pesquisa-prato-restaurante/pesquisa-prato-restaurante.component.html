@@ -1,11 +1,11 @@
 <form class="form-inline">
   <div ngbDropdown class="d-inline-block">
-    <input ngbDropdownToggle class="form-control mr-sm-2" type="search"
-     placeholder="Search" aria-label="Search" id="inputSearch" #inputSearch (input)="pesquisar(inputSearch.value)">
+    <input ngbDropdownToggle class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="inputSearch"
+      #inputSearch (input)="pesquisar(inputSearch.value)">
     <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-      <div class="row">
+      <div class="row" *ngFor="let l of listaPesquisa">
         <div class="col">
-          oi
+          {{l.nome}}
         </div>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { FeedItem } from '../../model/feedItem.model';
 import { Router } from '@angular/router';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
@@ -49,7 +49,7 @@ export class FeedItemComponent implements OnInit, OnDestroy {
       } else {
         alert("falha ao enviar a notifição");
       }
-    }
+    });
   }
 
   redirecionarAvaliar() {
