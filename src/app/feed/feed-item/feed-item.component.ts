@@ -34,15 +34,19 @@ export class FeedItemComponent implements OnInit, OnDestroy {
 
   share(user: Usuario) {
     // criar a notificacao para o prato e mandar pra o back end
-    var notificacao:Notificacao =  new Notificacao();
+    var notificacao: Notificacao = new Notificacao();
     notificacao.ativo = 1;
     notificacao.idremetente = this.userService.getUserId();
     notificacao.idusuario = user.idUsuario;
-    notificacao.descricao = this.userService.getUser().nome + " compartilhou " + 
-    this.item.prato.nome + " com você";
-    notificacao.link = "/prato/"+this.item.prato.idpratos;
-    this.userService.enviarNotificacao(notificacao).subscribe(dados =>{
-      
+    notificacao.descricao = this.userService.getUser().nome + " compartilhou " +
+      this.item.prato.nome + " com você";
+    notificacao.link = "/prato/" + this.item.prato.idpratos;
+    this.userService.enviarNotificacao(notificacao).subscribe(dados => {
+      if (dados["flag"]) {
+        alert("sucesso");
+      } else {
+        alert("falha ao enviar a notifição");
+      }
     }
   }
 
