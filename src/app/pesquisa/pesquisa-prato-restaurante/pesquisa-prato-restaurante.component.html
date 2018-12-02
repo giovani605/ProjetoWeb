@@ -1,4 +1,13 @@
 <form class="form-inline">
-    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-    <button class="btn  my-2 my-sm-0" type="submit">Search</button>
-  </form>
+  <div ngbDropdown class="d-inline-block">
+    <input ngbDropdownToggle class="form-control mr-sm-2" type="search"
+     placeholder="Search" aria-label="Search" id="inputSearch" #inputSearch (input)="pesquisar(inputSearch.value)">
+    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+      <div class="row">
+        <div class="col">
+          oi
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

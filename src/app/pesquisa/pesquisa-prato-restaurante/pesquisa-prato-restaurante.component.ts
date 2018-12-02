@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PesquisaPratoRestauranteComponent implements OnInit {
 
+  public listaPesquisa:any[] = [];
+
+  public nome = "";
   constructor() { }
 
   ngOnInit() {
   }
-
+  pesquisar(valor){
+    this.nome = valor;
+    console.log(this.nome);
+  }
 }
