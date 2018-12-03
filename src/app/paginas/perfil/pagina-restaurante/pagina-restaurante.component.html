@@ -1,18 +1,46 @@
-<div class="shadow-sm p-3 mb-2 bg-white rounded border container">
-  <div class="row my-2 ">
+<div class="container my-3  p-3 mb-2 px-3 bg-white">
+  <div class="row">
     <div class="col">
+      <h2>{{ restaurante.nome }}</h2>
       <div class="card">
         <p></p>
-        <h4 class="card-title"> {{ restaurante.nome }}</h4>
-        <h6 class="card-subtitle mb-2 text-muted">Descrição: {{ restaurante.descricao }}</h6>
+        <h5 class="card-subtitle mb-2 text-muted">
+          Descrição: {{ restaurante.descricao }}
+        </h5>
         <ul class="list-group list-group-flush">
           <div class="row">
             <div class="col">
-              <li class="list-group-item">Rua: {{ restaurante.rua }}, {{ restaurante.numero }} </li>
-              <li class="list-group-item">Telefone: {{ restaurante.telefone }}</li>
+              <li class="list-group-item">
+                Rua: {{ restaurante.rua }}, {{ restaurante.numero }}
+              </li>
+              <li class="list-group-item">
+                Telefone: {{ restaurante.telefone }}
+              </li>
             </div>
             <div class="col">
               <li class="list-group-item">Cidade: {{ nomeCidade }}</li>
+              <li class="list-group-item">Pontuação:</li>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="tab rounded bg-primary">
+                <button class="tablinks" (click)="alterar(1)">Cardápio</button>
+                <button class="tablinks" (click)="alterar(0)">
+                  Comentários
+                </button>
+              </div>
+              <p *ngIf="cardapio; then: cardapio; else: comentario"></p>
+              <ng-template #cardapio>
+                <div class="row my-3 shadow-sm p-3 mb-2 p-3 bg-white">
+                  <div class="col"><p>Cardápio</p></div>
+                </div>
+              </ng-template>
+              <ng-template #comentario>
+                <div class="row my-3 shadow-sm p-3 mb-2 p-3 bg-white">
+                  <div class="col"><p>Comentários</p></div>
+                </div>
+              </ng-template>
             </div>
           </div>
         </ul>

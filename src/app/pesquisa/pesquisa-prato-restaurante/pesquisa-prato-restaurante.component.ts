@@ -30,6 +30,7 @@ export class PesquisaPratoRestauranteComponent implements OnInit {
     })
   }
   redirecionar(a){
+
     this.router.navigate([a.link]);
   }
 }
