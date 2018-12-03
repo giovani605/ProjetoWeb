@@ -188,7 +188,8 @@ export class RestauranteService {
       for (let a of response["pratos"]) {
         var u = new ItemPesquisa();
         u.nome = a["nome"] + " em " + a["rnome"];
-        u.link = "/pratos/" + a["idpratos"];
+        u.link = "/prato/compartilhar/" + a["idpratos"];
+        //u.link = "/usuario/amigos";
         lista.push(u);
       }
       for (let a of response["restaurantes"]) {

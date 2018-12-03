@@ -5,7 +5,8 @@
     <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
       <div class="row" *ngFor="let l of listaPesquisa">
         <div class="col">
-          {{l.nome}}
+          <button class="btn btn-primary" (click)="redirecionar(l)">{{l.nome}} </button>
+          
         </div>
       </div>
     </div>
