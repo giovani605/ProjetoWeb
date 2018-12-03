@@ -217,7 +217,7 @@ export class RestauranteService {
       "codigo" : codigo
     };
     this.http.post("http://localhost:3000/restaurante/gerente/inserir/promocao",dados).subscribe(response => {
-      console.log("procurarColaboradores");
+      console.log("criarCodigoPromocao");
       console.log(response);
       subject.next(response);
     });
