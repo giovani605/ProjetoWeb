@@ -1,5 +1,5 @@
 <div class="shadow-sm p-3 mb-2 bg-white rounded border container">
-    <div class="row ">
+    <div class="row my-2 ">
         <div class="col">
             <app-item-prato [prato]="item.prato"></app-item-prato>
         </div>
@@ -9,8 +9,6 @@
             <button type="button" class="btn btn-primary mx-1" (click)="open(content)">Compartilhar</button>
             <button type="button" class="btn btn-primary mx-1" (click)="redirecionarRestaurante($event)">Ver
                 restaurante</button>
-
-
         </div>
     </div>
     <div class="row">
@@ -37,11 +35,11 @@
         <div class="form-group">
             <div class="col">
                 <h6>Amigos : </h6>
-                <div class="row" *ngFor="let a of listaAmigos">
+                <div class="row"  *ngFor="let a of listaAmigos">
                     <div class="col">
-                        <app-item-usuario [user]="a"></app-item-usuario>
-                        <button type="button" class="btn btn-primary" (click)="share(a)">Compartilhar</button>
+                        <app-item-usuario [user]="a" ></app-item-usuario>
                     </div>
+                    <div class="col"><button type="button" class="btn btn-primary" (click)="share(a)">Compartilhar</button></div>
                 </div>
             </div>
         </div>
