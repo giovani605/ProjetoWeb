@@ -30,7 +30,7 @@ export class ReservaService {
     const aux: reservaUsuario = new reservaUsuario();
     aux.idReserva = dado['idreserva'];
     aux.data = new Date(dado['data']);
-    aux.idPromocao = dado['dipromocao'];
+    aux.idPromocao = dado['idpromocao'];
     aux.nomePrato = dado['nomePrato'];
     aux.caminhoImagem = dado['idimagem'];
     aux.descricaoPrato = dado['descricao'];

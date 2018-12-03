@@ -30,17 +30,41 @@
                   Comentários
                 </button>
               </div>
-              <p *ngIf="cardapio; then: cardapio; else: comentario"></p>
-              <ng-template #cardapio>
-                <div class="row my-3 shadow-sm p-3 mb-2 p-3 bg-white">
-                  <div class="col"><p>Cardápio</p></div>
+
+              <div
+                class="container my-3  p-3 mb-2 px-3 bg-white"
+                *ngIf="cardapio"
+              >
+                <div class="row">
+                  <div class="col">
+                    <h2>Cardápio</h2>
+                    <p></p>
+                    <!-- Aqui ficam os pratos a serem exibidos -->
+                    <div class="row">
+                      <div class="col" *ngFor="let prato of pratos">
+                        <div class="card" style="width: 18rem;">
+                          <img
+                            class="card-img-top"
+                            [src]="getUrlImagem(prato.idimagem)"
+                            width="80px"
+                            height="130px"
+                          />
+                          <h5 class="card-title">{{ prato.nome }}</h5>
+                          <a href="#" class="card-link">Informações</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </ng-template>
-              <ng-template #comentario>
-                <div class="row my-3 shadow-sm p-3 mb-2 p-3 bg-white">
-                  <div class="col"><p>Comentários</p></div>
+              </div>
+              <div
+                class="container my-3  p-3 mb-2 px-3 bg-white"
+                *ngIf="!cardapio"
+              >
+                <div class="row">
+                  <div class="col"><h2>Comentários</h2></div>
                 </div>
-              </ng-template>
+              </div>
             </div>
           </div>
         </ul>
