@@ -159,7 +159,7 @@ export class RestauranteService {
       "idUser" : idUser
     };
     this.http.post("http://localhost:3000/restaurante/gerente/inserir/colaboradores",dados).subscribe(response => {
-      
+
       console.log("procurarColaboradores");
       console.log(response);
       subject.next(response["flag"]);
@@ -178,7 +178,7 @@ export class RestauranteService {
         subs.next();
       }
     });
-    return subs;
+    return subs.asObservable();
   }
   // Todo
   pesquisaPratoRestauranteNome(nome){
@@ -222,7 +222,7 @@ export class RestauranteService {
       subject.next(response);
     });
     return subject.asObservable();
-    
+
   }
 
 }

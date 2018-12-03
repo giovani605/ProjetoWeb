@@ -32,6 +32,7 @@ export class FeedService {
     });
     return subject.asObservable();
   }
+
   recuperarFeedFiltro(listaTags: Tag[], idCidade){
     var lTags = this.pratoService.filtrarTags(listaTags);
     var subject: Subject<FeedItem[]> = new Subject<FeedItem[]>();

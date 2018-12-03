@@ -1,3 +1,23 @@
-<p>
-  pagina-restaurante works!
-</p>
+<div class="shadow-sm p-3 mb-2 bg-white rounded border container">
+  <div class="row my-2 ">
+    <div class="col">
+      <div class="card">
+        <p></p>
+        <h4 class="card-title"> {{ restaurante.nome }}</h4>
+        <h6 class="card-subtitle mb-2 text-muted">Descrição: {{ restaurante.descricao }}</h6>
+        <ul class="list-group list-group-flush">
+          <div class="row">
+            <div class="col">
+                <li class="list-group-item">Rua: {{ restaurante.rua }}, {{ restaurante.numero }} </li>
+                <li class="list-group-item">Telefone: {{ restaurante.telefone }}</li>
+            </div>
+            <div class="col">
+                <li class="list-group-item">Cidade: {{ getNomeCidade() }}</li>
+                <li class="list-group-item">Cidade: </li>
+            </div>
+          </div>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

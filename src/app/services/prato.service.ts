@@ -38,6 +38,7 @@ export class PratoService {
     });
 
   }
+
   filtrarTags(lista: Tag[]) {
     var d: Tag[] = [];
     for (let a of lista) {
@@ -162,7 +163,7 @@ export class PratoService {
     return subject.asObservable();
   }
 
-  
+
   recuperarPratoPeriodoAprovar(idRestaurante) {
     var subject: Subject<any[]> = new Subject<any[]>();
     this.http.get('http://localhost:3000/restaurante/gerente/aprovar/periodo/' + idRestaurante).subscribe(response => {
