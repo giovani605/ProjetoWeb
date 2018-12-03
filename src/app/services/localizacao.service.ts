@@ -8,7 +8,7 @@ import { Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class LocalizacaoService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   public getCidadeByIDCidade(id: number, callback) {
     this.http
@@ -17,6 +17,7 @@ export class LocalizacaoService {
         console.log(response);
         callback(this.convertCidadeBack(response['dados']));
       });
+
   }
 
   public getCidades(callback) {
@@ -27,7 +28,7 @@ export class LocalizacaoService {
   }
 
   public getCidadesObs() {
-    var subs:Subject<Cidade[]> = new Subject<Cidade[]>();
+    var subs: Subject<Cidade[]> = new Subject<Cidade[]>();
     this.http.get('http://localhost:3000/local/cidades').subscribe(response => {
       console.log(response);
       subs.next(this.convertCidadesBack(response['dados']));
@@ -53,7 +54,7 @@ export class LocalizacaoService {
         console.log(response);
         retorno = this.convertCidadesBack(response['dados']);
       });
-      return retorno;
+    return retorno;
   }
 
   private convertCidadesBack(dados): Cidade[] {

@@ -13,7 +13,7 @@ import { LocalizacaoService } from 'src/app/services/localizacao.service';
 export class PaginaRestauranteComponent implements OnInit {
 
   public restaurante: Restaurante = new Restaurante();
-
+  public nomeCidade = "";
 
   constructor(private restauranteService: RestauranteService,
     public local: LocalizacaoService,
@@ -28,16 +28,17 @@ export class PaginaRestauranteComponent implements OnInit {
         this.restaurante = dados;
         subs.unsubscribe();
         console.log(this.restaurante);
+        this.getNomeCidade();
       });
     });
   }
 
-  getNomeCidade(): string{
+  getNomeCidade() {
     let nome: string;
     this.local.getCidadeByIDCidade(this.restaurante.cidades_id, retorno => {
-      nome = retorno;
+      this.nomeCidade = retorno["dados"]["nome"];
     });
-    return nome;
+    
   }
 
 }

@@ -170,7 +170,7 @@ export class RestauranteService {
     console.log("buscaRestauranteIdRestaurante " + idRestaurante);
     var subs:Subject<Restaurante> = new Subject<Restaurante>();
     this.http.get("http://localhost:3000/restaurante/" + idRestaurante).subscribe(response => {
-      if (response["flagDados"]) {
+      if (response["flag"]) {
         console.log(response["dados"])
         var res = this.converterRestaurante(response["dados"]);
         subs.next(res);
