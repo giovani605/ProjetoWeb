@@ -6,12 +6,15 @@
   </div>
   <div class="row mx-2">
     <div>
-      <div *ngFor="let prato of listaPratos" class="shadow-sm p-3 mb-2 bg-white rounded border">
+      <div *ngFor="let prato of listaPratos" class="row shadow-sm p-3 mb-2 bg-white rounded border">
         <div class="col">
           <app-item-prato [prato]="prato"></app-item-prato>
         </div>
         <div class="col">
           <button (click)="inserirPratoDia(prato)" class="btn btn-primary">Inserir no Cárdapio</button>
+        </div>
+        <div class="col">
+          <button (click)="open(content,prato)" class="btn btn-primary">Criar código de promoção</button>
         </div>
       </div>
     </div>
@@ -21,4 +24,25 @@
   </div>
 </div>
 
-
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Criar Código de promoção</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <div class="col">
+        <H4>Código:</H4>
+      </div>
+      <div class="col">
+        <input type="text" [value]="codigo"> </div>
+    </div>
+  </div>
+  <div class="row mx-2">
+    <div class="col">
+      <button type="button" class="btn btn-primary" (click)="criarPromocao()">Criar</button>
+    </div>
+  </div>
+</ng-template>

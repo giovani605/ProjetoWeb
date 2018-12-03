@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs';
 import { Prato } from 'src/app/model/prato.model';
 import { PratoService } from 'src/app/services/prato.service';
 import { Router } from '@angular/router';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-pagina-adm-restaurante',
@@ -21,7 +22,8 @@ export class PaginaAdmRestauranteComponent implements OnInit, OnDestroy {
   constructor(private restauranteService: RestauranteService
     , private userService: UserService,
     private pratoService: PratoService,
-    private router: Router) { }
+    private router: Router,
+    private modalService: NgbModal) { }
 
   getUrlImagem(img: String): String {
     return 'http://localhost:3000/static/' + img;
@@ -48,5 +50,43 @@ export class PaginaAdmRestauranteComponent implements OnInit, OnDestroy {
     console.log(p);
     this.router.navigate(['/registro/periodo/' + p.idpratos]);
   }
+  closeResult: string;
+  private pratoPromocao = new Prato();
+  open(content, prato) {
+    this.pratoPromocao = prato;
+    this.codigo = "";
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return  `with: ${reason}`;
+    }
+  }
+  public codigo:string = "";
+
+  criarPromocao(){
+    console.log("implementar em casa");
+    var subs:Subscription = this.restauranteService.criarCodigoPromocao(this.pratoPromocao,this.codigo).subscribe(resposta =>{
+      if(resposta["flag"]){
+        alert("sucesso");
+      }
+      else{
+        alert(resposta["mensagem"]);
+      }
+      subs.unsubscribe();
+    });
+
+
+  }
+  
 
 }
