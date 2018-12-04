@@ -20,6 +20,9 @@ export class PaginaAprovarCarpadioComponent implements OnInit {
     private userService: UserService) { }
 
   ngOnInit() {
+    this.carregarDados();
+  }
+  carregarDados() {
     var subs1: Subscription = this.pratoService.recuperarPratoDiaAprovar(this.restauranteService.getIdRestaurante()).subscribe(dados => {
       this.listaPratos = dados;
       subs1.unsubscribe();
@@ -29,6 +32,7 @@ export class PaginaAprovarCarpadioComponent implements OnInit {
       subs2.unsubscribe();
     });
   }
+
   formatarData(a) {
     var b = new Date(a);
     return b.getDate() + "/" + Number(b.getMonth() + 1) + "/" + b.getFullYear();
@@ -38,6 +42,7 @@ export class PaginaAprovarCarpadioComponent implements OnInit {
     var subs1: Subscription = this.pratoService.aceitarPratoDiaSimples(pratoDia.pratoDia.idprato_dia, this.userService.getUserId()).subscribe(resposta => {
       if (resposta["flag"]) {
         alert("sucesso");
+        this.carregarDados();
       } else {
         alert(resposta["dados"]);
       }
@@ -51,6 +56,7 @@ export class PaginaAprovarCarpadioComponent implements OnInit {
     var subs1: Subscription = this.pratoService.aceitarPeriodoCiclo(periodo.periodo.idperiodo, this.userService.getUserId()).subscribe(resposta => {
       if (resposta["flag"]) {
         alert("sucesso");
+        this.carregarDados();
       } else {
         alert(resposta["dados"]);
       }

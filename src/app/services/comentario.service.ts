@@ -14,11 +14,11 @@ export class ComentarioService {
 
   buscaUltimosComentariosRestaurante(id: number) {
     let subComentariosRestaurante: Subject<Comentario[]> = new Subject<Comentario[]>();
-    this.http.post("http://localhost:3000/restaurante/registrar", data).subscribe(response => {
+    // this.http.post("http://localhost:3000/restaurante/registrar", data).subscribe(response => {
 
 
-    });
-    return subComentariosRestaurante.asObservable();
+    // });
+    // return subComentariosRestaurante.asObservable();
   }
 
 }
