@@ -23,7 +23,7 @@ export class FeedService {
       for (var a of response['dados']) {
         var b = this.pratoService.converterPratoDadosBack(a);
         var c = this.pratoService.converterPratoDiaDadosBack(a);
-        var item: FeedItem = { 'prato': b , 'pratoDia' : c};
+        var item: FeedItem = { 'prato': b, 'pratoDia': c };
         lista.push(item);
       }
       console.log('lista de pratos');
@@ -33,21 +33,21 @@ export class FeedService {
     return subject.asObservable();
   }
 
-  recuperarFeedFiltro(listaTags: Tag[], idCidade){
+  recuperarFeedFiltro(listaTags: Tag[], idCidade) {
     var lTags = this.pratoService.filtrarTags(listaTags);
     var subject: Subject<FeedItem[]> = new Subject<FeedItem[]>();
-    var dados:any = {
-      "tags" : lTags,
-      "idCidade" : idCidade
+    var dados: any = {
+      "tags": lTags,
+      "idCidade": idCidade
     };
     console.log(lTags);
-    this.http.post('http://localhost:3000/feed/filtrar', dados ).subscribe(response => {
+    this.http.post('http://localhost:3000/feed/filtrar', dados).subscribe(response => {
       console.log(response['dados']);
       var lista: FeedItem[] = [];
       for (var a of response['dados']) {
         var b = this.pratoService.converterPratoDadosBack(a);
         var c = this.pratoService.converterPratoDiaDadosBack(a);
-        var item: FeedItem = { 'prato': b , 'pratoDia' : c};
+        var item: FeedItem = { 'prato': b, 'pratoDia': c };
         lista.push(item);
       }
       console.log('lista de pratos');
@@ -58,5 +58,24 @@ export class FeedService {
 
   }
 
+  recuperarFeedSeguir(idUser) {
+    var subject: Subject<FeedItem[]> = new Subject<FeedItem[]>();
+    console.log("recuperarFeedSeguir " + idUser);
+    this.http.get('http://localhost:3000/feed/seguindo/' + idUser).subscribe(response => {
+      console.log(response['dados']);
+      var lista: FeedItem[] = [];
+      for (var a of response['dados']) {
+        var b = this.pratoService.converterPratoDadosBack(a);
+        var c = this.pratoService.converterPratoDiaDadosBack(a);
+        var item: FeedItem = { 'prato': b, 'pratoDia': c };
+        lista.push(item);
+      }
+      console.log('lista de pratos');
+      console.log(lista);
+      subject.next(lista);
+    });
+    return subject.asObservable();
+
+  }
 
 }

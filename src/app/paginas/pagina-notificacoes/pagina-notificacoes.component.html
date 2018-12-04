@@ -17,12 +17,18 @@
     </div>
   </div>
   <div class="row shadow-sm p-3 mb-2 bg-white rounded border">
-    <div class="col">
-      <h6>Notificações de prato do dia</h6>
-    </div>
-    <div class="row" *ngFor="let item of listaFeed">
+    <div class="row">
       <div class="col">
-        <app-feed-item [valor]="item"></app-feed-item>
+        <h6>Notificações de prato do dia</h6>
+      </div>
+    </div>
+    <div class="row shadow-sm p-3 mb-2">
+      <div class="col">
+        <div class="row" *ngFor="let item of listaFeed">
+          <div class="col">
+            <app-feed-item [valor]="item"></app-feed-item>
+          </div>
+        </div>
       </div>
     </div>
   </div>
