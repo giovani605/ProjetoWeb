@@ -13,10 +13,27 @@
     </div>
     <div class="row">
         <div class="col">
-            <ngb-accordion #acc="ngbAccordion">
+            <ngb-accordion #acc="ngbAccordion" (panelChange)="carregarRestaurante()">
                 <ngb-panel title="Informações Restaurante">
                     <ng-template ngbPanelContent>
-                        TODO
+                        <div class="row">
+                            <div class="col">
+                                <h3>{{restaurante.nome}} </h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">Descrição: {{ restaurante.descricao }}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col">Rua: {{ restaurante.rua }}, {{ restaurante.numero }}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col">Telefone: {{ restaurante.telefone }} </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">Cidade: {{ nomeCidade }}</div>
+                        </div>
+
                     </ng-template>
                 </ngb-panel>
             </ngb-accordion>
@@ -35,9 +52,9 @@
         <div class="form-group">
             <div class="col">
                 <h6>Amigos : </h6>
-                <div class="row"  *ngFor="let a of listaAmigos">
+                <div class="row" *ngFor="let a of listaAmigos">
                     <div class="col">
-                        <app-item-usuario [user]="a" ></app-item-usuario>
+                        <app-item-usuario [user]="a"></app-item-usuario>
                     </div>
                     <div class="col"><button type="button" class="btn btn-primary" (click)="share(a)">Compartilhar</button></div>
                 </div>

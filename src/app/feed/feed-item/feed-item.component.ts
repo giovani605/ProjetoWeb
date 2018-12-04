@@ -6,6 +6,9 @@ import { Subscription } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
 import { Usuario } from 'src/app/model/usuario.model';
 import { Notificacao } from 'src/app/model/notificacao.model';
+import { Restaurante } from 'src/app/model/restaurante.model';
+import { RestauranteService } from 'src/app/services/restaurante.service';
+import { LocalizacaoService } from 'src/app/services/localizacao.service';
 
 @Component({
   selector: 'app-feed-item',
@@ -17,11 +20,31 @@ export class FeedItemComponent implements OnInit, OnDestroy {
   private listaAmigos: Usuario[] = [];
   @Input('valor') item: FeedItem;
   closeResult: string;
+  public restaurante: Restaurante = new Restaurante();
+  public nomeCidade:string = "";
+
+  carregarRestaurante() {
+    var subs1: Subscription = this.restauranteService.buscaRestauranteIdRestaurante(this.item.prato.restaurante_idrestaurante).subscribe(dados => {
+      this.restaurante = dados;
+      this.getNomeCidade();
+      subs1.unsubscribe();
+    })
+  }
+  getNomeCidade() {
+    // tslint:disable-next-line:prefer-const
+    let nome: string;
+    this.localService.getCidadeByIDCidade(this.restaurante.cidades_id, retorno => {
+      // tslint:disable-next-line:quotemark
+      this.nomeCidade = retorno["nome"];
+    });
+  }
 
   private subsAmigos: Subscription;
   constructor(private router: Router,
     private modalService: NgbModal,
-    private userService: UserService) { }
+    private userService: UserService,
+    private restauranteService: RestauranteService,
+    private localService:LocalizacaoService) { }
 
   ngOnInit() {
     this.subsAmigos = this.userService.getListenerListaAmigos().subscribe(dados => {
@@ -36,7 +59,7 @@ export class FeedItemComponent implements OnInit, OnDestroy {
     // criar a notificacao para o prato e mandar pra o back end
     var notificacao: Notificacao = new Notificacao();
     notificacao.ativo = 1;
-    console.log("meu usuario "+ this.userService.getUserId());
+    console.log("meu usuario " + this.userService.getUserId());
     notificacao.idremetente = this.userService.getUserId();
     console.log("usuario id destino" + user.idUsuario);
     notificacao.idusuario = user.idUsuario;
