@@ -69,4 +69,8 @@ export class PaginaRestauranteComponent implements OnInit {
   getUrlImagem(img: String): String {
     return 'http://localhost:3000/static/' + img;
   }
+
+  realizarComentario(){
+
+  }
 }

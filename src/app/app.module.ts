@@ -58,7 +58,7 @@ const appRoutes: Routes = [
     path: 'admin/restaurante/colaboradores', canActivate: [UserService, PaginaColaboradoresComponent],
     component: PaginaColaboradoresComponent
   },
-  { path: 'restaurante/:id',  canActivate: [UserService], component: PaginaRestauranteComponent },
+  { path: 'restaurante/:id', /* canActivate: [UserService],*/ component: PaginaRestauranteComponent },
   { path: 'prato/reservar/:id', canActivate: [UserService], component: PaginaReservaComponent },
   { path: 'prato/compartilhar/:id', canActivate: [UserService], component: PaginaCompartilharComponent },
   { path: 'prato/:id', canActivate: [UserService], component: PaginaCompartilharComponent },

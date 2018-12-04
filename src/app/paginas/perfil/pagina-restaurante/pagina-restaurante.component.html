@@ -62,7 +62,36 @@
                 *ngIf="!cardapio"
               >
                 <div class="row">
-                  <div class="col"><h2>Comentários</h2></div>
+                  <div class="col">
+                    <div class="row">
+                      <div class="col">
+                        <div class="card">
+                          <h5 class="card-title">Nos avalie aqui:</h5>
+                          <textarea></textarea>
+                          <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                              <div class="row">
+                                <div class="col"><p>Botão das estrelas</p></div>
+                                <div class="col"></div>
+                                <div class="col"></div>
+                                <div class="col">
+                                  <button
+                                    type="button"
+                                    class="btn btn-primary mx-1"
+                                    (click)="realizarComentario()"
+                                  >
+                                    Avaliar
+                                  </button>
+                                </div>
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <h2>Comentários</h2>
+                    <div class="row"><div class="col"></div></div>
+                  </div>
                 </div>
               </div>
             </div>
