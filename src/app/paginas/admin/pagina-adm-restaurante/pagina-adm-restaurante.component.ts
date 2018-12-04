@@ -70,6 +70,10 @@ export class PaginaAdmRestauranteComponent implements OnInit, OnDestroy {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
   }
+  isGerente(){
+    return this.restauranteService.isGerente();
+  }
+
 
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {

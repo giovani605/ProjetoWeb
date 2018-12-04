@@ -14,7 +14,7 @@
           <button (click)="inserirPratoDia(prato)" class="btn btn-primary">Inserir no Cárdapio</button>
         </div>
         <div class="col">
-          <button (click)="open(content,prato)" class="btn btn-primary">Criar código de promoção</button>
+          <button (click)="open(content,prato)" *ngIf="isGerente()" class="btn btn-primary">Criar código de promoção</button>
         </div>
       </div>
     </div>
