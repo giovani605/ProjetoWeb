@@ -1,12 +1,13 @@
 <div class="container my-3  p-3 mb-2 px-3 bg-white">
-  <div class="row">
-    <div class="col">
+  <div class="row ">
+    <div class="col my-3  p-3 mb-2 px-3">
       <h2>{{ restaurante.nome }}</h2>
       <div class="card">
         <p></p>
         <h5 class="card-subtitle mb-2 text-muted">
           Descrição: {{ restaurante.descricao }}
         </h5>
+        <button (click)="seguir()" class="btn btn-primary" style="width: 20%">Seguir</button>
         <ul class="list-group list-group-flush">
           <div class="row">
             <div class="col">
@@ -25,16 +26,13 @@
           <div class="row">
             <div class="col">
               <div class="tab rounded bg-primary">
-                <button class="tablinks" (click)="alterar(1)">Cardápio</button>
-                <button class="tablinks" (click)="alterar(0)">
+                <button class="tablinks" class="btn btn-primary" (click)="alterar(1)">Cardápio</button>
+                <button class="tablinks" class="btn btn-primary" (click)="alterar(0)">
                   Comentários
                 </button>
               </div>
 
-              <div
-                class="container my-3  p-3 mb-2 px-3 bg-white"
-                *ngIf="cardapio"
-              >
+              <div class="container my-3  p-3 mb-2 px-3 bg-white" *ngIf="cardapio">
                 <div class="row">
                   <div class="col">
                     <h2>Cardápio</h2>
@@ -43,12 +41,7 @@
                     <div class="row">
                       <div class="col" *ngFor="let prato of pratos">
                         <div class="card" style="width: 18rem;">
-                          <img
-                            class="card-img-top"
-                            [src]="getUrlImagem(prato.idimagem)"
-                            width="80px"
-                            height="130px"
-                          />
+                          <img class="card-img-top" [src]="getUrlImagem(prato.idimagem)" width="80px" height="130px" />
                           <h5 class="card-title">{{ prato.nome }}</h5>
                           <a href="#" class="card-link">Informações</a>
                         </div>
@@ -57,10 +50,7 @@
                   </div>
                 </div>
               </div>
-              <div
-                class="container my-3  p-3 mb-2 px-3 bg-white"
-                *ngIf="!cardapio"
-              >
+              <div class="container my-3  p-3 mb-2 px-3 bg-white" *ngIf="!cardapio">
                 <div class="row">
                   <div class="col">
                     <div class="row">
@@ -71,15 +61,13 @@
                           <ul class="list-group list-group-flush">
                             <li class="list-group-item">
                               <div class="row">
-                                <div class="col"><p>Botão das estrelas</p></div>
+                                <div class="col">
+                                  <p>Botão das estrelas</p>
+                                </div>
                                 <div class="col"></div>
                                 <div class="col"></div>
                                 <div class="col">
-                                  <button
-                                    type="button"
-                                    class="btn btn-primary mx-1"
-                                    (click)="realizarComentario()"
-                                  >
+                                  <button type="button" class="btn btn-primary mx-1" (click)="realizarComentario()">
                                     Avaliar
                                   </button>
                                 </div>
@@ -90,7 +78,9 @@
                       </div>
                     </div>
                     <h2>Comentários</h2>
-                    <div class="row"><div class="col"></div></div>
+                    <div class="row">
+                      <div class="col"></div>
+                    </div>
                   </div>
                 </div>
               </div>

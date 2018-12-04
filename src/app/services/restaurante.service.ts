@@ -224,5 +224,21 @@ export class RestauranteService {
     return subject.asObservable();
 
   }
+  seguirRestaurante(idUser,idRestaurante){
+    var subs:Subject<any> = new Subject<any>();
+    var dados = {
+      "idUser" : idUser,
+      "idRestaurante": idRestaurante
+    }
+    this.http.post("http://localhost:3000/restaurante/seguir/usuario",dados).subscribe(response => {
+      console.log("criarCodigoPromocao");
+      console.log(response);
+      subs.next(response);
+    });
+    return subs.asObservable();
+
+    
+
+  }
 
 }

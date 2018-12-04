@@ -6,6 +6,7 @@ import { Subscription } from "rxjs";
 import { ActivatedRoute } from "@angular/router";
 import { LocalizacaoService } from "src/app/services/localizacao.service";
 import { Prato } from "src/app/model/prato.model";
+import { UserService } from "src/app/services/user.service";
 
 @Component({
   selector: "app-pagina-restaurante",
@@ -22,8 +23,9 @@ export class PaginaRestauranteComponent implements OnInit {
     private restauranteService: RestauranteService,
     public local: LocalizacaoService,
     private pratoService: PratoService,
-    private route: ActivatedRoute
-  ) {}
+    private route: ActivatedRoute,
+    private userService: UserService
+  ) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -69,8 +71,20 @@ export class PaginaRestauranteComponent implements OnInit {
   getUrlImagem(img: String): String {
     return 'http://localhost:3000/static/' + img;
   }
+  seguir() {
 
-  realizarComentario(){
+    var obs: Subscription = this.restauranteService.seguirRestaurante(this.userService.getUserId(), this.restaurante.idRestaurente).subscribe(resposta => {
+      if (resposta["flag"]) {
+        alert("sucesso");
+      } else {
+        alert("falha ao seguir");
+      }
+      obs.unsubscribe();
+    });
+
+  }
+
+  realizarComentario() {
 
   }
 }
