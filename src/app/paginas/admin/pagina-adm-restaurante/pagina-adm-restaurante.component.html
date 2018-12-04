@@ -22,6 +22,22 @@
   <div class="row my-2 p-3 mb-2">
     <button type="button" class="btn btn-primary" routerLink="/register/prato">Adicionar Prato</button>
   </div>
+  <div class="row mx-2">
+    <div class="row my-2">
+      <div class="col">
+        <h6>Códigos de promoção</h6>
+      </div>
+    </div>
+    <div class="row mx-2">
+      <div class="col">
+        <div class="row" *ngFor="let codigos of ListaCodigos">
+          <div class="col">
+            {{codigos.codigo}} prato: {{codigos.nome}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <ng-template #content let-modal>
@@ -45,4 +61,5 @@
       <button type="button" class="btn btn-primary" (click)="criarPromocao()">Criar</button>
     </div>
   </div>
+
 </ng-template>

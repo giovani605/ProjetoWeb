@@ -237,8 +237,18 @@ export class RestauranteService {
     });
     return subs.asObservable();
 
-    
+  }
 
+  recuperarCodigoPromocao(idRestaurante){
+    console.log("recuperarCodigoPromocao " + idRestaurante);
+    var subject: Subject<any[]> = new Subject<any[]>();
+    this.http.get("http://localhost:3000/restaurante/buscar/codigos/" + idRestaurante).subscribe(response => {
+      var lista = response["dados"];
+      console.log("recuperarCodigoPromocao");
+      console.log(lista);
+      subject.next(lista);
+    });
+    return subject.asObservable();
   }
 
 }

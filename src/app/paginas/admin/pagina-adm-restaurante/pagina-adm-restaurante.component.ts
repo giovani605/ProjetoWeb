@@ -18,6 +18,7 @@ export class PaginaAdmRestauranteComponent implements OnInit, OnDestroy {
   public restaurante: Restaurante = new Restaurante();
   public listaPratos: Prato[] = [];
   private listenerRestaurante: Subscription;
+  public ListaCodigos: any[] = [];
 
   constructor(private restauranteService: RestauranteService
     , private userService: UserService,
@@ -29,11 +30,18 @@ export class PaginaAdmRestauranteComponent implements OnInit, OnDestroy {
     return 'http://localhost:3000/static/' + img;
   }
 
+  carregarCodigosPromocao(){
+    var subs1:Subscription = this.restauranteService.recuperarCodigoPromocao(this.restaurante.idRestaurente).subscribe(dados => {
+      this.ListaCodigos = dados;
+      subs1.unsubscribe();
+    });
+  }
+
   ngOnInit() {
     // recuperar o restaurante do gerente
     this.listenerRestaurante = this.restauranteService.getRestauranteUpdated().subscribe(res => {
       this.restaurante = res;
-
+      this.carregarCodigosPromocao();
       // tslint:disable-next-line:prefer-const
       let subs: Subscription = this.pratoService.recuperarPratosRestaurante(this.restaurante.idRestaurente).subscribe(lista => {
         this.listaPratos = lista;
@@ -41,6 +49,7 @@ export class PaginaAdmRestauranteComponent implements OnInit, OnDestroy {
       });
     });
     this.restauranteService.carregarRestaurante(this.userService.getUserId());
+    
 
   }
   ngOnDestroy() {
@@ -78,6 +87,7 @@ export class PaginaAdmRestauranteComponent implements OnInit, OnDestroy {
     var subs:Subscription = this.restauranteService.criarCodigoPromocao(this.pratoPromocao,this.codigo).subscribe(resposta =>{
       if(resposta["flag"]){
         alert("sucesso");
+        this.carregarCodigosPromocao();
       }
       else{
         alert(resposta["mensagem"]);
