@@ -17,7 +17,7 @@ export class ReservaService {
       )
       .subscribe(retorno => {
         for (const row of retorno['dados']) {
-          const aux: reservaUsuario = this.converteReservaBack(row);
+          const aux: reservaUsuario = this.converteReservaUsuarioBack(row);
           console.log(aux);
           reservas.push(aux);
         }
@@ -26,7 +26,7 @@ export class ReservaService {
     callback(reservas);
   }
 
-  private converteReservaBack(dado) {
+  private converteReservaUsuarioBack(dado) {
     const aux: reservaUsuario = new reservaUsuario();
     aux.idReserva = dado['idreserva'];
     aux.data = new Date(dado['data']);
