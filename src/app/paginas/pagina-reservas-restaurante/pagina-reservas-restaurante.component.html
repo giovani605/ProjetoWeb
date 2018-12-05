@@ -1,14 +1,33 @@
 <div class="container shadow-sm p-3 mb-2 bg-white rounded border">
   <div class="row">
     <div class="col">
-      <p>Estatísticas do restaurante</p>
+      <h2>Suas Reservas</h2>
     </div>
   </div>
 </div>
-<div class="container shadow-sm p-3 mb-2 bg-white rounded border">
+<div class="shadow-sm p-3 mb-2 bg-white rounded border container" *ngIf="reservas.length > 0">
+  <div class="row" *ngFor="let aux of reservas">
+    <div class="col-sm">
+      <img [src]="getUrlImagem(aux.caminhoImagem)" width="80px" height="80px" />
+    </div>
+    <div class="col">
+      <div class="row">
+        <h3>Prato: {{ aux.descricaoPrato }}</h3>
+      </div>
+      <div class="row">
+
+        <h4>Descrição: {{ aux.descricaoPrato }}</h4>
+      </div>
+    </div>
+    <div class="col">
+      <h4>Data da reserva: {{ aux.data | date:'dd/MM/yyyy' }}</h4>
+    </div>
+  </div>
+</div>
+<div class="shadow-sm p-3 mb-2 bg-white rounded border container" *ngIf="reservas.length <= 0">
   <div class="row">
     <div class="col">
-      <p>Pagina Reservas Restaurante</p>
+      <h3>Infelizmente você não possui reservas</h3>
     </div>
   </div>
 </div>

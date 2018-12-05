@@ -1,4 +1,4 @@
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, Subscription } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { reservaUsuario } from '../model/reservaUsuario.model';
@@ -25,6 +25,27 @@ export class ReservaService {
 
     callback(reservas);
   }
+
+  buscarReservasRestaurante(idRestaurante) {
+    const reservas: reservaUsuario[] = [];
+    var subs: Subject<reservaUsuario[]> = new Subject<reservaUsuario[]>();
+    this.http
+      .get(
+        'http://localhost:3000/reserva/buscarReservasPorRestaurante/' + idRestaurante
+      )
+      .subscribe(retorno => {
+        for (const row of retorno['dados']) {
+          const aux: reservaUsuario = this.converteReservaUsuarioBack(row);
+          console.log(aux);
+          reservas.push(aux);
+        }
+        subs.next(reservas);
+      });
+    return subs.asObservable();
+  }
+
+
+
   reservar(idPrato, idUser, data_reserva, codigo) {
     var dados = {
       "idPrato": idPrato,
