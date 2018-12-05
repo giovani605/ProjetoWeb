@@ -54,7 +54,7 @@ export class RestauranteService {
     }
     this.http.post("http://localhost:3000/restaurante/registrar", data).subscribe(response => {
       console.log(response);
-      callback(response["msg"]);
+      callback(response);
     });
 
   }
