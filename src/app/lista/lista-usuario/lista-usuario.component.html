@@ -3,12 +3,13 @@
     <div class="col">
       <div *ngFor="let a of listaUser" class="row">
         <div class="col-6">
-          Nome : {{a.nome}}
+          <a routerLink="/perfil/usuario/{{a.idUsuario}}">
+            Nome : {{a.nome}}
+          </a>
         </div>
         <div class="col-6">
-            Login : {{a.login}}
-          </div>
-    
+          Login : {{a.login}}
+        </div>
       </div>
     </div>
   </div>

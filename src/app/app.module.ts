@@ -40,6 +40,7 @@ import { PaginaAprovarCarpadioComponent } from './paginas/admin/pagina-aprovar-c
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PaginaNotificacoesComponent } from './paginas/pagina-notificacoes/pagina-notificacoes.component';
 import { ItemUsuarioComponent } from './lista/item-usuario/item-usuario.component';
+import { PaginaUserComponent } from './paginas/perfil/pagina-user/pagina-user.component';
 
 const appRoutes: Routes = [
   { path: 'register', component: PaginaRegistroComponent },
@@ -69,7 +70,8 @@ const appRoutes: Routes = [
   {
     path: 'admin/restaurante/aprovar', canActivate: [UserService, PaginaColaboradoresComponent],
     component: PaginaAprovarCarpadioComponent
-  }, { path: 'usuario/notificacoes', canActivate: [UserService], component: PaginaNotificacoesComponent }
+  }, { path: 'usuario/notificacoes', canActivate: [UserService], component: PaginaNotificacoesComponent },
+  { path: 'perfil/usuario/:id', canActivate: [UserService], component: PaginaUserComponent }
 ];
 
 @NgModule({
@@ -109,6 +111,7 @@ const appRoutes: Routes = [
     PaginaAprovarCarpadioComponent,
     PaginaNotificacoesComponent,
     ItemUsuarioComponent,
+    PaginaUserComponent,
   ],
   imports: [
     BrowserModule,
