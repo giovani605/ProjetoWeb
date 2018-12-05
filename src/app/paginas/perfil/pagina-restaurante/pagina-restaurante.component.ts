@@ -106,7 +106,6 @@ export class PaginaRestauranteComponent implements OnInit {
       });
   }
 
-  //falta implementar
   realizarComentario() {
     let coment: Comentario = new Comentario();
     coment.idUsuario = this.userService.getUserId();

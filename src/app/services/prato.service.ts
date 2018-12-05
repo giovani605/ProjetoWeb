@@ -218,6 +218,24 @@ export class PratoService {
     });
     return subject.asObservable();
   }
+
+  recuperarTagsPrato(id: number) {
+    var subject: Subject<Tag[]> = new Subject<Tag[]>();
+    console.log("Recuperar tags do prato");
+    this.http.get('http://localhost:3000/prato/tags/' + id).subscribe(response => {
+      console.log(response['dados']);
+      var lista: Tag[] = [];
+      for (var a of response['dados']) {
+        var c = this.converterTagBack(a);
+        lista.push(c);
+      }
+      console.log('lista de tags do prato');
+      console.log(lista);
+      subject.next(lista);
+    });
+    return subject.asObservable();
+  }
+
   aceitarPeriodoCiclo(idperiodo, idUser) {
     console.log("aprovar Periodo");
     var subject: Subject<any> = new Subject<any>();

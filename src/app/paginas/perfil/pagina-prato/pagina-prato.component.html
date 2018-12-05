@@ -1,21 +1,41 @@
 <div class="container my-3  p-3 mb-2 px-3 bg-white">
   <div class="row ">
     <div class="col my-3  p-3 mb-2 px-3">
-      <h2>{{ prato.nome }}</h2>
+      <div class="row">
+        <div class="col">
+          <img
+            [src]="getUrlImagem(prato.idimagem)"
+            width="100px"
+            height="130px"
+          />
+        </div>
+      </div>
+
       <div class="card">
+        <h2 class="card-title"> {{ prato.nome }} </h2>
         <p></p>
         <h5 class="card-subtitle mb-2 text-muted">
           Descrição: {{ prato.descricao }}
         </h5>
         <ul class="list-group list-group-flush">
           <div class="row">
+            <div class="col"><h6>Tags:</h6></div>
+          </div>
+          <div class="row">
+            <div class="col" *ngFor="let tag of tags">
+              <p>{{ tag.nome }}</p>
+            </div>
+            <div class="col" *ngIf="tags.length == 0">
+              <p>Esse prato não está realcionado a nenhuma TAG</p>
+            </div>
+          </div>
+          <div class="row">
             <div class="col">
-              <li class="list-group-item">Rua:</li>
-              <li class="list-group-item">Telefone:</li>
-              <li class="list-group-item">Número de seguidores:</li>
+              <li class="list-group-item">
+                Número de avaliações: {{ avaliacoes }}
+              </li>
             </div>
             <div class="col">
-              <li class="list-group-item">Cidade:</li>
               <li class="list-group-item">
                 Pontuação:
                 <ngb-rating
@@ -23,9 +43,6 @@
                   [readonly]="true"
                   max="5"
                 ></ngb-rating>
-              </li>
-              <li class="list-group-item">
-                Número de avaliações: {{ avaliacoes }}
               </li>
             </div>
           </div>
@@ -104,10 +121,10 @@
                       </div>
                       <div class="row" *ngIf="comentarios.length == 0">
                         <div class="col">
-                          <h3>
+                          <h4>
                             Ainda não há comentários e avaliações para este
                             prato, seja o primeiro!
-                          </h3>
+                          </h4>
                         </div>
                       </div>
                     </div>
