@@ -1,0 +1,123 @@
+<div class="container my-3  p-3 mb-2 px-3 bg-white">
+  <div class="row ">
+    <div class="col my-3  p-3 mb-2 px-3">
+      <h2>{{ prato.nome }}</h2>
+      <div class="card">
+        <p></p>
+        <h5 class="card-subtitle mb-2 text-muted">
+          Descrição: {{ prato.descricao }}
+        </h5>
+        <ul class="list-group list-group-flush">
+          <div class="row">
+            <div class="col">
+              <li class="list-group-item">Rua:</li>
+              <li class="list-group-item">Telefone:</li>
+              <li class="list-group-item">Número de seguidores:</li>
+            </div>
+            <div class="col">
+              <li class="list-group-item">Cidade:</li>
+              <li class="list-group-item">
+                Pontuação:
+                <ngb-rating
+                  [(rate)]="mediaPrato"
+                  [readonly]="true"
+                  max="5"
+                ></ngb-rating>
+              </li>
+              <li class="list-group-item">
+                Número de avaliações: {{ avaliacoes }}
+              </li>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="tab rounded bg-primary">
+                <div class="container my-3  p-3 mb-2 px-3 bg-white">
+                  <div class="row">
+                    <div class="col">
+                      <div class="row">
+                        <div class="col">
+                          <div class="card">
+                            <h5 class="card-title">Nos avalie aqui:</h5>
+                            <textarea
+                              [(ngModel)]="avaliacao"
+                              class="md-textarea form-control"
+                            ></textarea>
+                            <ul class="list-group list-group-flush">
+                              <li class="list-group-item">
+                                <div class="row">
+                                  <div class="col">
+                                    <p>
+                                      Nota:
+                                      <ngb-rating
+                                        [(rate)]="notaPrato"
+                                        [readonly]="false"
+                                        max="5"
+                                      ></ngb-rating>
+                                    </p>
+                                  </div>
+                                  <div class="col"></div>
+                                  <div class="col"></div>
+                                  <div class="col">
+                                    <button
+                                      type="button"
+                                      class="btn btn-primary mx-1"
+                                      (click)="realizarComentario()"
+                                    >
+                                      Avaliar
+                                    </button>
+                                  </div>
+                                </div>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                      <h2>Comentários</h2>
+                      <div class="row" *ngFor="let coment of comentarios">
+                        <div class="col">
+                          <div class="card">
+                            <h5 class="card-title">
+                              Comentário de {{ coment.nomeUsuario }} feito no
+                              dia {{ coment.data | date: "dd/MM/yyyy" }}
+                            </h5>
+                            <h5 class="card-subtitle mb-2 text-muted">
+                              {{ coment.comentario }}
+                            </h5>
+                            <ul class="list-group list-group-flush">
+                              <div class="row">
+                                <div class="col">
+                                  <li class="list-group-item">
+                                    Nota:
+                                    <ngb-rating
+                                      [(rate)]="coment.nota"
+                                      [readonly]="true"
+                                      max="5"
+                                    ></ngb-rating>
+                                  </li>
+                                </div>
+                              </div>
+                            </ul>
+                          </div>
+                          <p></p>
+                        </div>
+                      </div>
+                      <div class="row" *ngIf="comentarios.length == 0">
+                        <div class="col">
+                          <h3>
+                            Ainda não há comentários e avaliações para este
+                            prato, seja o primeiro!
+                          </h3>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

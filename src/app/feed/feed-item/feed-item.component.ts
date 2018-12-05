@@ -78,8 +78,8 @@ export class FeedItemComponent implements OnInit, OnDestroy {
     });
   }
 
-  redirecionarAvaliar() {
-    this.router.navigate(['prato/avaliar/' + this.item.prato.idpratos]);
+  redirecionarPaginaPrato() {
+    this.router.navigate(['prato/' + this.item.prato.idpratos]);
   }
 
   redirecionarCompartilhar() {
