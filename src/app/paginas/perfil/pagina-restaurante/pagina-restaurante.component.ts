@@ -1,3 +1,4 @@
+import { Comentario } from "./../../../model/comentario.model";
 import { PratoService } from "./../../../services/prato.service";
 import { Component, OnInit } from "@angular/core";
 import { Restaurante } from "src/app/model/restaurante.model";
@@ -7,6 +8,7 @@ import { ActivatedRoute } from "@angular/router";
 import { LocalizacaoService } from "src/app/services/localizacao.service";
 import { Prato } from "src/app/model/prato.model";
 import { UserService } from "src/app/services/user.service";
+import { ComentarioService } from "src/app/services/comentario.service";
 
 @Component({
   selector: "app-pagina-restaurante",
@@ -18,16 +20,27 @@ export class PaginaRestauranteComponent implements OnInit {
   public nomeCidade = "";
   public pratos: Prato[] = [];
   public cardapio: boolean = true;
+  public notaRestaurante: number;
+  public mediaRestaurante: number;
+  public comentarios: Comentario[] = [];
+  public avaliacao: string;
+  public seguidores: number;
+  public avaliacoes: number;
 
   constructor(
     private restauranteService: RestauranteService,
     public local: LocalizacaoService,
     private pratoService: PratoService,
     private route: ActivatedRoute,
-    private userService: UserService
-  ) { }
+    private userService: UserService,
+    private comentariosService: ComentarioService
+  ) {}
 
   ngOnInit() {
+    this.mediaRestaurante = 0;
+    this.avaliacao = "";
+    this.seguidores = 0;
+    this.avaliacoes = 0;
     this.route.params.subscribe(params => {
       console.log(params);
       let id = params["id"];
@@ -39,6 +52,10 @@ export class PaginaRestauranteComponent implements OnInit {
           console.log(this.restaurante);
           this.getNomeCidade();
           this.getPratos();
+          this.getComentarios();
+          this.getMediaRestaurante();
+          this.getSeguidores();
+          this.getAvaliacoes();
         });
     });
   }
@@ -69,22 +86,73 @@ export class PaginaRestauranteComponent implements OnInit {
   }
 
   getUrlImagem(img: String): String {
-    return 'http://localhost:3000/static/' + img;
+    return "http://localhost:3000/static/" + img;
   }
+
   seguir() {
-
-    var obs: Subscription = this.restauranteService.seguirRestaurante(this.userService.getUserId(), this.restaurante.idRestaurente).subscribe(resposta => {
-      if (resposta["flag"]) {
-        alert("sucesso");
-      } else {
-        alert("falha ao seguir");
-      }
-      obs.unsubscribe();
-    });
-
+    var obs: Subscription = this.restauranteService
+      .seguirRestaurante(
+        this.userService.getUserId(),
+        this.restaurante.idRestaurente
+      )
+      .subscribe(resposta => {
+        if (resposta["flag"]) {
+          alert("sucesso");
+        } else {
+          alert("falha ao seguir");
+        }
+        obs.unsubscribe();
+        this.getSeguidores();
+      });
   }
 
+  //falta implementar
   realizarComentario() {
+    let coment: Comentario = new Comentario();
+    coment.idUsuario = this.userService.getUserId();
+    coment.comentario = this.avaliacao;
+    coment.nota = this.notaRestaurante;
+    coment.idObjeto = this.restaurante.idRestaurente;
 
+    console.log(coment);
+
+    this.comentariosService
+      .inserirComentaioRestaurante(coment)
+      .subscribe(retorno => {
+        this.notaRestaurante = 0;
+        this.avaliacao = '';
+        this.getMediaRestaurante();
+        this.getComentarios();
+        this.getAvaliacoes();
+      });
+  }
+
+  getComentarios() {
+    this.comentariosService
+      .buscaComentariosRestaurante(this.restaurante.idRestaurente)
+      .subscribe(retorno => {
+        this.comentarios = retorno;
+      });
+  }
+
+  getMediaRestaurante() {
+    this.comentariosService
+      .buscaMediaRestaurante(this.restaurante.idRestaurente)
+      .subscribe(retorno => {
+        this.mediaRestaurante = retorno;
+        console.log("Valor da média retornado do banco de dados: " + retorno);
+      });
+  }
+
+  getSeguidores(){
+    this.comentariosService.totalSeguidoresRestaurante(this.restaurante.idRestaurente).subscribe( retorno => {
+      this.seguidores = retorno;
+    });
+  }
+
+  getAvaliacoes() {
+    this.comentariosService.totalSeguidoresRestaurante(this.restaurante.idRestaurente).subscribe( retorno => {
+      this.avaliacoes = retorno;
+    });
   }
 }

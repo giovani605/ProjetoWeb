@@ -7,7 +7,9 @@
         <h5 class="card-subtitle mb-2 text-muted">
           Descrição: {{ restaurante.descricao }}
         </h5>
-        <button (click)="seguir()" class="btn btn-primary" style="width: 20%">Seguir</button>
+        <button (click)="seguir()" class="btn btn-primary" style="width: 20%">
+          Seguir
+        </button>
         <ul class="list-group list-group-flush">
           <div class="row">
             <div class="col">
@@ -17,22 +19,44 @@
               <li class="list-group-item">
                 Telefone: {{ restaurante.telefone }}
               </li>
+              <li class="list-group-item">Número de seguidores: {{ seguidores }}</li>
             </div>
             <div class="col">
               <li class="list-group-item">Cidade: {{ nomeCidade }}</li>
-              <li class="list-group-item">Pontuação:</li>
+              <li class="list-group-item">
+                Pontuação:
+                <ngb-rating
+                  [(rate)]="mediaRestaurante"
+                  [readonly]="true"
+                  max="5"
+                ></ngb-rating>
+              </li>
+              <li class="list-group-item">Número de avaliações: {{ avaliacoes }}</li>
             </div>
           </div>
           <div class="row">
             <div class="col">
               <div class="tab rounded bg-primary">
-                <button class="tablinks" class="btn btn-primary" (click)="alterar(1)">Cardápio</button>
-                <button class="tablinks" class="btn btn-primary" (click)="alterar(0)">
+                <button
+                  class="tablinks"
+                  class="btn btn-primary"
+                  (click)="alterar(1)"
+                >
+                  Cardápio
+                </button>
+                <button
+                  class="tablinks"
+                  class="btn btn-primary"
+                  (click)="alterar(0)"
+                >
                   Comentários
                 </button>
               </div>
 
-              <div class="container my-3  p-3 mb-2 px-3 bg-white" *ngIf="cardapio">
+              <div
+                class="container my-3  p-3 mb-2 px-3 bg-white"
+                *ngIf="cardapio"
+              >
                 <div class="row">
                   <div class="col">
                     <h2>Cardápio</h2>
@@ -41,7 +65,12 @@
                     <div class="row">
                       <div class="col" *ngFor="let prato of pratos">
                         <div class="card" style="width: 18rem;">
-                          <img class="card-img-top" [src]="getUrlImagem(prato.idimagem)" width="80px" height="130px" />
+                          <img
+                            class="card-img-top"
+                            [src]="getUrlImagem(prato.idimagem)"
+                            width="80px"
+                            height="130px"
+                          />
                           <h5 class="card-title">{{ prato.nome }}</h5>
                           <a href="#" class="card-link">Informações</a>
                         </div>
@@ -50,24 +79,38 @@
                   </div>
                 </div>
               </div>
-              <div class="container my-3  p-3 mb-2 px-3 bg-white" *ngIf="!cardapio">
+              <div
+                class="container my-3  p-3 mb-2 px-3 bg-white"
+                *ngIf="!cardapio"
+              >
                 <div class="row">
                   <div class="col">
                     <div class="row">
                       <div class="col">
                         <div class="card">
                           <h5 class="card-title">Nos avalie aqui:</h5>
-                          <textarea></textarea>
+                          <textarea [(ngModel)]="avaliacao" class="md-textarea form-control"></textarea>
                           <ul class="list-group list-group-flush">
                             <li class="list-group-item">
                               <div class="row">
                                 <div class="col">
-                                  <p>Botão das estrelas</p>
+                                  <p>
+                                    Nota:
+                                    <ngb-rating
+                                      [(rate)]="notaRestaurante"
+                                      [readonly]="false"
+                                      max="5"
+                                    ></ngb-rating>
+                                  </p>
                                 </div>
                                 <div class="col"></div>
                                 <div class="col"></div>
                                 <div class="col">
-                                  <button type="button" class="btn btn-primary mx-1" (click)="realizarComentario()">
+                                  <button
+                                    type="button"
+                                    class="btn btn-primary mx-1"
+                                    (click)="realizarComentario()"
+                                  >
                                     Avaliar
                                   </button>
                                 </div>
@@ -78,8 +121,40 @@
                       </div>
                     </div>
                     <h2>Comentários</h2>
-                    <div class="row">
-                      <div class="col"></div>
+                    <div class="row" *ngFor="let coment of comentarios">
+                      <div class="col">
+                        <div class="card">
+                          <h5 class="card-title">
+                            Comentário de {{ coment.nomeUsuario }} feito no dia {{ coment.data | date: 'dd/MM/yyyy' }}
+                          </h5>
+                          <h5 class="card-subtitle mb-2 text-muted">
+                            {{ coment.comentario }}
+                          </h5>
+                          <ul class="list-group list-group-flush">
+                            <div class="row">
+                              <div class="col">
+                                <li class="list-group-item">
+                                  Nota:
+                                  <ngb-rating
+                                    [(rate)]="coment.nota"
+                                    [readonly]="true"
+                                    max="5"
+                                  ></ngb-rating>
+                                </li>
+                              </div>
+                            </div>
+                          </ul>
+                        </div>
+                        <p></p>
+                      </div>
+                    </div>
+                    <div class="row" *ngIf="comentarios.length == 0">
+                      <div class="col">
+                        <h3>
+                          Ainda não há comentários e avaliações para este
+                          restaurante, seja o primeiro!
+                        </h3>
+                      </div>
                     </div>
                   </div>
                 </div>
