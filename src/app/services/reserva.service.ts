@@ -70,7 +70,7 @@ export class ReservaService {
     aux.caminhoImagem = dado['idimagem'];
     aux.descricaoPrato = dado['descricao'];
     aux.nomeRestaurante = dado['nomeRestaurante'];
-    aux.descricaoPromocao = undefined;
+    aux.descricaoPromocao = dado["codigo"];
     return aux;
   }
 }
