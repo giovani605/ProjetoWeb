@@ -51,6 +51,9 @@ export class FeedItemComponent implements OnInit, OnDestroy {
       this.listaAmigos = dados;
     });
   }
+  carregarAmigos(){
+    this.userService.carregarAmigos();
+  }
   ngOnDestroy() {
     this.subsAmigos.unsubscribe();
   }
@@ -93,6 +96,7 @@ export class FeedItemComponent implements OnInit, OnDestroy {
   }
 
   open(content) {
+    this.carregarAmigos();
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
