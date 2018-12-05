@@ -94,6 +94,39 @@ export class ComentarioService {
     return subMediaPrato.asObservable();
   }
 
+  totalSeguidoresRestaurante(id) {
+    let subSeguidoresRestaurante: Subject<number> = new Subject<number>();
+    this.http
+      .get("http://localhost:3000/comentario/total/seguidores/restaurante/" + id)
+      .subscribe(response => {
+        let restorno: number = Number(response["dados"][0]['total']);
+        subSeguidoresRestaurante.next(restorno);
+      });
+    return subSeguidoresRestaurante.asObservable();
+  }
+
+  totalAvaliacoesRestaurante(id) {
+    let subAvaliacoesRestaurante: Subject<number> = new Subject<number>();
+    this.http
+      .get("http://localhost:3000/comentario/total/avaliacoes/restaurante/" + id)
+      .subscribe(response => {
+        let restorno: number = Number(response["dados"][0]['total']);
+        subAvaliacoesRestaurante.next(restorno);
+      });
+    return subAvaliacoesRestaurante.asObservable();
+  }
+
+  totalAvaliacoesPrato(id) {
+    let subAvaliacoesPrato: Subject<number> = new Subject<number>();
+    this.http
+      .get("http://localhost:3000/comentario/total/avaliacoes/prato/" + id)
+      .subscribe(response => {
+        let restorno: number = Number(response["dados"][0]['total']);
+        subAvaliacoesPrato.next(restorno);
+      });
+    return subAvaliacoesPrato.asObservable();
+  }
+
   private converteComentarioPrato(dado): Comentario {
     let retorno: Comentario = new Comentario();
     retorno.idComentario = dado["idcomentarios_pratos"];

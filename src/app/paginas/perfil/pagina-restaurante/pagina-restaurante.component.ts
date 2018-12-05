@@ -24,6 +24,8 @@ export class PaginaRestauranteComponent implements OnInit {
   public mediaRestaurante: number;
   public comentarios: Comentario[] = [];
   public avaliacao: string;
+  public seguidores: number;
+  public avaliacoes: number;
 
   constructor(
     private restauranteService: RestauranteService,
@@ -37,6 +39,8 @@ export class PaginaRestauranteComponent implements OnInit {
   ngOnInit() {
     this.mediaRestaurante = 0;
     this.avaliacao = "";
+    this.seguidores = 0;
+    this.avaliacoes = 0;
     this.route.params.subscribe(params => {
       console.log(params);
       let id = params["id"];
@@ -50,6 +54,8 @@ export class PaginaRestauranteComponent implements OnInit {
           this.getPratos();
           this.getComentarios();
           this.getMediaRestaurante();
+          this.getSeguidores();
+          this.getAvaliacoes();
         });
     });
   }
@@ -96,6 +102,7 @@ export class PaginaRestauranteComponent implements OnInit {
           alert("falha ao seguir");
         }
         obs.unsubscribe();
+        this.getSeguidores();
       });
   }
 
@@ -116,6 +123,7 @@ export class PaginaRestauranteComponent implements OnInit {
         this.avaliacao = '';
         this.getMediaRestaurante();
         this.getComentarios();
+        this.getAvaliacoes();
       });
   }
 
@@ -134,5 +142,17 @@ export class PaginaRestauranteComponent implements OnInit {
         this.mediaRestaurante = retorno;
         console.log("Valor da média retornado do banco de dados: " + retorno);
       });
+  }
+
+  getSeguidores(){
+    this.comentariosService.totalSeguidoresRestaurante(this.restaurante.idRestaurente).subscribe( retorno => {
+      this.seguidores = retorno;
+    });
+  }
+
+  getAvaliacoes() {
+    this.comentariosService.totalSeguidoresRestaurante(this.restaurante.idRestaurente).subscribe( retorno => {
+      this.avaliacoes = retorno;
+    });
   }
 }
