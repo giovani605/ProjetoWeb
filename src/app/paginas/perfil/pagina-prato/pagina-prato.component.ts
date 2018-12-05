@@ -57,7 +57,16 @@ export class PaginaPratoComponent implements OnInit {
           this.getComentarios();
           this.getAvaliacoes();
           this.getMediaPrato();
+          this.recuperarTagsPrato();
         });
+    });
+  }
+  
+
+  recuperarTagsPrato(){
+    var subs1:Subscription =  this.pratoService.recuperarTagsPrato(this.prato.idpratos).subscribe(dados => {
+      this.tags = dados;
+      subs1.unsubscribe();
     });
   }
 
