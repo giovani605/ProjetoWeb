@@ -40,12 +40,8 @@ import { PaginaAprovarCarpadioComponent } from './paginas/admin/pagina-aprovar-c
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PaginaNotificacoesComponent } from './paginas/pagina-notificacoes/pagina-notificacoes.component';
 import { ItemUsuarioComponent } from './lista/item-usuario/item-usuario.component';
-<<<<<<< HEAD
-import { PaginaPratoComponent } from './paginas/perfil/pagina-prato/pagina-prato.component';
-
-=======
 import { PaginaUserComponent } from './paginas/perfil/pagina-user/pagina-user.component';
->>>>>>> 2aaadb7895cc599ea9d8482b1d3f2dda22fe2fb9
+import { PaginaPratoComponent } from './paginas/perfil/pagina-prato/pagina-prato.component';
 
 const appRoutes: Routes = [
   { path: 'register', component: PaginaRegistroComponent },
@@ -116,11 +112,8 @@ const appRoutes: Routes = [
     PaginaAprovarCarpadioComponent,
     PaginaNotificacoesComponent,
     ItemUsuarioComponent,
-<<<<<<< HEAD
-    PaginaPratoComponent,
-=======
     PaginaUserComponent,
->>>>>>> 2aaadb7895cc599ea9d8482b1d3f2dda22fe2fb9
+    PaginaPratoComponent
   ],
   imports: [
     BrowserModule,
