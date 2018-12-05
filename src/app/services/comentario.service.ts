@@ -72,11 +72,6 @@ export class ComentarioService {
     return subInserirComenrarioRestaurante.asObservable();
   }
 
-<<<<<<< HEAD
-  buscaUltimosComentariosRestaurante(id: number) {
-    let subComentariosRestaurante: Subject<Comentario[]> = new Subject<Comentario[]>();
-    // this.http.post("http://localhost:3000/restaurante/registrar", data).subscribe(response => {
-=======
   buscaMediaRestaurante(id) {
     let subMediaRestaurante: Subject<number> = new Subject<number>();
     this.http
@@ -87,7 +82,6 @@ export class ComentarioService {
       });
     return subMediaRestaurante.asObservable();
   }
->>>>>>> 5b3f462eded4157d19143aa058766f5dd0075ab0
 
   buscaMediaPrato(id) {
     let subMediaPrato: Subject<number> = new Subject<number>();
@@ -100,10 +94,6 @@ export class ComentarioService {
     return subMediaPrato.asObservable();
   }
 
-<<<<<<< HEAD
-    // });
-    // return subComentariosRestaurante.asObservable();
-=======
   totalSeguidoresRestaurante(id) {
     let subSeguidoresRestaurante: Subject<number> = new Subject<number>();
     this.http
@@ -113,7 +103,6 @@ export class ComentarioService {
         subSeguidoresRestaurante.next(restorno);
       });
     return subSeguidoresRestaurante.asObservable();
->>>>>>> 5b3f462eded4157d19143aa058766f5dd0075ab0
   }
 
   totalAvaliacoesRestaurante(id) {
