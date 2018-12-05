@@ -33,8 +33,8 @@ export class PaginaPratoComponent implements OnInit {
     private userService: UserService,
     private comentariosService: ComentarioService,
     private modalService: NgbModal,
-    private reserva: ReservaService
-  ) {}
+    private reservaService: ReservaService,
+  ) { }
 
   ngOnInit() {
     this.promocao = null;
@@ -61,17 +61,17 @@ export class PaginaPratoComponent implements OnInit {
         });
     });
   }
-  
 
-  recuperarTagsPrato(){
-    var subs1:Subscription =  this.pratoService.recuperarTagsPrato(this.prato.idpratos).subscribe(dados => {
+
+  recuperarTagsPrato() {
+    var subs1: Subscription = this.pratoService.recuperarTagsPrato(this.prato.idpratos).subscribe(dados => {
       this.tags = dados;
       subs1.unsubscribe();
     });
   }
 
-  getComentarios(){
-    this.comentariosService.buscaComentariosPrato(this.prato.idpratos).subscribe( retorno => {
+  getComentarios() {
+    this.comentariosService.buscaComentariosPrato(this.prato.idpratos).subscribe(retorno => {
       this.comentarios = retorno;
     });
   }
@@ -82,14 +82,14 @@ export class PaginaPratoComponent implements OnInit {
     });
   }
 
-  getMediaPrato(){
-    this.comentariosService.buscaMediaPrato(this.prato.idpratos).subscribe( retorno => {
+  getMediaPrato() {
+    this.comentariosService.buscaMediaPrato(this.prato.idpratos).subscribe(retorno => {
       this.mediaPrato = retorno;
     });
   }
 
-  getTags(){
-    this.pratoService.recuperarTagsPrato(this.prato.idpratos).subscribe (retorno => {
+  getTags() {
+    this.pratoService.recuperarTagsPrato(this.prato.idpratos).subscribe(retorno => {
       this.tags = retorno;
     });
   }
@@ -137,12 +137,20 @@ export class PaginaPratoComponent implements OnInit {
     }
   }
 
-  fazerReserva(){
+  fazerReserva() {
 
-    if (this.dataReserva != null) {
-      alert('Não é null, é ' + this.dataReserva);
+    if (this.dataReserva == null) {
+      alert('Escolha o dia da reserva');
     } else {
-
+      this.reservaService
+      .reservar(this.prato.idpratos, this.userService.getUserId(), this.dataReserva, this.promocao)
+      .subscribe(resposta => {
+        if(resposta["flag"]){
+          alert("sucesso");
+        }else{
+          alert(resposta["msg"]);
+        }
+      });
     }
   }
 }
