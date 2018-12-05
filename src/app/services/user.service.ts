@@ -28,6 +28,17 @@ export class UserService implements CanActivate {
         });
     }
 
+    buscarUsuarioIdUser(idUser) {
+        console.log("buscarUsuarioIdUser " + idUser);
+        var subs1:Subject<Usuario> = new Subject<Usuario>();
+        this.http.get('http://localhost:3000/usuario/usuario/by-userid/' + idUser).subscribe(response => {
+
+            var u:Usuario = this.converterUser(response['dados']);
+
+            subs1.next(u);
+        });
+        return subs1;
+    }
 
     canActivate() {
         if (!this.isAuth) {
@@ -177,7 +188,7 @@ export class UserService implements CanActivate {
         return subject.asObservable();
     }
 
-    converterNotificacao(dados):Notificacao{
+    converterNotificacao(dados): Notificacao {
         var n: Notificacao = new Notificacao();
         n.ativo = dados['ativo'];
         n.idusuario = dados['idusuario'];
@@ -189,7 +200,7 @@ export class UserService implements CanActivate {
 
     }
 
-    buscarNotificacoesUserId(userId){
+    buscarNotificacoesUserId(userId) {
         console.log('buscarNotificacoesUserId ' + userId);
         var subject: Subject<Notificacao[]> = new Subject<Notificacao[]>();
         this.http.get('http://localhost:3000/usuario/buscar/notificao/by-iduser/' + userId).subscribe(response => {

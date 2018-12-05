@@ -1,89 +1,48 @@
-<div
-  class="card rounded border-primary shadow p-3 mb-5 bg-light "
-  style="width: 40%;padding: 10px; margin:auto;margin-top: 50px;vertical-align: middle;"
->
+<div class="card rounded border-primary shadow p-3 mb-5 bg-light " style="width: 40%;padding: 10px; margin:auto;margin-top: 50px;vertical-align: middle;">
   <h3>Perfil de {{ user.nome }}</h3>
   <!-- Isso exibe a label e o input de nome -->
   <div class="row align-items-start">
-    <div class="row">
-      <div class="col-sm-2"><label for="nome">Nome: </label></div>
-      <div class="col">
-        <input
-          type="text"
-          id="nome"
-          required
-          [(ngModel)]="user.nome"
-          name="nome"
-        />
+    <div class="col">
+      <div class="row">
+        <div class="col-sm-2"><label for="nome">Nome: </label></div>
+        <div class="col">
+
+          {{user.nome}}
+        </div>
       </div>
     </div>
   </div>
   <!-- Isso exibe a labe e o input de login -->
   <div class="row align-items-start">
-    <div class="row">
-      <div class="col-sm-2"><label for="login">Login: </label></div>
-      <div class="col">
-        <input
-          type="text"
-          id="login"
-          required
-          [(ngModel)]="user.login"
-          name="login"
-        />
+    <div class="col">
+      <div class="row">
+        <div class="col-sm-2"><label for="login">Login: </label></div>
+        <div class="col">
+          {{user.login}}
+        </div>
       </div>
     </div>
   </div>
-  <!-- Isso exibe a label e o input de login -->
-  <div class="row align-items-start">
-    <div class="row">
-      <div class="col-sm-2"><label for="senha">Senha: </label></div>
-      <div class="col">
-        <input
-          type="password"
-          id="senha"
-          required
-          [(ngModel)]="user.senha"
-          name="senha"
-        />
-      </div>
-    </div>
-  </div>
+
   <!-- Isso exibe a labe e o input de login -->
   <div class="row align-items-start">
-    <div class="row">
-      <div class="col-sm-2"><label for="cidade">Cidade: </label></div>
-      <div class="col">
-        <input
-          type="text"
-          id="cidade"
-          required
-          [(ngModel)]="cidade.nome"
-          name="cidade"
-        />
+    <div class="col">
+      <div class="row">
+        <div class="col-sm-2"><label for="cidade">Cidade: </label></div>
+        <div class="col">
+          {{cidade.nome}}
+        </div>
       </div>
     </div>
   </div>
 
   <p></p>
   <!-- Esse é o botão de voltar e cancelar -->
-  <button
-    type="button"
-    style="width: 100%;"
-    (click)="onClickFisrtButton()"
-    class="btn btn-primary"
-  >
+  <button type="button" style="width: 100%;" (click)="onClickFisrtButton()" class="btn btn-primary">
     {{ labelOfFirstButton }}
   </button>
   <p></p>
-  <!-- Esse é o botão de editar/salvar -->
-  <button
-    type="button"
-    style="width: 100%;"
-    (click)="onClickSecondButton()"
-    class="btn btn-primary"
-  >
-    {{ labelOfSecondButton }}
-  </button>
+  
 </div>
 <p></p>
 <!-- <app-cidade></app-cidade> -->
