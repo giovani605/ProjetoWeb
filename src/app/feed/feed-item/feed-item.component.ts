@@ -17,7 +17,7 @@ import { LocalizacaoService } from 'src/app/services/localizacao.service';
 })
 export class FeedItemComponent implements OnInit, OnDestroy {
 
-  private listaAmigos: Usuario[] = [];
+  public listaAmigos: Usuario[] = [];
   @Input('valor') item: FeedItem;
   closeResult: string;
   public restaurante: Restaurante = new Restaurante();

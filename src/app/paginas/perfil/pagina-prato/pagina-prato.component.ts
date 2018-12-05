@@ -1,3 +1,4 @@
+import { ReservaService } from './../../../services/reserva.service';
 import { Comentario } from './../../../model/comentario.model';
 import { Subscription } from 'rxjs';
 import { ComentarioService } from "src/app/services/comentario.service";
@@ -7,6 +8,7 @@ import { PratoService } from "src/app/services/prato.service";
 import { UserService } from "src/app/services/user.service";
 import { Prato } from 'src/app/model/prato.model';
 import { Tag } from 'src/app/model/tag.model';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: "app-pagina-prato",
@@ -21,15 +23,22 @@ export class PaginaPratoComponent implements OnInit {
   public notaPrato: number;
   public avaliacoes: number;
   public tags: Tag[];
+  closeResult: string;
+  public dataReserva: string;
+  public promocao: string;
 
   constructor(
     private pratoService: PratoService,
     private route: ActivatedRoute,
     private userService: UserService,
-    private comentariosService: ComentarioService
+    private comentariosService: ComentarioService,
+    private modalService: NgbModal,
+    private reserva: ReservaService
   ) {}
 
   ngOnInit() {
+    this.promocao = null;
+    this.dataReserva = '';
     this.prato = new Prato();
     this.comentarios = [];
     this.mediaPrato = 0;
@@ -98,5 +107,33 @@ export class PaginaPratoComponent implements OnInit {
 
   getUrlImagem(img: String): String {
     return "http://localhost:3000/static/" + img;
+  }
+
+  open(content) {
+
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
+  }
+
+  fazerReserva(){
+
+    if (this.dataReserva != null) {
+      alert('Não é null, é ' + this.dataReserva);
+    } else {
+
+    }
   }
 }

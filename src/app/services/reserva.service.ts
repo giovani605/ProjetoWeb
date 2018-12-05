@@ -13,7 +13,7 @@ export class ReservaService {
     const reservas: reservaUsuario[] = [];
     this.http
       .get(
-        'http://localhost:3000/reserva//buscarReservasPorUsuario/' + idusuario
+        'http://localhost:3000/reserva/buscarReservasPorUsuario/' + idusuario
       )
       .subscribe(retorno => {
         for (const row of retorno['dados']) {
